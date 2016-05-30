@@ -1,0 +1,8 @@
+/target/
+org.eclipse.*
+*.class
+.project
+.classpath
+.jsdtscope
+/activemq-data/
+/logs/
