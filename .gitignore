@@ -4,5 +4,6 @@ org.eclipse.*
 .project
 .classpath
 .jsdtscope
+.jar
 /activemq-data/
 /logs/
