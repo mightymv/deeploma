@@ -46,7 +46,7 @@ public class TicketCalculator {
 		
 		
 		BetOdd betOdd = findMatchId(row, betOds);
-		Long matchId = betOdd.getMatchId();
+		Long matchId = betOdd.getMatch().getId();
 		
 		List<Result> filteredResults = verifiedResults.stream().filter(result -> result.getMatchId().equals(matchId)).collect(Collectors.toList());
 		

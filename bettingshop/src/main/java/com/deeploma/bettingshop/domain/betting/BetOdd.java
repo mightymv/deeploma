@@ -1,24 +1,18 @@
 package com.deeploma.bettingshop.domain.betting;
 
+import com.deeploma.bettingshop.domain.basic.Match;
+
 public class BetOdd {
 	
 	private Long id;
 	
 	private SubGame subGame;
 	
-	private Long matchId;
+	private Match match;
 	
 	private Double value;
 	
 	private BetOddStatus betOddStatus;
-
-	public Long getMatchId() {
-		return matchId;
-	}
-
-	public void setMatchId(Long matchId) {
-		this.matchId = matchId;
-	}
 
 	public Long getId() {
 		return id;
@@ -50,6 +44,14 @@ public class BetOdd {
 
 	public void setValue(Double value) {
 		this.value = value;
+	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	public void setMatch(Match match) {
+		this.match = match;
 	}
 
 

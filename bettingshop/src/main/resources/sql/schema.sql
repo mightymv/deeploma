@@ -25,7 +25,7 @@ DROP
  TABLE BettingGames CASCADE CONSTRAINTS ;
 
 DROP
-  TABLE BettingSubGame CASCADE CONSTRAINTS ;
+  TABLE BettingSubGames CASCADE CONSTRAINTS ;
 
 DROP
   TABLE TicketRows CASCADE CONSTRAINTS ;
@@ -138,13 +138,14 @@ ALTER TABLE BettingGames ADD CONSTRAINT BettingGame_PK PRIMARY KEY ( id ) ;
 
 
 CREATE
-  TABLE BettingSubGame
+  TABLE BettingSubGames
   (
     id   INTEGER NOT NULL ,
     name VARCHAR2 (40 CHAR) ,
+    short_name VARCHAR2 (40 CHAR),
     bettGameId INTEGER NOT NULL
   ) ;
-ALTER TABLE BettingSubGame ADD CONSTRAINT BettingSubGame_PK PRIMARY KEY ( id )
+ALTER TABLE BettingSubGames ADD CONSTRAINT BettingSubGames_PK PRIMARY KEY ( id )
 ;
 
 
@@ -173,10 +174,10 @@ ALTER TABLE Tickets ADD CONSTRAINT Tickets_PK PRIMARY KEY ( id ) ;
 
 
 
-ALTER TABLE BetOdds ADD CONSTRAINT BetOdds_BettingSubGame_FK FOREIGN KEY (
-subGameId ) REFERENCES BettingSubGame ( id ) ;
+ALTER TABLE BetOdds ADD CONSTRAINT BetOdds_BettingSubGames_FK FOREIGN KEY (
+subGameId ) REFERENCES BettingSubGames ( id ) ;
 
-ALTER TABLE BettingSubGame ADD CONSTRAINT BettingSubGame_BettingGames_FK
+ALTER TABLE BettingSubGames ADD CONSTRAINT BettingSubGames_BettingG_FK
 FOREIGN KEY ( bettGameId ) REFERENCES BettingGames ( id ) ;
 
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_BetOdds_FK FOREIGN KEY (
