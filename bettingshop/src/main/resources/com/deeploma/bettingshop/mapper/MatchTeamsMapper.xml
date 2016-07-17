@@ -72,8 +72,7 @@
 		m.hometeamid as mhometeam,
 		m.visitorteamid as mvisitorteam,
 		m.matchstatus as mmatchstatus,
-		th.id as
-		hom_tid,
+		th.id as hom_tid,
 		th.name as hom_tname,
 		tv.id as vis_tid,
 		tv.name as vis_tname,

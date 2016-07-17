@@ -1,14 +1,22 @@
 package com.deeploma.bettingshop.domain.basic;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.joda.time.DateTime;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 
 public class Match {
 
 	private Long id;
 	
+	@JsonSerialize(using=DateTimeToStringSerializer.class )
 	private DateTime startTime;
 	
 	private Competition competition;
@@ -76,4 +84,15 @@ public class Match {
 	public void setMatchStatus(MatchStatus matchStatus) {
 		this.matchStatus = matchStatus;
 	}
+}
+
+class DateTimeToStringSerializer extends JsonSerializer<DateTime> {
+
+    @Override
+    public void serialize(DateTime tmpDate, 
+                          JsonGenerator jsonGenerator, 
+                          SerializerProvider serializerProvider) 
+                          throws IOException, JsonProcessingException {
+        jsonGenerator.writeObject(tmpDate.toString());
+    }
 }

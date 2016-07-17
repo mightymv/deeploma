@@ -45,5 +45,14 @@ public enum SubGame {
 		this.shortName = shortName;
 	}
 	
+	public static SubGame getForId(Integer id) {
+		for (SubGame val : values()) {
+			if (val.getId().equals(id))
+				return val;
+		}
+		
+		return null;
+		
+	}
 
 }

@@ -25,7 +25,6 @@ bsubg.BETTGAMEID bsubgbettgameid,
 bsubg.SHORT_NAME bsubgshortname,
 bg.ID bgid,
 bg.NAME bgname
-
 from
 MATCHES m,
 TEAMS th,
@@ -33,5 +32,13 @@ TEAMS tv,
 COMPETITIONS c,
 SPORTS s,
 BETODDS odd,
-BETTINGSUBGAME bsubg,
-BETTINGGAMES bg;
+BETTINGSUBGAMES bsubg,
+BETTINGGAMES bg
+where 
+m.COMPETITIONID = c.id
+and c.SPORTID = s.id
+and m.HOMETEAMID = th.id 
+and m.VISITORTEAMID = tv.id 
+and odd.MATCHID = m.id 
+and odd.SUBGAMEID = bsubg.id
+and bsubg.BETTGAMEID = bg.id;
