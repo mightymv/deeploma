@@ -1,5 +1,6 @@
 
 BAZA priprema , rucno ili docker:
+
 https://github.com/wnameless/docker-oracle-xe-11g   za bazu
 
 docker pull wnameless/oracle-xe-11g
