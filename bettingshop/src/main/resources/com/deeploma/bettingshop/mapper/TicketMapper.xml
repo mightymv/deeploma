@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.deeploma.bettingshop.mapper.TicketMapper">
 
+     <insert id="insertTicket">
+	    <selectKey keyProperty="ticket.id" resultType="long" order="BEFORE">
+		     select SQ_TICKETS_ID.nextval a from dual
+	    </selectKey>
+		insert into tickets (id, cumulativeodd, time, userId) values
+						   (#{ticket.id},#{ticket.cumulativeOdd},#{ticket.time,typeHandler=com.deeploma.bettingshop.mapper.thandler.DateTimeTypeHandler}, #{ticket.userId})		
+	</insert>
+	
+	<insert id="insertTicketRow">
+	    <selectKey keyProperty="ticketRow.id" resultType="long" order="BEFORE">
+		     select SQ_TICKETROWS_ID.nextval a from dual
+	    </selectKey>
+		insert into ticketrows (id, ticketid, betoddid) values
+						   (#{ticketRow.id},#{ticketRow.ticketId},#{ticketRow.betOddId})		
+	</insert>
 
+
+ <!-- id            INTEGER NOT NULL ,
+    TIME          DATE ,
+    cumulativeOdd NUMBER ,
+    userId        INTEGER ,
+    ticketStatus  VARCHAR2 (20 CHAR) 
+    
+    #{match.matchDate,jdbcType=TIMESTAMP}
+    
+    -->
+    
+    <!--  TABLE TicketRows
+  (
+    id              INTEGER NOT NULL ,
+    ticketId        INTEGER NOT NULL ,
+    bettOddId       INTEGER NOT NULL ,
+    ticketRowStatus VARCHAR2 (20 CHAR)
+  ) 
+ -->
 </mapper>

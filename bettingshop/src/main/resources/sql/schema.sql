@@ -32,6 +32,10 @@ DROP
 
 DROP
   TABLE Tickets CASCADE CONSTRAINTS ;
+  
+DROP SEQUENCE SQ_TICKETS_ID ;
+
+DROP SEQUENCE SQ_TICKETROWS_ID ;
 
 CREATE
   TABLE Competitions
@@ -155,8 +159,8 @@ CREATE
   (
     id              INTEGER NOT NULL ,
     ticketId        INTEGER NOT NULL ,
-    bettOddId       INTEGER NOT NULL ,
-    ticketRowStatus VARCHAR2 (20 CHAR)
+    betOddId       INTEGER NOT NULL ,
+    ticketRowStatus VARCHAR2 (20 CHAR) default 'ACTIVE'
   ) ;
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_PK PRIMARY KEY ( id ) ;
 
@@ -168,7 +172,7 @@ CREATE
     TIME          DATE ,
     cumulativeOdd NUMBER ,
     userId        INTEGER ,
-    ticketStatus  VARCHAR2 (20 CHAR)
+    ticketStatus  VARCHAR2 (20 CHAR) default 'ACTIVE'
   ) ;
 ALTER TABLE Tickets ADD CONSTRAINT Tickets_PK PRIMARY KEY ( id ) ;
 
@@ -181,7 +185,13 @@ ALTER TABLE BettingSubGames ADD CONSTRAINT BettingSubGames_BettingG_FK
 FOREIGN KEY ( bettGameId ) REFERENCES BettingGames ( id ) ;
 
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_BetOdds_FK FOREIGN KEY (
-bettOddId ) REFERENCES BetOdds ( id ) ;
+betOddId ) REFERENCES BetOdds ( id ) ;
 
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_Tickets_FK FOREIGN KEY (
 ticketId ) REFERENCES Tickets ( id ) ;
+
+CREATE SEQUENCE SQ_TICKETS_ID 
+START WITH 100000;
+
+CREATE SEQUENCE SQ_TICKETROWS_ID 
+START WITH 1000;

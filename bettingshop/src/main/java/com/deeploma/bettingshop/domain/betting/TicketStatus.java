@@ -5,7 +5,7 @@ public enum TicketStatus {
 	ACTIVE(1),
 	LOSER(5),
     WINNER(10),
-    CALCULATED(50);
+    CALCULATED(50); // da je uzet u obzir za user score
 		
 	private Integer id;
 	

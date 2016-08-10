@@ -1,5 +1,6 @@
 package com.deeploma.bettingshop.domain.betting;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -11,12 +12,20 @@ public class Ticket {
     private TicketStatus ticketStatus;
     
 	private Long userId;
-	
+	 
 	private DateTime time;
 	
 	private List<TicketRow>  ticketRows;
 	
-	public Double cumulativeOdd;
+	public Double cumulativeOdd = 1.0;
+
+	public Double getCumulativeOdd() {
+		return cumulativeOdd;
+	}
+
+	public void setCumulativeOdd(Double cumulativeOdd) {
+		this.cumulativeOdd = cumulativeOdd;
+	}
 
 	public DateTime getTime() {
 		return time;
@@ -56,6 +65,16 @@ public class Ticket {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	
+	public Ticket addTicketRow(TicketRow ticketRow, Double odd) {
+		if (ticketRows == null) {
+			ticketRows = new ArrayList<TicketRow>();
+		}
+		ticketRows.add(ticketRow);
+		
+		this.cumulativeOdd = this.cumulativeOdd * odd;
+		return this;
 	}
 
 }
