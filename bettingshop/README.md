@@ -17,14 +17,18 @@ API ti se nalazi u paketu gde su controleri, iscitaj dok ne napravim bolje. :)
 
 
 /login
+
 /offer/2016-8-10
+
 /ticket/add/     ovde ocekuje u body-u tiket koji se uplacuje
+
+
 
 
 header-i koje ocekuje (prva dva pri loginu, ovaj treci pri ostalim zahtevima):
 
-X-Auth-Username
-X-Auth-Password
+X-Auth-Username,
+X-Auth-Password,
 X-Auth-Token
 
 
