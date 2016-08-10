@@ -23,8 +23,8 @@ public class TokenService {
         restApiAuthTokenCache.evictExpiredElements();
     }
 
-    public String generateNewToken(String username, String secret) {
-        return JwtTokenGenerator.generateToken(username, secret);
+    public String generateNewToken(String username, Long userId, String secret) {
+        return JwtTokenGenerator.generateToken(username, userId, secret);
     }
 
     public void store(String token, Authentication authentication) {

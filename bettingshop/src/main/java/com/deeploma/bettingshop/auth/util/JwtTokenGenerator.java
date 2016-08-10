@@ -20,9 +20,9 @@ public class JwtTokenGenerator {
      * @param u the user for which the token will be generated
      * @return the JWT token
      */
-    public static String generateToken(String username, String secret) {
+    public static String generateToken(String username, Long userId, String secret) {
         Claims claims = Jwts.claims().setSubject(username);
-        //claims.put("userId", u.getId() + "");
+        claims.put("userId", userId + "");
        // claims.put("role", u.getRole());
 
         return Jwts.builder()

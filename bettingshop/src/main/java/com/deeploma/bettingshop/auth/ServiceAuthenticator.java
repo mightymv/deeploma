@@ -1,6 +1,6 @@
 package com.deeploma.bettingshop.auth;
 
-public interface ExternalServiceAuthenticator {
+public interface ServiceAuthenticator {
 
     AuthenticationWithToken authenticate(String username, String password);
 }

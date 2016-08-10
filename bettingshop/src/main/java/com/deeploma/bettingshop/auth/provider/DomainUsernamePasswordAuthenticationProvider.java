@@ -7,18 +7,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
 import com.deeploma.bettingshop.auth.AuthenticationWithToken;
-import com.deeploma.bettingshop.auth.ExternalServiceAuthenticator;
+import com.deeploma.bettingshop.auth.ServiceAuthenticator;
 import com.deeploma.bettingshop.auth.TokenService;
 import com.deeploma.bettingshop.auth.util.JwtTokenValidator;
 import com.google.common.base.Optional;
 
 public class DomainUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
-    private TokenService tokenService;
-    private ExternalServiceAuthenticator externalServiceAuthenticator;
+   
+    private ServiceAuthenticator externalServiceAuthenticator;
 
-    public DomainUsernamePasswordAuthenticationProvider(TokenService tokenService, ExternalServiceAuthenticator externalServiceAuthenticator) {
-        this.tokenService = tokenService;
+    public DomainUsernamePasswordAuthenticationProvider(ServiceAuthenticator externalServiceAuthenticator) {
+       
         this.externalServiceAuthenticator = externalServiceAuthenticator;
     }
 
@@ -35,12 +35,7 @@ public class DomainUsernamePasswordAuthenticationProvider implements Authenticat
 
         AuthenticationWithToken resultOfAuthentication = externalServiceAuthenticator.authenticate(username.get(), password.get());
         
-        resultOfAuthentication.setAuthenticated(true);
-        
-        String newToken = tokenService.generateNewToken(username.get(), JwtTokenValidator.secret); //TODO videti sta sa ovim
-        resultOfAuthentication.setToken(newToken);
-        tokenService.store(newToken, resultOfAuthentication);
-
+       
         return resultOfAuthentication;
     }
 

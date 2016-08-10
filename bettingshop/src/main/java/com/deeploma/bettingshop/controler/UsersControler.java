@@ -15,7 +15,7 @@ public class UsersControler {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String username = (String) auth.getPrincipal();
 	   
-		return username;
+		return username; // OVO JE SAMO ZA PROBU
 	}
 
 }

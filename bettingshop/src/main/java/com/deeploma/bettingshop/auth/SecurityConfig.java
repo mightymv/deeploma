@@ -53,13 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public ExternalServiceAuthenticator someExternalServiceAuthenticator() {
-        return new DbServiceAuthenticator();
+    public ServiceAuthenticator someServiceAuthenticator() {
+        return new DbServiceAuthenticator(tokenService());
     }
 
     @Bean
     public AuthenticationProvider domainUsernamePasswordAuthenticationProvider() {
-        return new DomainUsernamePasswordAuthenticationProvider(tokenService(), someExternalServiceAuthenticator());
+        return new DomainUsernamePasswordAuthenticationProvider(someServiceAuthenticator());
     }
 
     @Bean
