@@ -8,8 +8,10 @@ public enum BetOddStatus {
 		
 	private Integer id;
 	
+	
 	private BetOddStatus(Integer id) {
 		this.setId(id);
+		
 	}
 
 	public Integer getId() {
@@ -30,4 +32,5 @@ public enum BetOddStatus {
 		
 		throw new IllegalArgumentException(String.format("BetOddStatus with id [{}] does not exist", id));
 	}
+	
 }

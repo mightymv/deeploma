@@ -39,8 +39,9 @@ public class OfferServiceImpl implements OfferService {
 	public List<MatchOffer>  getOffer(DateTime date) {
 		return offerMapper.getOfferForDate(date);
 	}
+
 	
-	/*//@Scheduled(initialDelay = 3000, fixedRate =3000)
+/*	//@Scheduled(initialDelay = 3000, fixedRate =3000)
 	public void method() {
 		System.out.println("IDemo");
 		//Sport s = sMapper.findById(Integer.valueOf(1));

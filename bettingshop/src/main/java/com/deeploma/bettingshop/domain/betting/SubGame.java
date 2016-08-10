@@ -1,5 +1,8 @@
 package com.deeploma.bettingshop.domain.betting;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape= JsonFormat.Shape.OBJECT)
 public enum SubGame {
 	
 	HOME_TEAM_WIN_FULL_TIME(1, "1", Game.FULL_TIME_SCORE_GOALS), 
@@ -53,6 +56,10 @@ public enum SubGame {
 		
 		return null;
 		
+	}
+	
+	public String getName() {
+		return name();
 	}
 
 }

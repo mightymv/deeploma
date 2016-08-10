@@ -1,5 +1,8 @@
 package com.deeploma.bettingshop.domain.basic;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape= JsonFormat.Shape.OBJECT)
 public enum SportEnum {
 	
 	FOOTBALL(1),
