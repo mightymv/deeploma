@@ -1,9 +1,0 @@
-package com.deeploma.bettingshop.auth;
-
-public class UnknownUserException extends RuntimeException {
-	
-	public UnknownUserException(String message ) {
-		super(message);
-	}
-
-}

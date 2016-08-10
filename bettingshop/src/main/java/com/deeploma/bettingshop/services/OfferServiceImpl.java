@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.deeploma.bettingshop.domain.basic.Competition;
@@ -39,6 +38,11 @@ public class OfferServiceImpl implements OfferService {
 	@Override
 	public List<MatchOffer>  getOffer(DateTime date) {
 		return offerMapper.getOfferForDate(date);
+	}
+	
+
+	public void met() {
+		
 	}
 	
 	//@Scheduled(initialDelay = 3000, fixedRate =3000)

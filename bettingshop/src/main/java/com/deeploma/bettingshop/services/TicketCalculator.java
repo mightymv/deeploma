@@ -3,7 +3,6 @@ package com.deeploma.bettingshop.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.h2.result.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.deeploma.bettingshop.domain.basic.Result;
