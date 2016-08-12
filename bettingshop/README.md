@@ -23,10 +23,12 @@ create user betshop identified by "betshop!";
 GRANT dba TO betshop WITH ADMIN OPTION;
 ```
 
-API
+API za betingshop service 
 ---
 
  nalazi se u paketu gde su controleri, iscitaj dok ne napravim bolje. :)
+ 
+ port 8080
 
 ```bash
 /login
