@@ -1,4 +1,4 @@
-
+za sve docker masine (kafka, baza...) pretpostavlja da su na 192.168.99.100  ( u windowsu docker-machine ). Moze da se izmeni u application.properties fajlovima
 
 BAZA
 ---
