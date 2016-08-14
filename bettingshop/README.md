@@ -54,16 +54,14 @@ u tokenu postoji username i id koji mogu da se iscupaju, dacu ti kod kako da to 
 treba ti id user-a za dodavanje tiketa. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u).
 
 
-KAFKA
+ACTIVEMQ
 ---
 docker:
-https://github.com/spotify/docker-kafka/blob/master/README.md
+https://github.com/rmohr/docker-activemq
 
-```bash
-docker pull spotify/kafka
-```
 
 pa onda :
 ```bash
-docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/kafka
+docker pull rmohr/activemq
+docker run -p 61616:61616 -p 8161:8161 rmohr/activemq
 ```
