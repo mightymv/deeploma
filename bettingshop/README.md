@@ -36,9 +36,17 @@ API za betingshop service
 /ticket/add/ 
 ```   
 
-ovde ocekuje u body-u tiket koji se uplacuje
+ovde ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testirao i prolazi mi)
 
-
+```bash
+{
+"userId":89,
+"ticketRows":[{"betOddId":100},
+            {"betOddId":102},
+            {"betOddId":103}],
+"cumulativeOdd":5.72
+}
+``` 
 header-i koje ocekuje (prva dva pri loginu, ovaj treci pri ostalim zahtevima):
 
 X-Auth-Username,
