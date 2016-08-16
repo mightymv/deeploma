@@ -41,11 +41,10 @@ ovde ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testirao i p
 ```bash
 {
 "userId":89,
-"ticketRows":[{"betOddId":100},
-            {"betOddId":102},
-            {"betOddId":103}],
-"cumulativeOdd":5.72
-}
+"ticketRows":[{"betOddId":100, "matchId":1001, "subGameShortName":"1", "odd":1.5},
+            {"betOddId":111, "matchId":1002, "subGameShortName":"2", "odd":2.4},
+            {"betOddId":123, "matchId":1003, "subGameShortName":"h1", "odd":2.3}],
+"cumulativeOdd":8.28}
 ``` 
 header-i koje ocekuje (prva dva pri loginu, ovaj treci pri ostalim zahtevima):
 
