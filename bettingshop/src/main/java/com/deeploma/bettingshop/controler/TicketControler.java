@@ -4,12 +4,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import javax.inject.Provider;
+
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.springframework.http.MediaType.*;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.deeploma.bettingshop.domain.betting.Ticket;
+import com.deeploma.bettingshop.messaging.SendingBean;
 import com.deeploma.bettingshop.services.TicketService;
 
 @RestController
@@ -19,10 +23,35 @@ public class TicketControler {
 	@Autowired
 	TicketService ticketSrv;
 	
-	@RequestMapping(path= "/add", method= PUT , produces = APPLICATION_JSON_VALUE)
+	@Autowired (required = false)	
+	Provider<SendingBean> sb;
+	
+	@RequestMapping(path= "/add", method= PUT , produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_UTF8_VALUE)
 	public void add(@RequestBody Ticket ticket) {
-		
+	
 		ticketSrv.addTicket(ticket);
+		
+		sb.get().sendTicket(ticket);
+	}
+	
+	@RequestMapping(path= "/add2", method= POST , produces = APPLICATION_JSON_VALUE)
+	public void add2() {
+	
+		Ticket ticket = new Ticket();
+		
+		ticket.setUserId(123l);
+		ticket.setTime(DateTime.now());
+		
+		sb.get().sendTicket(ticket);
+	}
+	
+	
+	public void sendTicketEvent(Ticket ticket) {
+		try {
+			sb.get().sendTicket(ticket);
+		} catch (Exception ex){
+			
+		}
 		
 	}
 

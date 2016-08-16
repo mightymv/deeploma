@@ -5,6 +5,12 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ticket {
 	
 	private Long id;
@@ -12,7 +18,9 @@ public class Ticket {
     private TicketStatus ticketStatus;
     
 	private Long userId;
-	 
+
+	@JsonSerialize(using=com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer.class )
+	//@JsonDeserialize(using=com.fasterxml.jackson.datatype.joda.deser.DateTimeDeserializer.class )	
 	private DateTime time;
 	
 	private List<TicketRow>  ticketRows;

@@ -24,6 +24,8 @@ public interface MatchTeamsMapper {
 	
 	public Match findMatchById(@Param("mid")Integer id);
 	
+	public Match findMatchByBetOddId(@Param("boid")Long boid);
+	
 	public List<Match> findAllMatches();
 
 	public List<Result> findAllVerifiedResults();

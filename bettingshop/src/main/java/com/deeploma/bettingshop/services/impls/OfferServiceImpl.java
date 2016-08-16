@@ -1,23 +1,35 @@
 package com.deeploma.bettingshop.services.impls;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.deeploma.bettingshop.domain.betting.MatchOffer;
+import com.deeploma.bettingshop.domain.betting.Ticket;
+import com.deeploma.bettingshop.domain.betting.TicketRow;
 import com.deeploma.bettingshop.mapper.CompetitionMapper;
 import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
 import com.deeploma.bettingshop.mapper.SportMapper;
+import com.deeploma.bettingshop.messaging.SendingBean;
 import com.deeploma.bettingshop.services.OfferService;
 import com.deeploma.bettingshop.services.TicketService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Component
 public class OfferServiceImpl implements OfferService {
 	
-	
+
+	private final static Logger logger = LoggerFactory.getLogger(OfferServiceImpl.class);
+
 	@Autowired
 	private CompetitionMapper  cMapper;
 	
@@ -41,7 +53,7 @@ public class OfferServiceImpl implements OfferService {
 	}
 
 	
-/*	//@Scheduled(initialDelay = 3000, fixedRate =3000)
+	/*//@Scheduled(initialDelay = 3000, fixedRate =3000)
 	public void method() {
 		System.out.println("IDemo");
 		//Sport s = sMapper.findById(Integer.valueOf(1));
@@ -62,10 +74,14 @@ public class OfferServiceImpl implements OfferService {
 		
 		System.out.println(m.getId());
 		System.out.println(results.get(0).getResultStatus());
-	}
+	}*/
 	
-	//@Scheduled(initialDelay = 3000, fixedRate =3000)
+	//@Scheduled(initialDelay = 3000, fixedRate =30000)
 	public void insertTicket() {
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		objectMapper.registerModule(new JodaModule());
 		Ticket ticket = new Ticket();
 		
 		ticket.setTime(new DateTime());
@@ -78,9 +94,23 @@ public class OfferServiceImpl implements OfferService {
 		TicketRow tr3= new TicketRow();
 		tr3.setBetOddId(Long.valueOf(103));
 		
-		//ticket.addTicketRow(tr1).addTicketRow(tr2).addTicketRow(tr3);
-		
+		ticket.addTicketRow(tr1, 1.5d).addTicketRow(tr2, 1.6d).addTicketRow(tr3,2.4d);
+		try {
+			String mess = objectMapper.writeValueAsString(ticket);
+			logger.info("TICKET JSON : {}", mess);
+			
+			Ticket t2 = objectMapper.readValue(mess, Ticket.class);
+			
+			logger.info("TICKET JSON2 : {}", t2.getId());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//ticketService.addTicket(ticket);
-	}*/
+        catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

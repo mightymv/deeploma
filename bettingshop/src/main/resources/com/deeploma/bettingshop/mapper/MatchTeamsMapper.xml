@@ -66,8 +66,8 @@
         from results
     </select>
     
-    <sql id="matchSelect">
-    m.id as mid,
+    <sql id= "plainMatchSel">    
+    	m.id as mid,
 		m.starttime as mstarttime,
 		m.hometeamid as mhometeam,
 		m.visitorteamid as mvisitorteam,
@@ -86,7 +86,30 @@
 		c.sportid as
 		csportid,
 		s.id as sid,
-		s.name as sname
+		s.name as sname    
+    </sql>
+    
+    <sql id="matchSelectBetOdd">
+    	<include refid="plainMatchSel"/>
+	from 
+		matches m,
+		teams th,
+		teams tv,
+		results r,
+		competitions c,
+		sports s,
+		betodds bo
+	where 
+		m.hometeamid = th.id
+		and m.visitorteamid = tv.id
+		and m.competitionid = c.id
+		and c.sportid = s.id
+		and m.id = r.matchid(+)
+		and m.id = bo.matchid
+    </sql>
+    
+    <sql id="matchSelect">
+    <include refid="plainMatchSel"/>
 	from 
 		matches m,
 		teams th,
@@ -107,8 +130,13 @@
 	  and m.id = ${mid}   
     </select>
     
+     <select id="findMatchByBetOddId" resultMap="matchMap">
+	  select  <include refid="matchSelectBetOdd"/>
+	  and bo.id = ${boid}   
+    </select>
+    
     <select id="findAllMatches" resultMap="matchMap">
-	  select<include refid="matchSelect"/>   
+	  select <include refid="matchSelect"/>   
     </select>
     
     
