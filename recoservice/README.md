@@ -1,4 +1,4 @@
-Mongo
+MongoDB
 ------
 
 mongo instalacija rucno ili kroz docker: 
