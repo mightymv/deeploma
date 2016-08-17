@@ -1,9 +1,7 @@
-package com.deeploma.bettingshop.domain.betting.dto;
+package com.deeploma.reco.dto;
 
 import org.joda.time.DateTime;
 
-import com.deeploma.bettingshop.domain.basic.Competition;
-import com.deeploma.bettingshop.domain.basic.Team;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -11,7 +9,6 @@ public class MatchDto {
 
 	private Long id;
 	@JsonSerialize(using = com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer.class)
-	@JsonDeserialize(using = com.fasterxml.jackson.datatype.joda.deser.DateTimeDeserializer.class)
 	private DateTime startTime;
 
 	private Competition competition;

@@ -1,11 +1,14 @@
 package com.deeploma.bettingshop.domain.basic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Team {
 
 	private Long id;
 	
 	private String name;
 	
+	@JsonIgnore
 	private Sport sport;
 
 	public Long getId() {

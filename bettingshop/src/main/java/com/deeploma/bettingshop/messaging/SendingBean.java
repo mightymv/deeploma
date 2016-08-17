@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import org.glassfish.jersey.message.internal.MatchingEntityTag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import com.deeploma.bettingshop.domain.basic.Match;
 import com.deeploma.bettingshop.domain.betting.Ticket;
 import com.deeploma.bettingshop.domain.betting.TicketRow;
 import com.deeploma.bettingshop.domain.betting.dto.MatchDto;
+import com.deeploma.bettingshop.domain.betting.dto.TeamDto;
 import com.deeploma.bettingshop.domain.betting.dto.TicketDto;
 import com.deeploma.bettingshop.domain.betting.dto.TicketRowDto;
 import com.deeploma.bettingshop.domain.betting.dto.UserTicket;
@@ -84,6 +86,8 @@ public class SendingBean {
 		TicketDto tick = new TicketDto();
 		tick.setId(ticket.getId());
 		
+		tick.setStartTime(ticket.getTime());
+		
 		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(  trow-> convertToDto(trow)).collect(Collectors.toList());		
 	    tick.setRows(rows);			
 	
@@ -97,14 +101,15 @@ public class SendingBean {
 		rowDto.setId(trow.getId());		
 		rowDto.setBetOddId(trow.getBetOddId());
 				
-		Match match = matchMapper.findMatchByBetOddId(trow.getBetOddId());
+		Match match = matchMapper.findMatchById(trow.getMatchId());
 		
 		MatchDto mDto = new MatchDto();
 		mDto.setId(match.getId());
 		mDto.setStartTime(match.getStartTime());
-		mDto.setTeamHome(match.getTeamHome());
-		mDto.setTeamVisitor(match.getTeamVisitor());
-		rowDto.setMatch(match);
+		mDto.setTeamHome(new TeamDto(match.getTeamHome()));
+		mDto.setTeamVisitor(new TeamDto(match.getTeamVisitor()));
+		mDto.setCompetition(match.getCompetition());
+		rowDto.setMatch(mDto);
 				
  		return rowDto;
 	}

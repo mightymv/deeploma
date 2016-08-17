@@ -8,7 +8,7 @@
 	    <selectKey keyProperty="ticket.id" resultType="long" order="BEFORE">
 		     select SQ_TICKETS_ID.nextval a from dual
 	    </selectKey>
-		insert into tickets (id, cumulativeodd, time, userId) values
+		insert into tickets (id, cumulativeodd, time, userid) values
 						   (#{ticket.id},#{ticket.cumulativeOdd},#{ticket.time,typeHandler=com.deeploma.bettingshop.mapper.thandler.DateTimeTypeHandler}, #{ticket.userId})		
 	</insert>
 	
@@ -16,8 +16,8 @@
 	    <selectKey keyProperty="ticketRow.id" resultType="long" order="BEFORE">
 		     select SQ_TICKETROWS_ID.nextval a from dual
 	    </selectKey>
-		insert into ticketrows (id, ticketid, betoddid) values
-						   (#{ticketRow.id},#{ticketRow.ticketId},#{ticketRow.betOddId})		
+		insert into ticketrows (id, ticketid, betoddid, matchid, subgame, odd) values
+						   (#{ticketRow.id},#{ticketRow.ticketId},#{ticketRow.betOddId}, #{ticketRow.matchId}, #{ticketRow.subGameShortName}, #{ticketRow.odd})		
 	</insert>
 
 

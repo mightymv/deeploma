@@ -83,8 +83,7 @@
 		r.resultstatus as rresultstatus,
 		c.id as cid,
 		c.name as cname,
-		c.sportid as
-		csportid,
+		c.sportid as csportid,
 		s.id as sid,
 		s.name as sname    
     </sql>

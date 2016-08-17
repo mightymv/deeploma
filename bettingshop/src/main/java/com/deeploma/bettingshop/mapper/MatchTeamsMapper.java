@@ -22,7 +22,7 @@ public interface MatchTeamsMapper {
 	
 	public List<Result> findAllResults();
 	
-	public Match findMatchById(@Param("mid")Integer id);
+	public Match findMatchById(@Param("mid")Long id);
 	
 	public Match findMatchByBetOddId(@Param("boid")Long boid);
 	

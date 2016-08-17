@@ -159,7 +159,10 @@ CREATE
   (
     id              INTEGER NOT NULL ,
     ticketId        INTEGER NOT NULL ,
-    betOddId       INTEGER NOT NULL ,
+    betOddId        INTEGER NOT NULL ,
+    matchid       	INTEGER NOT NULL ,
+    subgame       	VARCHAR(5) NOT NULL ,
+    odd         	NUMBER NOT NULL ,
     ticketRowStatus VARCHAR2 (20 CHAR) default 'ACTIVE'
   ) ;
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_PK PRIMARY KEY ( id ) ;
@@ -186,6 +189,9 @@ FOREIGN KEY ( bettGameId ) REFERENCES BettingGames ( id ) ;
 
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_BetOdds_FK FOREIGN KEY (
 betOddId ) REFERENCES BetOdds ( id ) ;
+
+ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_matches_FK FOREIGN KEY (
+matchid ) REFERENCES Matches ( id ) ;
 
 ALTER TABLE TicketRows ADD CONSTRAINT TicketRows_Tickets_FK FOREIGN KEY (
 ticketId ) REFERENCES Tickets ( id ) ;
