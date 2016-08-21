@@ -6,6 +6,8 @@ public interface UserService {
 	
 	public User find(Long id) ;
 	
+	public User addUser(User user);
 	
+	public boolean validateUser(String username, String password) ;
 
 }

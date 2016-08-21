@@ -7,12 +7,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.jongo.Jongo;
+import org.jongo.MongoCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.jms.annotation.JmsListener;
 
 import com.deeploma.reco.domen.UserTickets;
@@ -21,7 +22,6 @@ import com.deeploma.reco.dto.UserTicket;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-import com.jayway.jsonpath.Criteria;
 
 @Configuration
 public class EventListeners {
@@ -29,7 +29,8 @@ public class EventListeners {
 	private final static Logger logger = LoggerFactory.getLogger(EventListeners.class);
 	
 	public static final String TICKETS_QUEUE = "tickets.queue";
-	
+
+	@Autowired
 	ObjectMapper objm;;
 	
 	MongoTemplate mTemplate;
@@ -37,21 +38,23 @@ public class EventListeners {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
+	@Autowired 
+	Jongo jongo;
+	
 	public EventListeners() {
-		objm = new ObjectMapper();
-		 objm.registerModule(new JodaModule());
-		 objm.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 	}
 
-	
-	
-	 @JmsListener(destination = TICKETS_QUEUE)
-	 public void receiveOrder(String userTicket) {
+	@JmsListener(destination = TICKETS_QUEUE)
+	public void receiveOrder(String userTicket) {
 		logger.info("Stigao je json : {}" , userTicket);
-		 UserTicket resp;
+		UserTicket resp;
 		try {
 			resp = objm.readValue(userTicket, UserTicket.class);			
-			UserTickets ut = mongoTemplate.findOne(query(where("userId").is(resp.getUserId())), UserTickets.class);
+			//UserTickets ut = mongoTemplate.findOne(query(where("userId").is(resp.getUserId())), UserTickets.class);
+			
+			MongoCollection collection = jongo.getCollection("userTickets");
+			
+			UserTickets ut = collection.findOne("{_id: #}", resp.getUserId()).as(UserTickets.class);
 			 
 			if (ut == null) {
 				 ut = new UserTickets();
@@ -62,6 +65,7 @@ public class EventListeners {
 			 }			 
 			
 			 ut.getTickets().add(resp.getTicketDto());
+			 ut.getTickets().forEach(tick -> logger.info(tick.getId().toString()));
 			 mongoTemplate.save(ut);
 			 
 		} catch (IOException e) {

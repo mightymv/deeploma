@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import org.glassfish.jersey.message.internal.MatchingEntityTag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +34,20 @@ public class SendingBean {
 
 
     private JmsMessagingTemplate template;
-    
+   
+    @Autowired
     ObjectMapper objectMapper ;
     
     @Autowired
     MatchTeamsMapper matchMapper;
+    
+    public SendingBean() {
+    	
+    }
 
     @Autowired
     public SendingBean(JmsMessagingTemplate template) {
     	 this.template = template;
-    	 objectMapper = new ObjectMapper();
-    	 //objectMapper.registerModule(new JodaModule());
     }
 
     private ExecutorService exService = Executors.newFixedThreadPool(10);
@@ -88,7 +90,7 @@ public class SendingBean {
 		
 		tick.setStartTime(ticket.getTime());
 		
-		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(  trow-> convertToDto(trow)).collect(Collectors.toList());		
+		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(  trow -> convertToDto(trow)).collect(Collectors.toList());		
 	    tick.setRows(rows);			
 	
 	    ticketDto.setTicketDto(tick);

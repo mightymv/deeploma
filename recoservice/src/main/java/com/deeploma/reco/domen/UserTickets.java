@@ -2,6 +2,7 @@ package com.deeploma.reco.domen;
 
 import java.util.Set;
 
+import org.jongo.marshall.jackson.oid.MongoId;
 import org.springframework.data.annotation.Id;
 
 import com.deeploma.reco.dto.TicketDto;
@@ -12,6 +13,7 @@ public class UserTickets {
 
 
 	@Id
+	@MongoId
 	private Long userId;
 	
 	private Set<TicketDto>  tickets;
