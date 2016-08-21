@@ -1,0 +1,1 @@
+Angular2 odds aplication

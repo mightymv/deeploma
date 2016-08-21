@@ -1,0 +1,582 @@
+[
+  {
+    "id": 1001,
+    "startTime": "2016-06-20T19:00:00.000Z",
+    "competition": {
+      "id": 100,
+      "name": "Premier League",
+      "sport": {
+        "id": 1,
+        "name": "Footbal"
+      }
+    },
+    "teamHome": {
+      "id": 1001,
+      "name": "Manchester United",
+      "sport": null
+    },
+    "teamVisitor": {
+      "id": 1002,
+      "name": "Chelsea",
+      "sport": null
+    },
+    "results": null,
+    "matchStatus": "NOT_FINISHED",
+    "odds": [
+      {
+        "id": 100,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_FULL_TIME",
+          "id": 1,
+          "shortName": "1",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 1.5,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 101,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_FULL_TIME",
+          "id": 2,
+          "shortName": "2",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 3.4,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 102,
+        "subGame": {
+          "name": "DRAW_FULL_TIME",
+          "id": 0,
+          "shortName": "0",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 103,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_HALF_TIME",
+          "id": 3,
+          "shortName": "h1",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 1.6,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 104,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_HALF_TIME",
+          "id": 4,
+          "shortName": "h2",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.2,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 105,
+        "subGame": {
+          "name": "DRAW_HALF_TIME",
+          "id": 5,
+          "shortName": "h0",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 2.8,
+        "betOddStatus": "ACTIVE"
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "startTime": "2016-06-20T19:00:00.000Z",
+    "competition": {
+      "id": 100,
+      "name": "Premier League",
+      "sport": {
+        "id": 1,
+        "name": "Footbal"
+      }
+    },
+    "teamHome": {
+      "id": 1003,
+      "name": "Liverpool",
+      "sport": null
+    },
+    "teamVisitor": {
+      "id": 1004,
+      "name": "Newcastle",
+      "sport": null
+    },
+    "results": null,
+    "matchStatus": "NOT_FINISHED",
+    "odds": [
+      {
+        "id": 110,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_FULL_TIME",
+          "id": 1,
+          "shortName": "1",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 1.9,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 111,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_FULL_TIME",
+          "id": 2,
+          "shortName": "2",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.4,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 112,
+        "subGame": {
+          "name": "DRAW_FULL_TIME",
+          "id": 0,
+          "shortName": "0",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 113,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_HALF_TIME",
+          "id": 3,
+          "shortName": "h1",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 1.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 114,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_HALF_TIME",
+          "id": 4,
+          "shortName": "h2",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 5.2,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 115,
+        "subGame": {
+          "name": "DRAW_HALF_TIME",
+          "id": 5,
+          "shortName": "h0",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.8,
+        "betOddStatus": "ACTIVE"
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "startTime": "2016-06-20T19:00:00.000Z",
+    "competition": {
+      "id": 100,
+      "name": "Premier League",
+      "sport": {
+        "id": 1,
+        "name": "Footbal"
+      }
+    },
+    "teamHome": {
+      "id": 1005,
+      "name": "Arsenal",
+      "sport": null
+    },
+    "teamVisitor": {
+      "id": 1006,
+      "name": "Everton",
+      "sport": null
+    },
+    "results": null,
+    "matchStatus": "NOT_FINISHED",
+    "odds": [
+      {
+        "id": 120,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_FULL_TIME",
+          "id": 1,
+          "shortName": "1",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.9,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 121,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_FULL_TIME",
+          "id": 2,
+          "shortName": "2",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 1.4,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 122,
+        "subGame": {
+          "name": "DRAW_FULL_TIME",
+          "id": 0,
+          "shortName": "0",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 123,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_HALF_TIME",
+          "id": 3,
+          "shortName": "h1",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 2.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 124,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_HALF_TIME",
+          "id": 4,
+          "shortName": "h2",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 1.2,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 125,
+        "subGame": {
+          "name": "DRAW_HALF_TIME",
+          "id": 5,
+          "shortName": "h0",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 4.8,
+        "betOddStatus": "ACTIVE"
+      }
+    ]
+  },
+  {
+    "id": 2001,
+    "startTime": "2016-06-20T20:00:00.000Z",
+    "competition": {
+      "id": 100,
+      "name": "Premier League",
+      "sport": {
+        "id": 1,
+        "name": "Footbal"
+      }
+    },
+    "teamHome": {
+      "id": 2001,
+      "name": "Real Madrid",
+      "sport": null
+    },
+    "teamVisitor": {
+      "id": 2002,
+      "name": "Barcelona",
+      "sport": null
+    },
+    "results": null,
+    "matchStatus": "NOT_FINISHED",
+    "odds": [
+      {
+        "id": 200,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_FULL_TIME",
+          "id": 1,
+          "shortName": "1",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 1.55,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 201,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_FULL_TIME",
+          "id": 2,
+          "shortName": "2",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 3.45,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 202,
+        "subGame": {
+          "name": "DRAW_FULL_TIME",
+          "id": 0,
+          "shortName": "0",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 203,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_HALF_TIME",
+          "id": 3,
+          "shortName": "h1",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 1.6,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 204,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_HALF_TIME",
+          "id": 4,
+          "shortName": "h2",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.25,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 205,
+        "subGame": {
+          "name": "DRAW_HALF_TIME",
+          "id": 5,
+          "shortName": "h0",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.8,
+        "betOddStatus": "ACTIVE"
+      }
+    ]
+  },
+  {
+    "id": 2002,
+    "startTime": "2016-06-20T20:00:00.000Z",
+    "competition": {
+      "id": 100,
+      "name": "Premier League",
+      "sport": {
+        "id": 1,
+        "name": "Footbal"
+      }
+    },
+    "teamHome": {
+      "id": 2003,
+      "name": "Valencia",
+      "sport": null
+    },
+    "teamVisitor": {
+      "id": 2004,
+      "name": "Sevilla",
+      "sport": null
+    },
+    "results": null,
+    "matchStatus": "NOT_FINISHED",
+    "odds": [
+      {
+        "id": 210,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_FULL_TIME",
+          "id": 1,
+          "shortName": "1",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.55,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 211,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_FULL_TIME",
+          "id": 2,
+          "shortName": "2",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 2.45,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 212,
+        "subGame": {
+          "name": "DRAW_FULL_TIME",
+          "id": 0,
+          "shortName": "0",
+          "game": {
+            "name": "FULL_TIME_SCORE_GOALS",
+            "id": 1
+          }
+        },
+        "match": null,
+        "value": 3.3,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 213,
+        "subGame": {
+          "name": "HOME_TEAM_WIN_HALF_TIME",
+          "id": 3,
+          "shortName": "h1",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.6,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 214,
+        "subGame": {
+          "name": "VISITOR_TEAM_WIN_HALF_TIME",
+          "id": 4,
+          "shortName": "h2",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 1.7,
+        "betOddStatus": "ACTIVE"
+      },
+      {
+        "id": 215,
+        "subGame": {
+          "name": "DRAW_HALF_TIME",
+          "id": 5,
+          "shortName": "h0",
+          "game": {
+            "name": "HALF_TIME_SCORE_GOALS",
+            "id": 2
+          }
+        },
+        "match": null,
+        "value": 3.8,
+        "betOddStatus": "ACTIVE"
+      }
+    ]
+  }
+]
