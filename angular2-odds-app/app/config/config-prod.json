@@ -1,0 +1,4 @@
+{
+	"current-live-offer-url": "https://api.mozzartbet.com/MozzartWS/external.json/live-odds-current?languageId=1",
+	"future-live-offer-url": "https://api.mozzartbet.com/MozzartWS/external.json/live-odds-future"
+}
