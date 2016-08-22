@@ -31,12 +31,43 @@ API za betingshop service
  port 8080
 
 ```bash
-/login
-/offer/2016-8-10
-/ticket/add/ 
+/login             - logovanje
+/user              - registrovanje korisnika
+/offer/2016-8-10   - ponuda po danima
+/ticket/add/       - uplata tiketa
 ```   
 
-ovde ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testirao i prolazi mi)
+Registrovanje korisnika treba da bude u obliku (password je md5 hash) - json u body-u:
+
+```bash 
+{
+"name": "Alex",
+"surname": "Grkajac",
+"username": "grka",
+"password": "2938y9urh3h4r392u42532",
+"email": "veljko@email.com",
+}
+```
+
+Namestio sam da svako moze da povuce ponudu, ne treba logovanje i token. Takodje , naravno, i za dodavanje usera ("/user").
+Header-i koje ocekuje (prva dva pri loginu, ovaj treci pri ostalim zahtevima):
+
+X-Auth-Username,
+X-Auth-Password,
+X-Auth-Token,
+
+Primer odgovora koji se dobija na uspesni login:
+```bash
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2ZWxqa29tIiwidXNlcklkIjoiNDcifQ.HMfgonEY3hRBMHgvjHOKpxrfMFgo1v2gRvLRvrUJMHiiu-gtzcBkqS9jAa_GGKtWdQ8v_99qZIQwX3MnD3chkg",
+  "name": "Aleks",
+  "surname": "Grkajac",
+  "id": 5001
+}
+
+```
+
+Ovde ispod ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testirao i prolazi mi)
 
 ```bash
 {
@@ -46,19 +77,8 @@ ovde ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testirao i p
             {"betOddId":123, "matchId":1003, "subGameShortName":"h1", "odd":2.3}],
 "cumulativeOdd":8.28}
 ``` 
-header-i koje ocekuje (prva dva pri loginu, ovaj treci pri ostalim zahtevima):
 
-X-Auth-Username,
-X-Auth-Password,
-X-Auth-Token,
-
-
-za sada trazim token pri svemu sto postoji, ali probacu a kasnije da skinem za offer, ili slicno....
-
-login ce ti trenutno proci sta god da otkucas, i taj token posle koristi za ostale pozive (mada nema mnogo ostalog :) ))
-
-u tokenu postoji username i id koji mogu da se iscupaju, dacu ti kod kako da to izvadis iz njega, da dekodujes.
-treba ti id user-a za dodavanje tiketa. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u).
+Treba ti id user-a za dodavanje tiketa, i dobijas ga pri logovanju. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u, ali pitanje je da li ti mozes tek tako to da ekstraktujes).
 
 
 ACTIVEMQ
