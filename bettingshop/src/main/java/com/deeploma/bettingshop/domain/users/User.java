@@ -1,5 +1,8 @@
 package com.deeploma.bettingshop.domain.users;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class User {
 	
 	private Long id;
@@ -96,4 +99,11 @@ public class User {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+	
+	
 }

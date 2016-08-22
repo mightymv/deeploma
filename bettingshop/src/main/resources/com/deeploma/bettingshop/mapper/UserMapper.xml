@@ -17,7 +17,7 @@
   		<result property="name" column="uname"/>
   		<result property="surname" column="usurname"/>
   		<result property="username" column="uusername"/>
-  		<result property="password" column="upassword"/>
+  		<!-- <result property="password" column="upassword"/> -->
   		<result property="email" column="uemail"/>
   		<result property="status" column="ustatus"   typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>  		       
     </resultMap>
@@ -26,7 +26,6 @@
 	  select id uuid, name uname,
 	  surname usurname,
 	   username uusername,
-	   password upassword,
 	   email uemail,
 	   status ustatus
 	   from users 

@@ -8,6 +8,6 @@ public interface UserService {
 	
 	public User addUser(User user);
 	
-	public boolean validateUser(String username, String password) ;
+	public User validateUser(String username, String password) ;
 
 }

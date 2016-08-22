@@ -29,13 +29,13 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public boolean validateUser(String username, String password) {
+	public User validateUser(String username, String password) {
 		User user = userMapper.findByUsernameAndPassword(username, password);
 		
 		if (user == null || !user.getStatus().getId().equals(UserStatus.ACTIVE.getId())) 
-			return false;
+			return null;
 		
-		return true;
+		return user;
 	}
 
 }
