@@ -1,4 +1,4 @@
-za sve docker masine (kafka, baza...) pretpostavlja da su na 192.168.99.100  ( u windowsu docker-machine ). Moze da se izmeni u application.properties fajlovima
+Za sve docker masine (activemq, baza...) pretpostavlja da su na 192.168.99.100  ( u windowsu docker-machine ). Moze da se izmeni u application.properties fajlovima ako je neki drugi url. Naravno, ne mora da se koristi docker.
 
 BAZA
 ---
@@ -26,7 +26,7 @@ GRANT dba TO betshop WITH ADMIN OPTION;
 API za betingshop service 
 ---
 
- nalazi se u paketu gde su controleri, iscitaj dok ne napravim bolje. :)
+ Nalazi se u paketu gde su controleri, iscitaj dok ne napravim bolje. :)
  
  port 8080
 
@@ -78,7 +78,7 @@ Ovde ispod ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testir
 "cumulativeOdd":8.28}
 ``` 
 
-Treba ti id user-a za dodavanje tiketa, i dobijas ga pri logovanju. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u, ali pitanje je da li ti mozes tek tako to da ekstraktujes).
+Treba ti id user-a za dodavanje tiketa i dobijas ga pri logovanju. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u, ali pitanje je da li ti mozes tek tako to da ekstraktujes).
 
 
 ACTIVEMQ
