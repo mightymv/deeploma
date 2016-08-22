@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deeploma.bettingshop.mapper.UserMapper">
+
+     <insert id="insertUser">
+	    <selectKey keyProperty="user.id" resultType="long" order="BEFORE">
+		     select SQ_USERS_ID.nextval a from dual
+	    </selectKey>
+		insert into users (id, username, password, name, surname, email) values
+						   (#{user.id},#{user.username},#{user.password}, #{user.name}, #{user.surname}, #{user.email})		
+	</insert>
+	
+	<resultMap id="userMap" type="com.deeploma.bettingshop.domain.users.User">
+  		<id property="id" column="uuid" />
+  		<result property="name" column="uname"/>
+  		<result property="surname" column="usurname"/>
+  		<result property="username" column="uusername"/>
+  		<!-- <result property="password" column="upassword"/> -->
+  		<result property="email" column="uemail"/>
+  		<result property="status" column="ustatus"   typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>  		       
+    </resultMap>
+    
+     <select id="findByUsernameAndPassword" resultMap="userMap">
+	  select id uuid, name uname,
+	  surname usurname,
+	   username uusername,
+	   email uemail,
+	   status ustatus
+	   from users 
+	   where username = '${username}' and password = '${password}'   
+    </select>
+
+</mapper>

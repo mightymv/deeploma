@@ -1,12 +1,13 @@
 package com.deeploma.reco.dto;
 
+import org.jongo.marshall.jackson.oid.MongoId;
 import org.springframework.data.annotation.Id;
 
 public class UserTicket {
 	
 	private String username;
 	
-	@Id
+	@MongoId
 	private Long userId;
 	
 	private TicketDto  ticketDto;

@@ -2,6 +2,7 @@ package com.deeploma.bettingshop.auth;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,12 +20,21 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import com.deeploma.bettingshop.auth.filter.AuthenticationFilter;
 import com.deeploma.bettingshop.auth.provider.DomainUsernamePasswordAuthenticationProvider;
 import com.deeploma.bettingshop.auth.provider.TokenAuthenticationProvider;
+import com.deeploma.bettingshop.services.UserService;
 
 @Configuration
 @EnableWebSecurity
 @EnableScheduling
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	UserService userService;
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web.ignoring().antMatchers("/user", "/offer/**").and();
+	}
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -32,10 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
                 authorizeRequests().
-                //antMatchers(actuatorEndpoints()).hasRole(backendAdminRole).
+                //antMatchers("/addUser").permitAll().
                 anyRequest().authenticated().
                 and().
-                anonymous().disable().
+                //anonymous().disable().
                 exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint());
 
         http.addFilterBefore(new AuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
@@ -54,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ServiceAuthenticator someServiceAuthenticator() {
-        return new DbServiceAuthenticator(tokenService());
+        return new DbServiceAuthenticator(tokenService(), userService);
     }
 
     @Bean

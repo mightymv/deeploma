@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<!-- Log file -->
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>bettingshop_service.log</File>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>bettingshop_service_%d{dd-MM-yyyy}_%i.zip</fileNamePattern>
+			<maxHistory>5</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        		<maxFileSize>5MB</maxFileSize>
+      		</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		
+		<encoder>
+			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+
+	<!-- Categories -->
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.springframework.messaging" level="INFO" />
+	<logger name="org.springframework.messaging.simp" level="INFO" />
+
+	<logger name="org.apache" level="INFO" />
+	<logger name="com.sun" level="INFO" />
+
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="file" />
+	</root>
+</configuration>

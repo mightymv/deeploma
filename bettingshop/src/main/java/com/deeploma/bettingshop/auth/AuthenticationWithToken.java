@@ -10,7 +10,7 @@ public class AuthenticationWithToken extends PreAuthenticatedAuthenticationToken
 	 * 
 	 */
 	private static final long serialVersionUID = 7483527671663102761L;
-
+	
 	public AuthenticationWithToken(Object aPrincipal, Object aCredentials) {
         super(aPrincipal, aCredentials);
 
@@ -20,12 +20,12 @@ public class AuthenticationWithToken extends PreAuthenticatedAuthenticationToken
         super(aPrincipal, aCredentials, anAuthorities);
     }
 
-    public void setToken(String token) {
+    public void setData(TokenUser token) {
         setDetails(token);
     }
 
-    public String getToken() {
-        return (String)getDetails();
+    public TokenUser getToken() {
+        return (TokenUser)getDetails();
     }
 
 

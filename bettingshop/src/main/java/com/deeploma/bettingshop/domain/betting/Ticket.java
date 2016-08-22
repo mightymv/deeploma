@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 

@@ -3,13 +3,13 @@ package com.deeploma.reco.dto;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.jongo.marshall.jackson.oid.MongoId;
 import org.springframework.data.annotation.Id;
 
 public class TicketDto {
 	
-	
-
 	@Id
+	@MongoId
 	private Long id;
 	
 	private List<TicketRowDto> rows;

@@ -2,6 +2,7 @@ package com.deeploma.bettingshop.auth.filter;
 
 import com.deeploma.bettingshop.auth.ApiController;
 import com.deeploma.bettingshop.auth.TokenResponse;
+import com.deeploma.bettingshop.auth.TokenUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
@@ -109,7 +110,9 @@ public class AuthenticationFilter extends GenericFilterBean {
         Authentication resultOfAuthentication = tryToAuthenticateWithUsernameAndPassword(username, password);
         SecurityContextHolder.getContext().setAuthentication(resultOfAuthentication);
         httpResponse.setStatus(HttpServletResponse.SC_OK);
-        TokenResponse tokenResponse = new TokenResponse(resultOfAuthentication.getDetails().toString());
+        TokenUser tokenUser = (TokenUser) resultOfAuthentication.getDetails();
+        logger.info("Uspesno logovanje za korisnika : {}", tokenUser.getUser());
+        TokenResponse tokenResponse = new TokenResponse(tokenUser.getToken(), tokenUser.getUser().getName(), tokenUser.getUser().getSurname(), tokenUser.getUser().getId());
         String tokenJsonResponse = new ObjectMapper().writeValueAsString(tokenResponse);
         httpResponse.addHeader("Content-Type", "application/json");
         httpResponse.getWriter().print(tokenJsonResponse);
@@ -133,9 +136,9 @@ public class AuthenticationFilter extends GenericFilterBean {
     private Authentication tryToAuthenticate(Authentication requestAuthentication) {
         Authentication responseAuthentication = authenticationManager.authenticate(requestAuthentication);
         if (responseAuthentication == null || !responseAuthentication.isAuthenticated()) {
-            throw new InternalAuthenticationServiceException("Unable to authenticate Domain User for provided credentials");
+            throw new InternalAuthenticationServiceException("Nije moguca authentikacija korisnika za prosledjene parametre");
         }
-        logger.info("User successfully authenticated");
+        logger.info("Korisnik je uspesno authentifikovan");
         return responseAuthentication;
     }
 }
