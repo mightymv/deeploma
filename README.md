@@ -1,7 +1,7 @@
 # deeploma
 Grkajac i ja hocemo da diplomiramo ove godine
 
-#Opis projekta:
+##Opis projekta:
 
 Polyglot persistence projekat sa upotrebom modernih frontend web tehnologija 
 
