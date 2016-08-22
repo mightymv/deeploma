@@ -7,4 +7,4 @@ Polyglot persistence projekat sa upotrebom modernih frontend web tehnologija
 
 Principijelna slika sistema:
 
-![Alt text](dijagramsistema.png?raw=true "dijagram sistema")
+![Alt text](dijagramsistema1.png?raw=true "dijagram sistema")
