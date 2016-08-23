@@ -1,7 +1,7 @@
 --
 --Create user betshop identified by "betshop!";
 --Grant connect,resource to betshop;
-
+--
 --DROP
 --  TABLE Competitions CASCADE CONSTRAINTS ;
 --
