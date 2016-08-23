@@ -46,14 +46,14 @@ CREATE
   TABLE Users
   (
     id       INTEGER NOT NULL ,
-    name     VARCHAR2 (30) NOT NULL ,
-    surname  VARCHAR2 (30) NOT NULL ,
-    email    VARCHAR2 (30) NOT NULL,
-    password VARCHAR2 (50) ,    
-    status   VARCHAR2 (10)
+    name     VARCHAR2 (30) NOT NULL,
+    surname  VARCHAR2 (30) NOT NULL,
+    username VARCHAR2 (50) NOT NULL,
+    password VARCHAR2 (50) NOT NULL,    
+    status   VARCHAR2 (10) default 'ACTIVE'
   ) ;
 ALTER TABLE Users ADD CONSTRAINT Users_PK PRIMARY KEY ( id ) ;
-ALTER TABLE Users ADD CONSTRAINT Users_EMAIL_UN UNIQUE ( email ) ;
+ALTER TABLE Users ADD CONSTRAINT Users_USERNAME_UN UNIQUE ( username ) ;
 
 CREATE
   TABLE Competitions

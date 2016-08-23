@@ -8,7 +8,7 @@ import com.deeploma.bettingshop.domain.users.User;
 @Mapper
 public interface UserMapper {
 	
-	public User findByEmailAndPassword(@Param("email")String email,@Param("password") String password);
+	public User findByUsernameAndPassword(@Param("username")String username,@Param("password") String password);
 	
 	public void insertUser(@Param("user")User user);
 
