@@ -1,0 +1,70 @@
+/* line 1, ../scss/login.scss */
+.login-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2c3e50;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 3em;
+}
+/* line 12, ../scss/login.scss */
+.login-page .img-wrapper {
+  border: 3px solid white;
+  height: 155px;
+  border-radius: 50%;
+  width: 173px;
+  margin: 0 auto;
+}
+/* line 19, ../scss/login.scss */
+.login-page .img-wrapper img {
+  padding-top: 5px;
+}
+/* line 24, ../scss/login.scss */
+.login-page h1 {
+  font-size: 36px;
+  font-weight: 300;
+  color: inherit;
+  margin: 20px 0 30px 0;
+}
+/* line 30, ../scss/login.scss */
+.login-page h1 small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
+  font-weight: 300;
+}
+/* line 37, ../scss/login.scss */
+.login-page input.input-underline {
+  font-weight: 300;
+  background: 0 0;
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+/* line 45, ../scss/login.scss */
+.login-page input.input-underline:hover, .login-page input.input-underline:focus {
+  border-bottom: 2px solid #fff;
+  box-shadow: none;
+}
+/* line 51, ../scss/login.scss */
+.login-page .btn {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  line-height: 40px;
+  padding: 0 25px;
+  border-radius: 50px;
+  text-transform: none;
+  text-align: center;
+  transition: color .2s ease-in-out, border .2s ease-in-out;
+  margin-top: 30px;
+}
+/* line 64, ../scss/login.scss */
+.login-page .btn:hover {
+  color: #fff;
+  border: 2px solid #fff;
+}
