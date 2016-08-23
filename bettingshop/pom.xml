@@ -184,7 +184,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				  <finalName>bettingshop-app</finalName>
+				  <outputDirectory>output\</outputDirectory>
+				 <mainClass>com.deeploma.bettingshop.BettingshopApplication</mainClass>
 				</configuration>
+				<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
 		</plugins>
 	</build>

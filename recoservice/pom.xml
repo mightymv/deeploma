@@ -96,6 +96,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+				  <finalName>reco-app</finalName>
+				  <outputDirectory>output\</outputDirectory>
+				 <mainClass>com.deeploma.reco.RecoserviceApplication</mainClass>
+				</configuration>
+				<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
 		</plugins>
 	</build>
