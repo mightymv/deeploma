@@ -31,10 +31,10 @@ API za betingshop service
  port 8080
 
 ```bash
-/login             - logovanje
-/user              - registrovanje korisnika
-/offer/2016-8-10   - ponuda po danima
-/ticket/add/       - uplata tiketa
+/login             - logovanje     POST
+/user              - registrovanje korisnika    PUT
+/offer/2016-8-10   - ponuda po danima   GET
+/ticket/add/       - uplata tiketa    PUT
 ```   
 
 Registrovanje korisnika treba da bude u obliku (password je md5 hash) - json u body-u:
