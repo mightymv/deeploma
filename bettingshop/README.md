@@ -96,11 +96,13 @@ docker run -p 61616:61616 -p 8161:8161 rmohr/activemq
 #Pokretanje servisa :
 
 
-U projektu se samo kuca :
+U projektu se samo kuca  :
 
 ```bas
 mvn package
 ```
+Ako ti puca nesto u vezi putanje na linuxu , nadji na dnu pom-a taj deo, mozda je u razlici putanje windows-linux. ( <outputDirectory>output\</outputDirectory>)
+
 Ovo pravi jar koji ce se nalaziti na putanji "output\". Konfiguraciju "application.properties" je zapakovao u jar, a ako zelis da nesto menjas u njoj, nadji je na putanji "src/main/resources/application.properties" i prekopiraj je u "output/" direktorijum i izmeni sta treba da se izmeni. 
 
 !!! postoje dva parametra koja prvi put moraju biti odcekirana kada prvi put pokreces servis ("application.properties") , da bi inicijalizovala bazu. Sledeci put ih vrati na staro,
