@@ -93,6 +93,8 @@ docker pull rmohr/activemq
 docker run -p 61616:61616 -p 8161:8161 rmohr/activemq
 ```
 
+Trenutno je u application.properties stavljeno da gadja localhost:61616
+
 #Pokretanje servisa :
 
 
