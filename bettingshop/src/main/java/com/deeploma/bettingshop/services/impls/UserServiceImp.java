@@ -30,7 +30,7 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public User validateUser(String username, String password) {
-		User user = userMapper.findByUsernameAndPassword(username, password);
+		User user = userMapper.findByEmailAndPassword(username, password);
 		
 		if (user == null || !user.getStatus().getId().equals(UserStatus.ACTIVE.getId())) 
 			return null;

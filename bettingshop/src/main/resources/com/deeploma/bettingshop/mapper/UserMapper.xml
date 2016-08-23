@@ -28,6 +28,7 @@
 	  status ustatus
 	  from users 
 	  where email = '${email}' and password = '${password}'   
+	  
     </select>
 
 </mapper>
