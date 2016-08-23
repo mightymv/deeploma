@@ -3,7 +3,6 @@ package com.deeploma.bettingshop.domain.betting.dto;
 import org.joda.time.DateTime;
 
 import com.deeploma.bettingshop.domain.basic.Competition;
-import com.deeploma.bettingshop.domain.basic.Team;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

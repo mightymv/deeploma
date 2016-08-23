@@ -8,8 +8,6 @@ import org.springframework.security.core.AuthenticationException;
 
 import com.deeploma.bettingshop.auth.AuthenticationWithToken;
 import com.deeploma.bettingshop.auth.ServiceAuthenticator;
-import com.deeploma.bettingshop.auth.TokenService;
-import com.deeploma.bettingshop.auth.util.JwtTokenValidator;
 import com.google.common.base.Optional;
 
 public class DomainUsernamePasswordAuthenticationProvider implements AuthenticationProvider {

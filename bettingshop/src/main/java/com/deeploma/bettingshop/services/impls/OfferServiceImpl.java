@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.deeploma.bettingshop.domain.betting.MatchOffer;
@@ -17,7 +16,6 @@ import com.deeploma.bettingshop.mapper.CompetitionMapper;
 import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
 import com.deeploma.bettingshop.mapper.SportMapper;
-import com.deeploma.bettingshop.messaging.SendingBean;
 import com.deeploma.bettingshop.services.OfferService;
 import com.deeploma.bettingshop.services.TicketService;
 import com.fasterxml.jackson.core.JsonProcessingException;

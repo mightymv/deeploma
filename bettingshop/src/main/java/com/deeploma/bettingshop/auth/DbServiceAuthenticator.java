@@ -3,7 +3,6 @@ package com.deeploma.bettingshop.auth;
 import java.util.Random;
 
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.oauth2.common.exceptions.UnauthorizedUserException;
 
 import com.deeploma.bettingshop.auth.util.JwtTokenValidator;
 import com.deeploma.bettingshop.domain.users.User;

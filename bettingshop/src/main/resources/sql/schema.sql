@@ -48,13 +48,11 @@ CREATE
     id       INTEGER NOT NULL ,
     name     VARCHAR2 (30) NOT NULL ,
     surname  VARCHAR2 (30) NOT NULL ,
-    username VARCHAR2 (20) NOT NULL ,
-    password VARCHAR2 (50) ,
-    email    VARCHAR2 (30) ,
+    email    VARCHAR2 (30) NOT NULL,
+    password VARCHAR2 (50) ,    
     status   VARCHAR2 (10)
   ) ;
 ALTER TABLE Users ADD CONSTRAINT Users_PK PRIMARY KEY ( id ) ;
-ALTER TABLE Users ADD CONSTRAINT Users_USERNAME_UN UNIQUE ( username ) ;
 ALTER TABLE Users ADD CONSTRAINT Users_EMAIL_UN UNIQUE ( email ) ;
 
 CREATE
