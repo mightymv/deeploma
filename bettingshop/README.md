@@ -43,9 +43,8 @@ Registrovanje korisnika treba da bude u obliku (password je md5 hash) - json u b
 {
 "name": "Alex",
 "surname": "Grkajac",
-"username": "grka",
+"username": "grka@email.com",
 "password": "2938y9urh3h4r392u42532",
-"email": "veljko@email.com",
 }
 ```
 
