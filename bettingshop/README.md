@@ -106,5 +106,5 @@ Ovo pravi jar koji ce se nalaziti na putanji "output\". Konfiguraciju "applicati
 Nakon toga pokreces servis iz "\output" direktorijuma:
 
 ```bash
-java -jar reco-app.jar
+java -jar bettingshop-app.jar
 ```
