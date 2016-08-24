@@ -1,0 +1,41 @@
+/* line 6, ../scss/main-page.scss */
+.page-header {
+  width: 100%;
+  min-height: 42px;
+  line-height: 42px;
+  padding: 8px;
+  margin: 0;
+}
+
+/* line 15, ../scss/main-page.scss */
+.page-content {
+  font-family: Roboto;
+}
+/* line 20, ../scss/main-page.scss */
+.page-content .centar-content .table-first-thead {
+  background: #f1f5f9;
+  color: #56688A;
+}
+/* line 25, ../scss/main-page.scss */
+.page-content .centar-content .table-first-thead tr th {
+  font-size: 16px;
+}
+/* line 33, ../scss/main-page.scss */
+.page-content .centar-content .table-second-thead tr th {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* line 42, ../scss/main-page.scss */
+.page-footer {
+  font-size: 16px;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  color: #ebebeb;
+  background-color: #4e5d6c;
+  min-height: 50px;
+  line-height: 50px;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+}
