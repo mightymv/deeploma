@@ -137,9 +137,9 @@
         </div>
     </section>
     <aside class="right-content col-md-1">
-        <section class="container">
-            <header>Tiket</header>
-            <div class="container widget-container">
+        <section class="panel panel-primary ticket-viewer">
+            <header class="panel-heading">Tiket</header>
+            <div class="panel-body">
                 <div class="ticket-container">
                     <article class="ticket-row"></article>
                     <article class="ticket-row"></article>
@@ -161,20 +161,22 @@
                     <span class="label">winnings (rsd)</span>
                     <span class="value">0,00</span>
                 </div>
-                <div class="payout-button-container"></div>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Uplati</button>
             </div>
         </section>
     </aside>
 </div>
-<div class="modal">
+
+<footer class="page-footer">Diplomski rad @2016</footer>
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Obavestenje</h4>
             </div>
             <div class="modal-body">
-                <p>One fine body…</p>
+                <p>Uspesno ste uplatili tiket</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -183,8 +185,6 @@
         </div>
     </div>
 </div>
-
-<footer class="page-footer">Diplomski rad @2016</footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
