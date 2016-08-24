@@ -17,6 +17,12 @@ $pageBackgroundColor: #f5f5f5;
   font-family: Roboto;
 
   .centar-content {
+
+    .table-basic, .table-odds {
+      display: inline-block;
+      padding: 0;
+    }
+
     .table-first-thead {
       background: #f1f5f9;
       color: #56688A;
