@@ -1,9 +1,11 @@
 package com.deeploma.reco.dto;
 
 import org.joda.time.DateTime;
+import org.jongo.marshall.jackson.oid.MongoId;
 
 public class TeamDto {
 	
+	@MongoId
 	private Long id;
 	
 	private String name;

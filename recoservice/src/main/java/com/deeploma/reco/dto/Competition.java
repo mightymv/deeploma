@@ -1,7 +1,10 @@
 package com.deeploma.reco.dto;
 
+import org.jongo.marshall.jackson.oid.MongoId;
+
 public class Competition {
 
+	@MongoId
 	private Long id;
 	
 	private String name;
