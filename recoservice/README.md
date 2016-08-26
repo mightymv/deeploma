@@ -22,6 +22,16 @@ MongoDB
 mongo instalacija rucno ili kroz docker: 
 https://hub.docker.com/_/mongo/
 
+
+API 
+-----
+
+Za sada postoji dovlacenje tiketa za odredjenog user-a
+
+x.x.x.x:8082/{id}/tickets   GET   (gde je id , naravno, id user-a)
+
+konkretno http://192.168.182.198:8082/5001/tickets  (trenutno imas za 5001 korisnika u bazi nekoliko tiketa , kao i za 5003 mislim)
+
 ```bash
 docker pull mongo
 
