@@ -14,7 +14,7 @@ public class TicketDto {
 	
 	private List<TicketRowDto> rows;
 	
-	private DateTime startTime;
+	private DateTime time;
 
 	public Long getId() {
 		return id;
@@ -32,12 +32,12 @@ public class TicketDto {
 		this.rows = rows;
 	}
 
-	public DateTime getStartTime() {
-		return startTime;
+	public DateTime getTime() {
+		return time;
 	}
 
-	public void setStartTime(DateTime startTime) {
-		this.startTime = startTime;
+	public void setStartTime(DateTime time) {
+		this.time = time;
 	}
 	
 

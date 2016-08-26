@@ -61,7 +61,6 @@ public class SendingBean {
 			@Override
 			public void run() {
 				try {
-					logger.info("Idemo u slanje tiketa 2");
 					UserTicket userTicket = prepareForSend(ticket, username);
 					String mess = objectMapper.writeValueAsString(userTicket);
 					logger.info("Salje se event sledece sadrzine : {}", mess);
@@ -88,7 +87,7 @@ public class SendingBean {
 		TicketDto tick = new TicketDto();
 		tick.setId(ticket.getId());
 		
-		tick.setStartTime(ticket.getTime());
+		tick.setTime(ticket.getTime());
 		
 		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(  trow -> convertToDto(trow)).collect(Collectors.toList());		
 	    tick.setRows(rows);			

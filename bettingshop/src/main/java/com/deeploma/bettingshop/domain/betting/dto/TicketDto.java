@@ -13,7 +13,7 @@ public class TicketDto {
 	private List<TicketRowDto> rows;
 	
 	@JsonSerialize(using=com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer.class )	
-	private DateTime startTime;
+	private DateTime time;
 
 	public Long getId() {
 		return id;
@@ -31,12 +31,12 @@ public class TicketDto {
 		this.rows = rows;
 	}
 
-	public DateTime getStartTime() {
-		return startTime;
+	public DateTime getTime() {
+		return time;
 	}
 
-	public void setStartTime(DateTime startTime) {
-		this.startTime = startTime;
+	public void setTime(DateTime time) {
+		this.time = time;
 	}
 
 }

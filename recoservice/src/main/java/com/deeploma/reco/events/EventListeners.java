@@ -1,14 +1,9 @@
 package com.deeploma.reco.events;
 
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.jongo.Jongo;
-import org.jongo.MongoCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +14,8 @@ import org.springframework.jms.annotation.JmsListener;
 import com.deeploma.reco.domen.UserTickets;
 import com.deeploma.reco.dto.TicketDto;
 import com.deeploma.reco.dto.UserTicket;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.deeploma.reco.mongodao.MongoAccess;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Configuration
 public class EventListeners {
@@ -32,14 +26,12 @@ public class EventListeners {
 
 	@Autowired
 	ObjectMapper objm;;
-	
-	MongoTemplate mTemplate;
-
+		
 	@Autowired
 	MongoTemplate mongoTemplate;
-	
-	@Autowired 
-	Jongo jongo;
+
+	@Autowired
+    MongoAccess ma;
 	
 	public EventListeners() {
 	}
@@ -50,11 +42,8 @@ public class EventListeners {
 		UserTicket resp;
 		try {
 			resp = objm.readValue(userTicket, UserTicket.class);			
-			//UserTickets ut = mongoTemplate.findOne(query(where("userId").is(resp.getUserId())), UserTickets.class);
 			
-			MongoCollection collection = jongo.getCollection("userTickets");
-			
-			UserTickets ut = collection.findOne("{_id: #}", resp.getUserId()).as(UserTickets.class);
+			UserTickets ut = ma.findTicketsForUser(resp.getUserId());
 			 
 			if (ut == null) {
 				 ut = new UserTickets();
@@ -66,7 +55,9 @@ public class EventListeners {
 			
 			 ut.getTickets().add(resp.getTicketDto());
 			 ut.getTickets().forEach(tick -> logger.info(tick.getId().toString()));
-			 mongoTemplate.save(ut);
+			 mongoTemplate.save(ut);  //TODO zameniti sa jongom
+			 
+			 
 			 
 		} catch (IOException e) {
 			logger.error("Doslo je do greske prilikom snimanja novo user ticket-a" , e);

@@ -11,7 +11,6 @@ public class UserTickets {
 	
 	private String username;
 
-
 	@Id
 	@MongoId
 	private Long userId;
