@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape= JsonFormat.Shape.OBJECT)
 public enum Game {
 
-	HALF_TIME_SCORE_GOALS(2),
+	HALF_TIME_SCORE(2),
 		
-	FULL_TIME_SCORE_GOALS(1);
+	FULL_TIME_SCORE(1);
 	
 	private Integer id;
 	

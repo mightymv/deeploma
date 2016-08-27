@@ -2,8 +2,6 @@ package com.deeploma.reco.algorithm;
 
 
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
-
 import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
@@ -11,24 +9,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.jongo.Aggregate.ResultsIterator;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.jongo.Jongo;
-import org.jongo.ResultHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
-import org.springframework.data.mongodb.core.aggregation.Field;
-import org.springframework.data.mongodb.core.aggregation.Fields;
-import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import com.deeploma.reco.dto.UserTicket;
-import com.google.common.collect.Lists;
-import com.mongodb.DBObject;
 
 @Component
 public class MongoSearch {
