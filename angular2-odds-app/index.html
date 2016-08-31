@@ -4,7 +4,7 @@
     <title>Angular 2 QuickStart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bootstrap-paper-theme.min.css">
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -12,15 +12,22 @@
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
+
     <script src="systemjs.config.js"></script>
     <script>
         System.import('app').catch(function (err) {
             console.error(err);
         });
     </script>
+
+    <!-- 3. 3rd party libs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
-<!-- 3. Display the application -->
+<!-- 4. Display the application -->
 <body>
-<my-app>Loading...</my-app>
+    <app>
+        Loading...
+    </app>
 </body>
 </html>
