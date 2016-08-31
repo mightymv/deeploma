@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {NavigationComponent} from "./navigation/nav.component";
 
 @Component({
     selector: 'odds-page-app',
     templateUrl: 'app/components/odds.page.component.html',
     styleUrls: ["app/components/main-page.css"],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [NavigationComponent]
 })
 
 export class OddsPageComponent {
