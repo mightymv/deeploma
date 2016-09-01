@@ -1,0 +1,18 @@
+/* line 25, ../scss/main-page.scss */
+.table-first-thead {
+    background: #f1f5f9;
+    color: #56688A;
+}
+/* line 30, ../scss/main-page.scss */
+.table-first-thead tr th {
+    font-size: 16px;
+}
+/* line 38, ../scss/main-page.scss */
+.table-second-thead tr th {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+tbody tr td {
+    font-size: 13px;
+}

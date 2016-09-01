@@ -3,6 +3,8 @@ import {NavigationComponent} from "./navigation/nav.component";
 import {TicketViewerComponent} from "./ticket-viewer/ticketViewer.component";
 import {RecomendationsComponent} from "./recomendations/recomendations.component";
 import {MessageModalComponent} from "./messagesModal/messageModal.component";
+import {MatchesTableComponent} from "./tables/matches/matchesTable.component";
+import {ResultsTableComponent} from "./tables/results/resultsTable.component";
 
 @Component({
     selector: 'odds-page-app',
@@ -12,7 +14,9 @@ import {MessageModalComponent} from "./messagesModal/messageModal.component";
         NavigationComponent,
         TicketViewerComponent,
         RecomendationsComponent,
-        MessageModalComponent
+        MessageModalComponent,
+        MatchesTableComponent,
+        ResultsTableComponent
     ]
 })
 
