@@ -5,56 +5,7 @@
 <div class="page-content container-fluid">
 
     <aside class="left-content col-md-2">
-        <section class="panel recomendations panel-success">
-            <header class="panel-heading">Recomendations</header>
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="id">1110</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">FR X</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="time">1111</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">FR 2</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="time">1112</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">HR X</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="panel-footer"></div>
-        </section>
+        <recomendations></recomendations>
     </aside>
     <section class="centar-content col-md-8">
         <div class="col-md-6 table-responsive table-basic">
@@ -199,107 +150,11 @@
             </table>
         </div>
     </section>
-
     <aside class="right-content col-md-2">
-        <section class="panel panel-primary ticket-viewer">
-            <header class="panel-heading">Tiket</header>
-            <div class="panel-body">
-                <div class="container-fluid ticket-container">
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="time">11:30</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">FR X</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="time">11:30</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">FR X</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                    <article class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="time">11:30</span>
-                                    <span class="match">Mancester - Juventus</span>
-                                    <span class="game">FR X</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="pull-right match-odd"><strong>4.5</strong></span>
-                        </div>
-                    </article>
-                </div>
-                <hr/>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-10">ukupna kvota:</div>
-                        <div class="col-md-2">
-                            <span class="pull-right"><strong>4.5</strong></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10">broj meceva:</div>
-                        <div class="col-md-2">
-                            <span class="pull-right"><strong>3</strong></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10">ulog:</div>
-                        <div class="col-md-2">
-                            <input type="text" class="value pull-right text-right" placeholder="0"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10">ukupan dobitak:</div>
-                        <div class="col-md-2">
-                            <span class="pull-right"><strong>4500</strong></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                        data-target="#payTicketMessages">Uplati
-                </button>
-            </div>
-        </section>
+        <ticket-viewer></ticket-viewer>
     </aside>
 </div>
 
 <footer class="page-footer">Diplomski rad @2016</footer>
 
-<div id="payTicketMessages" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Obavestenje</h4>
-            </div>
-            <div class="modal-body">
-                <h6 class="text-center">Uspesno ste uplatili tiket</h6>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
+<message-modal></message-modal>

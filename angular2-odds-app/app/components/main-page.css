@@ -7,7 +7,6 @@
   margin: 0;
 }
 
-
 /* line 14, ../scss/main-page.scss */
 .page-content {
   font-family: Roboto;
@@ -53,22 +52,4 @@
 /* line 63, ../scss/main-page.scss */
 #payTicketMessages .modal-header, #payTicketMessages .modal-body, #payTicketMessages .modal-footer {
   padding: 8px;
-}
-
-/* line 71, ../scss/main-page.scss */
-.ticket-viewer .panel-heading, .ticket-viewer .panel-body, .ticket-viewer .panel-footer, .recomendations .panel-heading, .recomendations .panel-body, .recomendations .panel-footer {
-  padding: 10px;
-}
-/* line 77, ../scss/main-page.scss */
-.ticket-viewer .panel-body .container-fluid, .recomendations .panel-body .container-fluid {
-  padding: 0;
-}
-/* line 81, ../scss/main-page.scss */
-.ticket-viewer .panel-body input, .recomendations .panel-body input {
-  max-width: 50px;
-  font-size: 13px;
-}
-/* line 86, ../scss/main-page.scss */
-.ticket-viewer .panel-body hr, .recomendations .panel-body hr {
-  margin: 10px 0;
 }

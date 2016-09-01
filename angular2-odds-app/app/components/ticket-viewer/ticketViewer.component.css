@@ -1,0 +1,18 @@
+
+/* line 71, ../scss/main-page.scss */
+.ticket-viewer .panel-heading, .ticket-viewer .panel-body, .ticket-viewer .panel-footer {
+    padding: 10px;
+}
+/* line 77, ../scss/main-page.scss */
+.ticket-viewer .panel-body .container-fluid {
+    padding: 0;
+}
+/* line 81, ../scss/main-page.scss */
+.ticket-viewer .panel-body input {
+    max-width: 50px;
+    font-size: 13px;
+}
+/* line 86, ../scss/main-page.scss */
+.ticket-viewer .panel-body hr {
+    margin: 10px 0;
+}

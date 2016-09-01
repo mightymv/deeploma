@@ -13,27 +13,19 @@ import {Component, OnInit} from '@angular/core';
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text username">aleksa@gmail.com</li>
                 <li class="dropdown close">
-                    <a aria-expanded="true" aria-haspopup="true" class="navbar-link dropdown-toggle"
-                       data-toggle="dropdown">
-                        <img class="gravatar" src="app/components/navigation/gravatar.png"
-                             alt="aleksa888@gmail.com">
+                    <a aria-expanded="true" aria-haspopup="true" class="navbar-link dropdown-toggle" data-toggle="dropdown">
+                        <img class="gravatar" src="app/components/navigation/gravatar.png" alt="aleksa888@gmail.com" />
                         <span class="sr-only">User Settings</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/edit-profile">
-                                Edit Profile
-                            </a>
+                            <a href="/edit-profile">Edit Profile</a>
                         </li>
                         <li>
-                            <a href="/dashboard">
-                                Dashboard
-                            </a>
+                            <a href="/dashboard">Dashboard</a>
                         </li>
                         <li>
-                            <a href="../login">
-                                Log out
-                            </a>
+                            <a href="../login">Log out</a>
                         </li>
                     </ul>
                 </li>
