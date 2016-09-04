@@ -28,6 +28,8 @@ public class UserStandingsCalculator {
 	
 	public void calculateStandings() {
 		
+		
+		
 		List<Ticket> tickets = mtMapper.findAllWinnersForDate(DateTime.now().withTimeAtStartOfDay());
 		
 		 Map<Long, List<Ticket>> groupByUser = tickets.stream().collect(Collectors.groupingBy(Ticket::getUserId));
@@ -35,11 +37,12 @@ public class UserStandingsCalculator {
 		 Map<Long , Ticket> userTicket = groupByUser.entrySet().stream().map( entry -> { Optional<Ticket> maxTicket = entry.getValue().stream().collect(Collectors.maxBy(new Comparator<Ticket>() {
 
 			@Override
-			public int compare(Ticket o1, Ticket o2) {				
-				return o1.getCumulativeOdd().compareTo(o2.getCumulativeOdd());
+			public int compare(Ticket t1, Ticket t2) {				
+				return t1.getCumulativeOdd().compareTo(t2.getCumulativeOdd());
 			}
 		}));
 			 
+		 
 		 return new SimpleEntry<Long, Ticket>(entry.getKey(), maxTicket.get());
 		
 		 }).collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));

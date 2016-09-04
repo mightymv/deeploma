@@ -102,9 +102,7 @@
     <select id="getOffer" resultMap="matchMap">
 	  select<include refid="offer"/>
     </select>
-    
-    
-    
+
     <select id="getOfferForDate" parameterType="org.joda.time.DateTime" resultMap="matchMap">
        <bind name="date" value="new java.sql.Date(date.withTimeAtStartOfDay().getMillis())" />
 	  select<include refid="offer"/>  
