@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.joda.time.DateTime;
 
 import com.deeploma.bettingshop.domain.basic.Match;
 import com.deeploma.bettingshop.domain.basic.Result;
@@ -44,5 +45,8 @@ public interface MatchTeamsMapper {
 	public void setTicketRowStatus(TicketRowStatus winner, Long id);
 
 	public void updateResultStatus(ResultStatus calculated, Long id);
+
+	public List<Ticket> findAllWinnersForDate(DateTime withTimeAtStartOfDay);
+
 
 }

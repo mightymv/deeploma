@@ -44,7 +44,7 @@ public class TicketCalculator {
 		//ovo su rezultati koji su najsvezije verifikovani
 		List<Result> verifiedResults = mtMapper.findAllVerifiedResults();
 
-		Map<Long, List<Result>> matchResults = populateMatchResultsMap(verifiedResults);
+		Map<Long, List<Result>> matchResults = verifiedResults.stream().collect(Collectors.groupingBy(Result::getMatchId));
 		
 		Set<Long> matchIds = matchResults.keySet();
 		
@@ -93,18 +93,6 @@ public class TicketCalculator {
 
 	private boolean checkWinner(TicketRow row) {
 		return WINNER.getId().equals(row.getTicketRowStatus().getId());
-	}
-
-	private Map<Long, List<Result>> populateMatchResultsMap(List<Result> verifiedResults) {
-		Map<Long , List<Result>> matchResults = new HashMap<Long , List<Result>>();
-		
-		verifiedResults.stream().forEach( res -> {
-			if (matchResults.get(res.getMatchId()) == null) {
-				matchResults.put(res.getMatchId(), new ArrayList<Result>());
-			}
-		    matchResults.get(res.getMatchId()).add(res);		
-		});
-		return matchResults;
 	}
 
 	private void checkRow(TicketRow row, Map<Long , List<Result>> matchResults, List<BetOdd> betOds) {
