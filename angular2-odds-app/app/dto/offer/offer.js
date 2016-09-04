@@ -1,4 +1,5 @@
 "use strict";
+// TODO
 var Match = (function () {
     function Match(min, home, visitor, HT, FT) {
         this.min = min;

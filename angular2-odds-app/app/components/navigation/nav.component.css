@@ -1,0 +1,15 @@
+.username {
+    margin: 11px 5px;
+    color: whitesmoke;
+    font-size: 14px;
+}
+
+.gravatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.navbar-link.dropdown-toggle {
+    padding: 17px 15px;
+}

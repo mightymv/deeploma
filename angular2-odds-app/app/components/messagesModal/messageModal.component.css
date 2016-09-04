@@ -1,0 +1,4 @@
+/* line 63, ../scss/main-page.scss */
+#payTicketMessages .modal-header, #payTicketMessages .modal-body, #payTicketMessages .modal-footer {
+    padding: 8px;
+}

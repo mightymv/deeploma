@@ -31,12 +31,7 @@
   font-weight: 700;
 }
 
-/* line 47, ../scss/main-page.scss */
-.ticket-viewer {
-  width: 300px;
-}
-
-/* line 51, ../scss/main-page.scss */
+/* line 48, ../scss/main-page.scss */
 .page-footer {
   font-size: 16px;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -50,25 +45,25 @@
   text-align: center;
 }
 
-/* line 66, ../scss/main-page.scss */
+/* line 63, ../scss/main-page.scss */
 #payTicketMessages .modal-header, #payTicketMessages .modal-body, #payTicketMessages .modal-footer {
   padding: 8px;
 }
 
-/* line 74, ../scss/main-page.scss */
+/* line 71, ../scss/main-page.scss */
 .ticket-viewer .panel-heading, .ticket-viewer .panel-body, .ticket-viewer .panel-footer, .recomendations .panel-heading, .recomendations .panel-body, .recomendations .panel-footer {
   padding: 10px;
 }
-/* line 80, ../scss/main-page.scss */
+/* line 77, ../scss/main-page.scss */
 .ticket-viewer .panel-body .container-fluid, .recomendations .panel-body .container-fluid {
   padding: 0;
 }
-/* line 84, ../scss/main-page.scss */
+/* line 81, ../scss/main-page.scss */
 .ticket-viewer .panel-body input, .recomendations .panel-body input {
   max-width: 50px;
   font-size: 13px;
 }
-/* line 89, ../scss/main-page.scss */
+/* line 86, ../scss/main-page.scss */
 .ticket-viewer .panel-body hr, .recomendations .panel-body hr {
   margin: 10px 0;
 }

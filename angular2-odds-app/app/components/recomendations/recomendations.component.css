@@ -1,0 +1,18 @@
+
+/* line 71, ../scss/main-page.scss */
+.recomendations .panel-heading, .recomendations .panel-body, .recomendations .panel-footer {
+    padding: 10px;
+}
+/* line 77, ../scss/main-page.scss */
+.recomendations .panel-body .container-fluid {
+    padding: 0;
+}
+/* line 81, ../scss/main-page.scss */
+.recomendations .panel-body input {
+    max-width: 50px;
+    font-size: 13px;
+}
+/* line 86, ../scss/main-page.scss */
+.recomendations .panel-body hr {
+    margin: 10px 0;
+}

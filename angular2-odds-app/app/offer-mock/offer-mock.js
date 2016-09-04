@@ -2,6 +2,7 @@
  * Created by grkajac on 7/5/16.
  */
 "use strict";
+// TODO http://192.168.182.198:8080/offer/2016-08-10
 var offer_1 = require("../dto/offer/offer");
 exports.offer = [
     new offer_1.OfferData({
