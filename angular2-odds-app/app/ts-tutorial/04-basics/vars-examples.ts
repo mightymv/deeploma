@@ -1,3 +1,8 @@
+/**
+ * var - standardna promenljiva u JS-u, globalno dostupna u funkciji (hoisted)
+ * let - promenljiva koja je dostupna samo u bloku gde je deklarisana (not hoisted)
+ * const
+ */
 class HelloWorld {
 
     public name:string;
@@ -19,7 +24,7 @@ class HelloWorld {
 
         console.log(fooVar);
         console.log(fooConst);
-        // console.log(boo);
+        // console.log(boo); // error
         console.log(booVar);
     }
 }

@@ -7,10 +7,15 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class MessageModalComponent implements OnInit {
 
-    @Input
+    @Input()
     message = {'title': "Obavestenje", 'content': "TODO"};
 
     constructor() { }
 
     ngOnInit() { }
+
+    onMessageReceived(messageInfo) {
+        console.log("YYY");
+        this.message = messageInfo;
+    }
 }

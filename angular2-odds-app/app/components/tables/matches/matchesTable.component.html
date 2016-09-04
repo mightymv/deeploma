@@ -1,7 +1,7 @@
 <table class="table table-striped table-hover table-bordered table-condensed">
     <thead class="table-first-thead">
     <tr>
-        <th class="" colspan="5">Football</th>
+        <th class="" colspan="5">{{sportName}}</th>
     </tr>
     </thead>
     <thead class="table-second-thead">
@@ -14,40 +14,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1</td>
-        <td class="text-left">11:30</td>
-        <td class="text-center">Juventus</td>
-        <td class="text-center">Milan</td>
-        <td class="text-center">(0:0) 1:1</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td class="text-left">11:30</td>
-        <td class="text-center">Juventus</td>
-        <td class="text-center">Milan</td>
-        <td class="text-center">(0:0) 1:1</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td class="text-left">11:30</td>
-        <td class="text-center">Juventus</td>
-        <td class="text-center">Milan</td>
-        <td class="text-center">(0:0) 1:1</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td class="text-left">11:30</td>
-        <td class="text-center">Juventus</td>
-        <td class="text-center">Milan</td>
-        <td class="text-center">(0:0) 1:1</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td class="text-left">11:30</td>
-        <td class="text-center">Juventus</td>
-        <td class="text-center">Milan</td>
-        <td class="text-center">(0:0) 1:1</td>
-    </tr>
+        <tr *ngFor="let match of matches">
+            <td>{{match.id}}</td>
+            <td class="text-left">{{match.startTime | date: 'HH:MM dd-MM-yy'}}</td>
+            <td class="text-center">{{match.teamHome.name}}</td>
+            <td class="text-center">{{match.teamVisitor.name}}</td>
+            <td class="text-center">{{match.results}}</td>
+        </tr>
     </tbody>
 </table>

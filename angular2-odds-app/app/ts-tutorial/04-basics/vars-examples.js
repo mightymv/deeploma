@@ -1,3 +1,8 @@
+/**
+ * var - standardna promenljiva u JS-u, globalno dostupna u funkciji (hoisted)
+ * let - promenljiva koja je dostupna samo u bloku gde je deklarisana (not hoisted)
+ * const
+ */
 var HelloWorld = (function () {
     function HelloWorld(name) {
         this.name = name;
@@ -11,7 +16,7 @@ var HelloWorld = (function () {
         }
         console.log(fooVar);
         console.log(fooConst);
-        // console.log(boo);
+        // console.log(boo); // error
         console.log(booVar);
     };
     return HelloWorld;
@@ -19,4 +24,4 @@ var HelloWorld = (function () {
 var aca = new HelloWorld("Hello World from typescript :)");
 console.log(aca.name);
 aca.printing();
-//# sourceMappingURL=hello-world.js.map
+//# sourceMappingURL=vars-examples.js.map

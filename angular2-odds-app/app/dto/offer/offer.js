@@ -1,53 +1,77 @@
+// Offer DTO classes
 "use strict";
-// TODO
 var Match = (function () {
-    function Match(min, home, visitor, HT, FT) {
-        this.min = min;
-        this.home = home;
-        this.visitor = visitor;
-        this.HT = HT;
-        this.FT = FT;
+    function Match(id, startTime, competition, teamHome, teamVisitor, results, matchStatus, odds) {
+        this.id = id;
+        this.startTime = startTime;
+        this.competition = competition;
+        this.teamHome = teamHome;
+        this.teamVisitor = teamVisitor;
+        this.results = results;
+        this.matchStatus = matchStatus;
+        this.odds = odds;
     }
     return Match;
 }());
 exports.Match = Match;
-var Odds = (function () {
-    // constructor(top:string[], toptwo:string[][]) {
-    //     this.top = top;
-    //     this.toptwo = toptwo;
-    // }
-    function Odds(odds) {
-        this.top = odds.top;
-        this.toptwo = odds.toptwo;
+var Competition = (function () {
+    function Competition(id, name, sport) {
+        this.id = id;
+        this.name = name;
+        this.sport = sport;
     }
-    return Odds;
+    return Competition;
 }());
-exports.Odds = Odds;
-var OfferData = (function () {
-    //
-    // constructor(status:string, uuid:string, matches:Match[], odds:Odds, cet_time:string, est_end:number, gid:string, serial:number, sport:string) {
-    //     this.status = status;
-    //     this.uuid = uuid;
-    //     this.matches = matches;
-    //     this.odds = odds;
-    //     this.cet_time = cet_time;
-    //     this.est_end = est_end;
-    //     this.gid = gid;
-    //     this.serial = serial;
-    //     this.sport = sport;
-    // }
-    function OfferData(obj) {
-        this.status = obj.status;
-        this.uuid = obj.uuid;
-        this.matches = obj.matches;
-        this.odds = obj.odds;
-        this.cet_time = obj.cet_time;
-        this.est_end = obj.est_end;
-        this.gid = obj.gid;
-        this.serial = obj.serial;
-        this.sport = obj.sport;
+exports.Competition = Competition;
+var Sport = (function () {
+    function Sport(id, name) {
+        this.id = id;
+        this.name = name;
     }
-    return OfferData;
+    return Sport;
 }());
-exports.OfferData = OfferData;
+exports.Sport = Sport;
+var Team = (function () {
+    function Team(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Team;
+}());
+exports.Team = Team;
+var Result = (function () {
+    function Result() {
+    }
+    return Result;
+}());
+exports.Result = Result;
+var Odd = (function () {
+    function Odd(id, subGame, match, value, betOddStatus) {
+        this.id = id;
+        this.subGame = subGame;
+        this.match = match;
+        this.value = value;
+        this.betOddStatus = betOddStatus;
+    }
+    return Odd;
+}());
+exports.Odd = Odd;
+var Game = (function () {
+    function Game(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Game;
+}());
+exports.Game = Game;
+var SubGame = (function () {
+    function SubGame(name, id, shortName, game) {
+        this.name = name;
+        this.id = id;
+        this.shortName = shortName;
+        this.game = game;
+    }
+    return SubGame;
+}());
+exports.SubGame = SubGame;
 //# sourceMappingURL=offer.js.map

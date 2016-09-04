@@ -7,8 +7,8 @@ import {InMemoryDataService} from "./tutorial/InMemoryDataService";
 
 bootstrap(AppComponent, [
     APP_ROUTER_PROVIDERS,
-    HTTP_PROVIDERS,
-    {provide: XHRBackend, useClass: InMemoryBackendService}, // in-mem server
-    {provide: SEED_DATA, useClass: InMemoryDataService}      // in-mem server data
+    HTTP_PROVIDERS
+    // {provide: XHRBackend, useClass: InMemoryBackendService}, // in-mem server
+    // {provide: SEED_DATA, useClass: InMemoryDataService}      // in-mem server data
 ])
     .catch(err => console.error(err));
