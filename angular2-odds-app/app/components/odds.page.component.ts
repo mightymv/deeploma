@@ -4,7 +4,7 @@ import {TicketViewerComponent} from "./ticket-viewer/ticketViewer.component";
 import {RecomendationsComponent} from "./recomendations/recomendations.component";
 import {MessageModalComponent} from "./messagesModal/messageModal.component";
 import {MatchesTableComponent} from "./tables/matches/matchesTable.component";
-import {ResultsTableComponent} from "./tables/results/resultsTable.component";
+import {OddsTableComponent} from "./tables/odds/oddsTable.component";
 
 import {Response, Http, Headers} from "@angular/http";
 import {CORE_DIRECTIVES, DatePipe} from "@angular/common";
@@ -22,7 +22,7 @@ import {Match} from "../dto/offer/offer";
         RecomendationsComponent,
         MessageModalComponent,
         MatchesTableComponent,
-        ResultsTableComponent,
+        OddsTableComponent,
         CORE_DIRECTIVES
     ]
 })
@@ -59,6 +59,6 @@ export class OddsPageComponent implements OnInit {
     }
 
     logError(err) {
-        console.log("Jebi ga, greska!!! " + err);
+        console.log("Podaci nisu ucitani!!! " + err);
     }
 }

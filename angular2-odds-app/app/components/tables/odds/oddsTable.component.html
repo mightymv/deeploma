@@ -13,7 +13,15 @@
     </thead>
     <tbody>
         <tr *ngFor="let match of matches">
-            <td *ngFor="let odd of (match.odds | gameFilter: oddFilter)" class="text-center">{{odd.value}}</td>
+            <td *ngFor="let odd of (match.odds | gameFilter: oddFilter)" class="text-center"
+                attr.data-bet-odd-id="{{odd.id}}"
+                attr.data-match-id="{{match.id}}"
+                attr.data-sub-game-short-name="{{odd.subGame.shortName}}"
+                attr.data-odd="{{odd.value}}"
+                (click)="onClick($event.target)"
+            >
+                {{odd.value}}
+            </td>
         </tr>
     </tbody>
 </table>
