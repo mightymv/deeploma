@@ -18,6 +18,7 @@
                 attr.data-match-id="{{match.id}}"
                 attr.data-sub-game-short-name="{{odd.subGame.shortName}}"
                 attr.data-odd="{{odd.value}}"
+                attr.data-competitors="{{match.teamHome.name}} - {{match.teamVisitor.name}}"
                 (click)="onClick($event.target)"
             >
                 {{odd.value}}

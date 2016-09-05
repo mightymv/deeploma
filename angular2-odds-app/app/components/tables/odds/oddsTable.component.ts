@@ -2,6 +2,7 @@ import {Component, Input} from "@angular/core";
 import {Match} from "../../../dto/offer/offer";
 import {GameFilterPipe} from "../../../pipes/game-filter.pipe";
 import {TicketRow} from "../../../dto/payTicket";
+import {PayTicketService} from "../../../services/pay-ticket.service";
 
 @Component({
     selector: 'results-table',
@@ -17,7 +18,11 @@ export class OddsTableComponent {
     @Input()
     oddFilter: string;
 
-    constructor() { }
+    payTicketService: PayTicketService
+
+    constructor(payTicketService: PayTicketService) {
+        this.payTicketService = payTicketService;
+    }
 
     onClick(element: HTMLTableCellElement) {
 
@@ -25,19 +30,18 @@ export class OddsTableComponent {
             Number.parseInt(element.dataset['betOddId']),
             Number.parseInt(element.dataset['matchId']),
             element.dataset['subGameShortName'],
-            Number.parseInt(element.dataset['odd'])
+            Number.parseFloat(element.dataset['odd']),
+            element.dataset['competitors']
         );
 
         if(element.classList.contains('success')) {
 
             element.classList.remove('success')
-            // remove from list
+            this.payTicketService.removeTicketRow(ticketRow);
         } else {
 
             element.classList.add('success')
-            // add to list
+            this.payTicketService.addTicketRow(ticketRow);
         }
-
-        console.log("XXX " + ticketRow.toString());
     }
 }

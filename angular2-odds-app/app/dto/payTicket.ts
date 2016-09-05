@@ -11,7 +11,8 @@ export class TicketRow {
     constructor(public betOddId: number,
                 public matchId: number,
                 public subGameShortName: string,
-                public odd: number) {
+                public odd: number,
+                public competitors: string) {
     }
 
 
@@ -19,6 +20,6 @@ export class TicketRow {
         return "betOddId: " + this.betOddId +
             ", matchId: " + this.matchId +
             ", subGameShorName: " + this.subGameShortName +
-            ", odd: " + this.odd;
+            ", odd: " + this.odd + ", competitors: " + this.competitors;
     }
 }

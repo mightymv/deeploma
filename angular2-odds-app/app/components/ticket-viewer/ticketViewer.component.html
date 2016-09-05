@@ -1,44 +1,18 @@
-<section class="panel panel-primary ticket-viewer">
+<section class="panel panel-primary ticket-viewer" [hidden]="ticketRows.length === 0">
     <header class="panel-heading">Tiket</header>
     <div class="panel-body">
         <div class="container-fluid ticket-container">
-            <article class="row">
+            <article *ngFor="let ticketRow of ticketRows" class="row">
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="match">Mancester - Juventus</span>
-                            <span class="game">FR X</span>
+                            <span class="match">{{ticketRow.competitors}}</span>
+                            <span class="game">{{ticketRow.subGameShortName}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <span class="pull-right match-odd"><strong>4.5</strong></span>
-                </div>
-            </article>
-            <article class="row">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="match">Mancester - Juventus</span>
-                            <span class="game">FR X</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <span class="pull-right match-odd"><strong>4.5</strong></span>
-                </div>
-            </article>
-            <article class="row">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="match">Mancester - Juventus</span>
-                            <span class="game">FR X</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <span class="pull-right match-odd"><strong>4.5</strong></span>
+                    <span class="pull-right match-odd"><strong>{{ticketRow.odd}}</strong></span>
                 </div>
             </article>
         </div>
@@ -47,13 +21,13 @@
             <div class="row">
                 <div class="col-md-10">ukupna kvota:</div>
                 <div class="col-md-2">
-                    <span class="pull-right"><strong>4.5</strong></span>
+                    <span class="pull-right"><strong>{{totalOdd | number: '.2-2'}}</strong></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-10">broj meceva:</div>
                 <div class="col-md-2">
-                    <span class="pull-right"><strong>3</strong></span>
+                    <span class="pull-right"><strong>{{ticketRows.length}}</strong></span>
                 </div>
             </div>
         </div>
