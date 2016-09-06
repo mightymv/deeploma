@@ -14,7 +14,7 @@ import {Match} from "../dto/offer/offer";
 @Component({
     selector: 'odds-page-app',
     templateUrl: 'app/components/odds.page.component.html',
-    styleUrls: ["app/components/main-page.css"],
+    styleUrls: ["app/components/odds.page.component.css"],
     pipes: [DatePipe],
     directives: [
         NavigationComponent,

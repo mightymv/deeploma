@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, OnDestroy} from "@angular/core";
 import {PayTicketService} from "../../services/pay-ticket.service";
 import {TicketRow} from "../../dto/payTicket";
 
@@ -7,7 +7,7 @@ import {TicketRow} from "../../dto/payTicket";
     templateUrl: 'app/components/ticket-viewer/ticketViewer.component.html',
     styleUrls: ['app/components/ticket-viewer/ticketViewer.component.css']
 })
-export class TicketViewerComponent implements OnInit {
+export class TicketViewerComponent implements OnDestroy {
 
     private static modalInfo = {'title': "Obavestenje", 'content': "Uspesno ste uplatili tiket"};
 
@@ -17,30 +17,48 @@ export class TicketViewerComponent implements OnInit {
     ticketRows: Array<TicketRow> = [];
     totalOdd: number = 1;
 
+    closeButtonActive:boolean = true;
+
     constructor(private payTicketService: PayTicketService) {
 
-        // TODO read from localStorage
+        // // TODO read from localStorage
+        // if(localStorage.getItem("ticketRows")) {
+        //     this.ticketRows = JSON.parse(localStorage.getItem("ticketRows"));
+        //     this.recalculateTicket();
+        // }
 
-        payTicketService.ticketChangeEvent$.subscribe(ticketRow => this.onTicketChange(ticketRow));
+
+        this.payTicketService.ticketChangeEvent$.subscribe(ticketRow => this.onTicketChange());
+        this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onTicketChange());
     }
 
-    ngOnInit() { }
+    ngOnDestroy(): any {
+        this.payTicketService.ticketChangeEvent$.unsubscribe();
+        this.payTicketService.ticketCleanEvent$.unsubscribe();
+    }
 
     onModalMessageSend() {
         console.log(TicketViewerComponent.modalInfo);
         this.sendMessage.emit(TicketViewerComponent.modalInfo);
     }
 
-    onTicketChange(ticketRow: TicketRow): void {
-
-        // TODO set localStorage
+    onTicketChange(): void {
 
         this.ticketRows = this.payTicketService.getTicketRows();
-        this.totalOdd = 1;
+        // localStorage.setItem("ticketRows", JSON.stringify(this.ticketRows));
         this.recalculateTicket();
     }
 
     recalculateTicket(): void {
+        this.totalOdd = 1;
         this.ticketRows.forEach(ticketRow => this.totalOdd*=ticketRow.odd);
+    }
+
+    cleanTicket() {
+        this.payTicketService.removeAllTicketRows();
+    }
+
+    toggleCloseButton() {
+        this.closeButtonActive = !this.closeButtonActive;
     }
 }

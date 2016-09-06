@@ -1,5 +1,10 @@
-<section class="panel panel-primary ticket-viewer" [hidden]="ticketRows.length === 0">
-    <header class="panel-heading">Tiket</header>
+<section class="panel panel-primary ticket-viewer"
+         (mouseenter)="toggleCloseButton()" (mouseleave)="toggleCloseButton()"
+         [hidden]="ticketRows.length === 0">
+    <header class="panel-heading">
+        <span class="panel-title">Ticket</span>
+        <a class="close" (click)="cleanTicket()" [hidden]="closeButtonActive">×</a>
+    </header>
     <div class="panel-body">
         <div class="container-fluid ticket-container">
             <article *ngFor="let ticketRow of ticketRows" class="row">
