@@ -12,6 +12,8 @@ public class TicketDto {
 	
 	private List<TicketRowDto> rows;
 	
+	private String status;
+	
 	@JsonSerialize(using=com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer.class )	
 	private DateTime time;
 
@@ -38,5 +40,14 @@ public class TicketDto {
 	public void setTime(DateTime time) {
 		this.time = time;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 
 }

@@ -22,21 +22,18 @@ public class MongoSearch {
 	
     private final static Logger logger = LoggerFactory.getLogger(MongoSearch.class);
 	
-	@Autowired
-	MongoTemplate mongoTemplate;
+	
 	
 	@Autowired
-	Jongo jongo;
+	private Jongo jongo;
 	
 	@Autowired 
-	UserMatchesMatrix matrix;
+	private UserMatchesMatrix matrix;
 	
 	
 	@Scheduled(initialDelay = 3000, fixedRate = 20000)
 	public void find() {
-		mongoTemplate.getCollection("userTickets");
-
-		
+	
 		ResultsIterator<UserMatches>  coll = jongo.getCollection("userTickets").aggregate("{$unwind: '$tickets'}")
 		.and("{ $unwind : '$tickets.rows' }")
 		.and("{ $project :  {'_id' : '$_id', 'match' : '$tickets.rows.match'}}" )

@@ -22,6 +22,7 @@ import com.deeploma.bettingshop.domain.betting.dto.TicketDto;
 import com.deeploma.bettingshop.domain.betting.dto.TicketRowDto;
 import com.deeploma.bettingshop.domain.betting.dto.UserTicket;
 import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
+import com.deeploma.bettingshop.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,10 +37,13 @@ public class SendingBean {
     private JmsMessagingTemplate template;
    
     @Autowired
-    ObjectMapper objectMapper ;
+    private ObjectMapper objectMapper ;
     
     @Autowired
-    MatchTeamsMapper matchMapper;
+    private MatchTeamsMapper matchMapper;
+    
+    @Autowired
+    private UserService uService;
     
     public SendingBean() {
     	
@@ -54,8 +58,8 @@ public class SendingBean {
 
     public void sendTicket(Ticket ticket) {
         
-    	String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	logger.info("Idemo u slanje tiketa, {}", (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    	String username = uService.find(ticket.getUserId()).getUsername();
+    	logger.info("Idemo u slanje tiketa {}, user", ticket.getId(), username);
  	    Runnable send = new Runnable() {
 			
 			@Override
@@ -90,7 +94,9 @@ public class SendingBean {
 		tick.setTime(ticket.getTime());
 		
 		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(  trow -> convertToDto(trow)).collect(Collectors.toList());		
-	    tick.setRows(rows);			
+	    tick.setRows(rows);
+	    
+	    tick.setStatus(ticket.getTicketStatus().name());
 	
 	    ticketDto.setTicketDto(tick);
 	    

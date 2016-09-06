@@ -3,9 +3,11 @@ package com.deeploma.bettingshop.domain.betting.dto;
 import org.joda.time.DateTime;
 
 import com.deeploma.bettingshop.domain.basic.Competition;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MatchDto {
 
 	private Long id;

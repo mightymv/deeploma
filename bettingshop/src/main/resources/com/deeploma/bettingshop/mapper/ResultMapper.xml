@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deeploma.bettingshop.mapper.ResultMapper">
+
+    
+     <insert id="insertResult">
+	    <selectKey keyProperty="result.id" resultType="long" order="BEFORE">
+		     select SQ_RESULTS_ID.nextval a from dual
+	    </selectKey>
+		insert into results (ID, RESULTTYPE, HOMETEAM, VISITORTEAM, MATCHID, RESULTSTATUS) values
+						   (#{result.id},#{result.resultType,  typeHandler=org.apache.ibatis.type.EnumTypeHandler},#{result.homeTeam}, #{result.visitorTeam}, #{result.matchId}, #{result.resultStatus ,  typeHandler=org.apache.ibatis.type.EnumTypeHandler})		
+	</insert>
+	
+	<update id="updateResultStatus">
+	   update results set
+    	resultstatus = #{status , typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+  	   where id = #{id}		
+	</update>
+	
+	
+	 <resultMap id="resultResultMap" type="com.deeploma.bettingshop.domain.basic.Result">
+  		<id property="id" column="rid" />
+  		<result property="homeTeam" column="rhometeam"/>
+  		<result property="visitorTeam" column="rvisitorteam"/>
+  		<result property="resultType" column="rresulttype"  typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+  		<result property="matchId" column="rmatchid"/>
+  		<result property="resultStatus" column="rresultstatus" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+	</resultMap>
+	
+    
+     <select id="findAllVerifiedResults" resultMap="resultResultMap">
+        select r.id as rid,
+		r.hometeam as rhometeam,
+		r.visitorteam as rvisitorteam,
+		r.resulttype as rresulttype,
+		r.resultstatus as rresultstatus,
+		r.matchid as rmatchid
+		from results r
+		where r.resultstatus = 'VERIFIED'
+		
+    </select>
+    
+</mapper>

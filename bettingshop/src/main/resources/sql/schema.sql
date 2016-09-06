@@ -32,6 +32,9 @@
 --
 --DROP
 --  TABLE Tickets CASCADE CONSTRAINTS ;
+
+--DROP
+--  TABLE Standings CASCADE CONSTRAINTS ;
 --  
 --DROP
 --  TABLE USERS CASCADE CONSTRAINTS ;
@@ -41,6 +44,10 @@
 --DROP SEQUENCE SQ_TICKETROWS_ID ;
 --
 --DROP SEQUENCE SQ_USERS_ID ;
+
+--DROP SEQUENCE SQ_RESULTS_ID ;
+
+--DROP SEQUENCE SQ_STANDINGS_ID ;
 
 CREATE
   TABLE Users
@@ -82,13 +89,14 @@ CREATE
   TABLE Results
   (
     id          INTEGER NOT NULL ,
-    resultType  VARCHAR2 (20) NOT NULL ,
-    homeTeam    INTEGER NOT NULL ,
-    visitorTeam INTEGER NOT NULL ,
+    resulttype  VARCHAR2 (20) NOT NULL ,
+    hometeam    INTEGER NOT NULL ,
+    visitorteam INTEGER NOT NULL ,
     matchId     INTEGER NOT NULL,
-    resultStatus VARCHAR2 (20) NOT NULL
+    resultstatus VARCHAR2 (20) NOT NULL
   ) ;
 ALTER TABLE Results ADD CONSTRAINT Results_PK PRIMARY KEY ( id ) ;
+ALTER TABLE Results ADD CONSTRAINT RES_MATCH_RESTYPE_UN UNIQUE( matchid, resulttype) ;
 
 
 CREATE
@@ -197,7 +205,18 @@ CREATE
   ) ;
 ALTER TABLE Tickets ADD CONSTRAINT Tickets_PK PRIMARY KEY ( id ) ;
 
-
+CREATE TABLE Standings
+  (
+    id         INTEGER NOT NULL ,
+    dateof     DATE NOT NULL ,
+    userid     INTEGER NOT NULL ,
+    ticketid   INTEGER NOT NULL ,
+    bestresult NUMBER
+  ) ;
+ALTER TABLE Standings ADD CONSTRAINT Standings_PK PRIMARY KEY ( id ) ;
+ALTER TABLE Standings ADD CONSTRAINT Standings__UN UNIQUE ( dateof , userid ) ;
+ALTER TABLE Standings ADD CONSTRAINT Standings_Tickets_FK FOREIGN KEY ( ticketid ) REFERENCES Tickets ( id ) ;
+ALTER TABLE Standings ADD CONSTRAINT Standings_Users_FK FOREIGN KEY ( userid ) REFERENCES Users ( id ) ;
 
 ALTER TABLE BetOdds ADD CONSTRAINT BetOdds_BettingSubGames_FK FOREIGN KEY (
 subGameId ) REFERENCES BettingSubGames ( id ) ;
@@ -225,3 +244,6 @@ START WITH 5000;
 
 CREATE SEQUENCE SQ_RESULTS_ID 
 START WITH 100000;
+
+CREATE SEQUENCE SQ_STANDINGS_ID 
+START WITH 3000;

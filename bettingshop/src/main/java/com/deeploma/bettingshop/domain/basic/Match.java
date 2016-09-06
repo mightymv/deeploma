@@ -6,7 +6,6 @@ import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-
 public class Match {
 
 	private Long id;

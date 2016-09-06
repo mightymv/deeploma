@@ -15,6 +15,8 @@ public class TicketDto {
 	private List<TicketRowDto> rows;
 	
 	private DateTime time;
+	
+	private String status;
 
 	public Long getId() {
 		return id;
@@ -38,6 +40,14 @@ public class TicketDto {
 
 	public void setStartTime(DateTime time) {
 		this.time = time;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 

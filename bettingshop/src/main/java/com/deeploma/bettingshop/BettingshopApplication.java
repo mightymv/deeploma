@@ -24,5 +24,7 @@ public class BettingshopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BettingshopApplication.class, args);
 	}
+	
+	
 
 }

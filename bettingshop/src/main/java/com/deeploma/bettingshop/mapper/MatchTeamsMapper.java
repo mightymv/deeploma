@@ -33,20 +33,4 @@ public interface MatchTeamsMapper {
 	
 	public List<Match> findAllMatches();
 
-	public List<Result> findAllVerifiedResults();
-
-	
-	public List<Ticket> findAllTicketsWithMatchIds(Set<Long> matchIds);
-
-	public List<BetOdd> findAllOddsForMatchIds(Set<Long> matchIds);
-
-	public void updateTicketStatus(TicketStatus loser, Long id);
-
-	public void setTicketRowStatus(TicketRowStatus winner, Long id);
-
-	public void updateResultStatus(ResultStatus calculated, Long id);
-
-	public List<Ticket> findAllWinnersForDate(DateTime withTimeAtStartOfDay);
-
-
 }

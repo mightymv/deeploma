@@ -32,5 +32,16 @@
 	  where username = '${username}' and password = '${password}'   
 	  
     </select>
+    
+     <select id="findById" resultMap="userMap">
+	  select id uuid,
+	  name uname,
+	  surname usurname,
+	  username uusername,
+	  status ustatus
+	  from users 
+	  where id = ${id} 
+	  
+    </select>
 
 </mapper>

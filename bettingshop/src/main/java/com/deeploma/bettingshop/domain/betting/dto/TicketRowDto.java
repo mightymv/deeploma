@@ -7,6 +7,8 @@ public class TicketRowDto {
 	private MatchDto match;
 	
 	private Long betOddId;
+	
+	private String status;
 
 	public MatchDto getMatch() {
 		return match;
@@ -30,6 +32,14 @@ public class TicketRowDto {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -52,11 +52,10 @@ public class EventListeners {
 				 Set<TicketDto> tickets = new HashSet<TicketDto>();				
 				 ut.setTickets(tickets);		 				
 			 }			 
-			
+			 ut.getTickets().remove(resp.getTicketDto());  // da bih izveo upsert
 			 ut.getTickets().add(resp.getTicketDto());
 			 ut.getTickets().forEach(tick -> logger.info(tick.getId().toString()));
-			 mongoTemplate.save(ut);  //TODO zameniti sa jongom
-			 
+			 ma.saveTicket(ut);  
 			 
 			 
 		} catch (IOException e) {

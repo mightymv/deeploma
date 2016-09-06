@@ -18,8 +18,7 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public User find(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userMapper.findById(id);
 	}
 
 	@Override

@@ -16,5 +16,10 @@ public class MongoAccess {
 	public UserTickets findTicketsForUser(Long id) {	
 		return jongo.getCollection("userTickets").findOne("{_id: #}", id).as(UserTickets.class);
 	}
+	
+	public void saveTicket(UserTickets ut) {
+		jongo.getCollection("userTickets").save(ut);
+		
+	}
 
 }

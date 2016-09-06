@@ -44,9 +44,8 @@
   		<result property="name" column="cname"/>
   		<association property="sport" resultMap="sportMap"/>  		       
     </resultMap>
-	
-	
-	
+    
+
 	
 	<sql id="selectTeams">
         t.id tid, t.name tname, t.sportid tsportid , s.id sid, s.name sname from teams t, sports s where s.id = t.sportid
@@ -137,7 +136,6 @@
     <select id="findAllMatches" resultMap="matchMap">
 	  select <include refid="matchSelect"/>   
     </select>
-    
     
 
     

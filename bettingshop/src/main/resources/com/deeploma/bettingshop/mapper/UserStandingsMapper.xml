@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deeploma.bettingshop.mapper.UserStandingsMapper">
+
+     <insert id="insert">
+	    <selectKey keyProperty="standing.id" resultType="long" order="BEFORE">
+		     select SQ_STANDINGS_ID.nextval a from dual
+	    </selectKey>	    
+		insert into standings (id, dateof, userid, ticketid, bestresult) values
+						   (#{standing.id},#{standing.dateOf,typeHandler=com.deeploma.bettingshop.mapper.thandler.DateTimeTypeHandler},#{standing.userId}, #{standing.ticketId}, #{standing.bestResult})		
+	</insert>
+	
+	<delete id="deleteForDate" parameterType="org.joda.time.DateTime">
+		<bind name="date" value="new java.sql.Date(date.withTimeAtStartOfDay().getMillis())" />
+	    delete from standings s
+	    where trunc(s.dateof) =  to_date ('${date}', 'yyyy-mm-dd')	
+	</delete>
+	
+	<resultMap type="com.deeploma.bettingshop.domain.betting.dto.UserStandingDto" id="userStandingRM">
+			
+  			<result property="ticketId" column="sticketid"/>
+  			<result property="dateOf" column="sdateof" javaType="org.joda.time.DateTime" typeHandler="com.deeploma.bettingshop.mapper.thandler.DateTimeTypeHandler"/>
+  			<result property="userId" column="uuid"/>
+      	    <result property="username" column="uusername"/>
+      	    <result property="bestResult" column="sbestresult"/>	
+	</resultMap>
+	
+	
+	<select id="findStandingsForDate" resultMap="userStandingRM"  parameterType="org.joda.time.DateTime">
+		<bind name="date" value="new java.sql.Date(date.withTimeAtStartOfDay().getMillis())" />
+	    select 
+	    s.id as sid,
+	    s.userid as suserid,
+	    s.ticketid as sticketid,
+	    s.dateof as sdateof,
+	    s.bestresult as sbestresult,
+	    u.id as uuid,
+	    u.username as uusername
+	    from standings s,
+	    users u
+	    where trunc(s.dateof) =  to_date ('${date}', 'yyyy-mm-dd')
+	    and u.id = s.userid
+	    order by s.bestresult desc
+	</select>
+	
+</mapper>

@@ -35,7 +35,7 @@ public class DateTimeTypeHandler implements TypeHandler
         Timestamp ts = rs.getTimestamp(columnName);
         if (ts != null)
         {
-            return new DateTime(ts.getTime(), DateTimeZone.UTC);
+            return new DateTime(ts.getTime());
         }
         else
         {
@@ -51,7 +51,7 @@ public class DateTimeTypeHandler implements TypeHandler
         Timestamp ts = cs.getTimestamp(columnIndex);
         if (ts != null)
         {
-            return new DateTime(ts.getTime(), DateTimeZone.UTC);
+            return new DateTime(ts.getTime());
         }
         else
         {

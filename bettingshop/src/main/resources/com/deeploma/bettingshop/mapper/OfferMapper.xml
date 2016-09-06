@@ -22,6 +22,9 @@
   		<result property="value" column="oddvalue"/>
   		<result property="betOddStatus" column="oddbetoddstatus" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
   		<result property="subGame" column="oddsubgameid"  javaType="com.deeploma.bettingshop.domain.betting.SubGame" typeHandler="com.deeploma.bettingshop.mapper.thandler.SubGameTypeHandler"/>   		  		 		
+	    <association property="match" javaType="com.deeploma.bettingshop.domain.basic.Match">
+            <id property="id" column="oddmatchid"/>
+        </association>
 	</resultMap>
 
 
@@ -107,6 +110,27 @@
        <bind name="date" value="new java.sql.Date(date.withTimeAtStartOfDay().getMillis())" />
 	  select<include refid="offer"/>  
 	  and trunc(m.starttime) = to_date ('${date}', 'yyyy-mm-dd')
+    </select>
+    
+    <update id="updateBetOddStatus">
+	   update betodds set
+    	betoddstatus = #{status , typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+  	   where id = #{id}		
+	</update>
+	
+	<select id="findAllOddsForMatchIds" resultMap="oddResultMap">
+	  select
+      	odd.ID oddid,
+		odd.MATCHID oddmatchid,
+		odd.SUBGAMEID oddsubgameid,
+		odd.VALUE oddvalue,
+		odd.BETODDSTATUS oddbetoddstatus
+		from betodds odd
+	  where odd.matchid in  
+      <foreach item="item" index="index" collection="matchIds" 
+        open="(" separator="," close=")">
+            #{item}
+      </foreach>  
     </select>
 
 </mapper>
