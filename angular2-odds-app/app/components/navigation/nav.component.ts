@@ -19,9 +19,6 @@ import {Component, OnInit} from '@angular/core';
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/edit-profile">Edit Profile</a>
-                        </li>
-                        <li>
                             <a href="/dashboard">Dashboard</a>
                         </li>
                         <li>
