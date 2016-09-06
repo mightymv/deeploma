@@ -23,6 +23,11 @@ create user betshop identified by "betshop!";
 GRANT dba TO betshop WITH ADMIN OPTION;
 ```
 
+Model baze :
+
+
+![Alt text](modeBaze.png?raw=true "model baze")
+
 API za betingshop service 
 ---
 
