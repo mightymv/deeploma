@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, RequestOptions} from "@angular/http";
 
 
 @Component({
@@ -14,6 +14,8 @@ export class LoginComponent {
     username: string = "username";
     password: string;
 
+    // md5.createHash(User.senha)
+
     constructor(private http: Http) {}
 
     onLogin() {
@@ -23,19 +25,19 @@ export class LoginComponent {
             "password": this.password,
         };
 
-        let headers = this.getHeader()
+        let headers = new Headers();
         headers.append('X-Auth-Username', this.username);
         headers.append('X-Auth-Password', this.password);
 
         this.printRequest();
 
-        this.http.post("http://192.168.182.198:8080/login", JSON.stringify(body), {headers: headers})
+        this.http.post("http://local.angular2odds.com:8080/login2", JSON.stringify(body), {headers: headers})
             .map(res => res.json())
             .subscribe(
                 success => {
-                    console.log("USPESNO logovanje: " + success);
+                    console.log("USPESNO logovanje: jwt - " + success.token);
                 },
-                err => this.logError(err),
+                err => {this.logError(err); console.log(err.json())},
                 () => console.log('Login completed')
             );
     }
