@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Logger} from "../utils/LoggerUtils";
-import {LoginResponse, LoginRequest, RegistrationRequest} from "../dto/login";
+import {LoginResponse, LoginRequest, RegistrationRequest, LocalStorageUser} from "../dto/login";
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -25,9 +25,12 @@ export class UserService {
             .map(res => res.json())
             .subscribe(
                 response => {
-                    let loginResponse: LoginResponse = response;
-                    Logger.logLoginResponse(response);
-                    this.saveUserToLocalStorage(loginResponse);
+                    let userData: LoginResponse = response;
+
+                    Logger.logLoginResponse(userData);
+
+                    this.saveUserToLocalStorage(userData);
+
                     this.router.navigate(['odds']);
                 },
                 err => {
@@ -47,6 +50,11 @@ export class UserService {
         localStorage.removeItem('id');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+    }
+
+    getUserFromLocalStorage(): LocalStorageUser {
+        return new LocalStorageUser(localStorage.getItem('id'),
+            localStorage.getItem('token'), localStorage.getItem('user'));
     }
 
     onRegister(registrationRequst: RegistrationRequest) {

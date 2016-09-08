@@ -1,8 +1,11 @@
 export class PayTicketRequest {
 
+    public cumulativeOdd: number = 1;
+
     constructor(public userId: number,
-                public ticketRows: Array<TicketRow>,
-                public cumulativeOdd: number) {
+                public ticketRows: Array<TicketRow>) {
+        this.ticketRows.forEach(
+            ticket => this.cumulativeOdd*=ticket.odd );
     }
 }
 

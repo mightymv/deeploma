@@ -53,12 +53,8 @@ export class OddsPageComponent implements OnInit {
                     console.log(this.matches);
                     console.log(this.matchesBasket);
                 },
-                err => this.logError(err),
+                err => console.log("Offer NOT LOADED!!! " + err),
                 () => console.log('Result loaded')
             );
-    }
-
-    logError(err) {
-        console.log("Podaci nisu ucitani!!! " + err);
     }
 }

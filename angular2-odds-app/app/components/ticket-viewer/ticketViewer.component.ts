@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnDestroy} from "@angular/core";
+import {Component, Output, EventEmitter, OnDestroy, ElementRef} from "@angular/core";
 import {PayTicketService} from "../../services/pay-ticket.service";
 import {TicketRow} from "../../dto/payTicket";
 
@@ -26,7 +26,6 @@ export class TicketViewerComponent implements OnDestroy {
         //     this.ticketRows = JSON.parse(localStorage.getItem("ticketRows"));
         //     this.recalculateTicket();
         // }
-
 
         this.payTicketService.ticketChangeEvent$.subscribe(ticketRow => this.onTicketChange());
         this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onTicketChange());
@@ -60,5 +59,9 @@ export class TicketViewerComponent implements OnDestroy {
 
     toggleCloseButton() {
         this.closeButtonActive = !this.closeButtonActive;
+    }
+
+    onPayTicket() {
+        this.payTicketService.payTicket();
     }
 }

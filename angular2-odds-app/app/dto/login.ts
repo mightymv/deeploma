@@ -20,3 +20,9 @@ export class RegistrationRequest {
                 public username: string,
                 public password: string) {}
 }
+
+export class LocalStorageUser {
+    constructor(public id: number,
+                public token: string,
+                public user: string) {}
+}
