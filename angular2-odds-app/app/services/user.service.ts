@@ -2,11 +2,12 @@ import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Logger} from "../utils/LoggerUtils";
 import {LoginResponse, LoginRequest, RegistrationRequest} from "../dto/login";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private router: Router) { }
 
     onLogin(loginRequest: LoginRequest): void {
 
@@ -26,7 +27,8 @@ export class UserService {
                 response => {
                     let loginResponse: LoginResponse = response;
                     Logger.logLoginResponse(response);
-                    this.saveLoginResponse(loginResponse);
+                    this.saveUserToLocalStorage(loginResponse);
+                    this.router.navigate(['odds']);
                 },
                 err => {
                     console.log("Login failed !!! " + err);
@@ -35,10 +37,16 @@ export class UserService {
             );
     }
 
-    saveLoginResponse(loginResponse: LoginResponse): void {
+    saveUserToLocalStorage(loginResponse: LoginResponse): void {
         localStorage.setItem('id', loginResponse.id.toString());
         localStorage.setItem('token', loginResponse.token);
         localStorage.setItem('user', loginResponse.name + ' ' + loginResponse.surname);
+    }
+
+    removeUserFromLocalStorage(): void {
+        localStorage.removeItem('id');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
 
     onRegister(registrationRequst: RegistrationRequest) {
@@ -57,6 +65,7 @@ export class UserService {
             .subscribe(
                 success => {
                     console.log("Registration SUCCESS :) " + success);
+                    this.router.navigate(['login']);
                 },
                 err => console.log("Registration failed !!! " + err),
                 () => console.log('Registration completed.')

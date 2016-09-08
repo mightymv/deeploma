@@ -1,71 +1,288 @@
 /* line 1, ../scss/login.scss */
 .login-page {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #2c3e50;
-  text-align: center;
-  color: #FFFFFF;
-  padding: 3em;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2c3e50;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 3em;
 }
+
 /* line 12, ../scss/login.scss */
 .login-page .img-wrapper {
-  border: 3px solid white;
-  height: 155px;
-  border-radius: 50%;
-  width: 173px;
-  margin: 0 auto;
+    border: 3px solid white;
+    height: 155px;
+    border-radius: 50%;
+    width: 173px;
+    margin: 0 auto;
 }
+
 /* line 19, ../scss/login.scss */
 .login-page .img-wrapper img {
-  padding-top: 5px;
+    padding-top: 5px;
 }
+
 /* line 24, ../scss/login.scss */
 .login-page h1 {
-  font-size: 36px;
-  font-weight: 300;
-  color: inherit;
-  margin: 20px 0 0 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: inherit;
+    margin: 20px 0 0 0;
 }
+
 /* line 30, ../scss/login.scss */
 .login-page h5 {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 20px;
-  font-weight: 300;
-  margin: 10px 0 30px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    font-weight: 300;
+    margin: 10px 0 30px 0;
 }
+
 /* line 37, ../scss/login.scss */
 .login-page input.input-underline {
-  font-weight: 300;
-  background: 0 0;
-  border: none;
-  box-shadow: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-  color: #fff;
+    font-weight: 300;
+    background: 0 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
 }
+
 /* line 45, ../scss/login.scss */
 .login-page input.input-underline:hover, .login-page input.input-underline:focus {
-  border-bottom: 2px solid #fff;
-  box-shadow: none;
+    border-bottom: 2px solid #fff;
+    box-shadow: none;
 }
+
 /* line 51, ../scss/login.scss */
 .login-page .btn {
-  font-size: 18px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  line-height: 40px;
-  padding: 0 25px;
-  border-radius: 50px;
-  text-transform: none;
-  text-align: center;
-  transition: color .2s ease-in-out, border .2s ease-in-out;
-  margin-top: 30px;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    line-height: 40px;
+    padding: 0 25px;
+    border-radius: 50px;
+    text-transform: none;
+    text-align: center;
+    transition: color .2s ease-in-out, border .2s ease-in-out;
+    margin-top: 30px;
 }
+
 /* line 64, ../scss/login.scss */
 .login-page .btn:hover {
-  color: #fff;
-  border: 2px solid #fff;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+/* ------------------ */
+.board {
+    width: 75%;
+    margin: 60px auto;
+    height: 500px;
+    background: #fff;
+    box-shadow: 10px 10px #ccc, 10px 20px #ddd;
+}
+
+.board .nav-tabs {
+    position: relative;
+    border-bottom: 0;
+    width: 80%;
+    margin: 40px auto;
+    margin-bottom: 0;
+    box-sizing: border-box;
+
+}
+
+.board > div.board-inner {
+    background: #fafafa;
+    background-size: 30%;
+    border-bottom: 1px solid #DDD;
+}
+
+p.narrow {
+    width: 60%;
+    margin: 10px auto;
+}
+
+.liner {
+    height: 2px;
+    background: #ddd;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    /* background-color: #ffffff; */
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tabs {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: white;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+span.round-tabs.one {
+    color: rgb(34, 194, 34);
+    border: 2px solid rgb(34, 194, 34);
+}
+
+li.active span.round-tabs.one {
+    background: #fff;
+    border: 2px solid #ddd;
+    color: rgb(34, 194, 34);
+}
+
+span.round-tabs.two {
+    color: #febe29;
+    border: 2px solid #febe29;
+}
+
+li.active span.round-tabs.two {
+    background: #fff;
+    border: 2px solid #ddd;
+    color: #febe29;
+}
+
+.nav-tabs > li.active > a span.round-tabs {
+    background: #fafafa;
+}
+
+.nav-tabs > li {
+    flex: 1;
+    width: 20%;
+}
+
+.nav-tabs {
+    display: flex;
+}
+
+li:after {
+    content: " ";
+    position: absolute;
+    left: 47%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #ddd;
+    transition: 0.1s ease-in-out;
+
+}
+
+li.active:after {
+    content: " ";
+    position: absolute;
+    left: 47%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #ddd;
+
+}
+
+.nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+.nav-tabs > li a:hover {
+    background: transparent;
+}
+
+.tab-content {
+}
+
+.tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.tab-content .head {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.btn-outline-rounded {
+    padding: 10px 40px;
+    margin: 20px 0;
+    border: 2px solid transparent;
+    border-radius: 25px;
+}
+
+.btn.green {
+    background-color: #5cb85c;
+    /*border: 2px solid #5cb85c;*/
+    color: #ffffff;
+}
+
+#loginform, #signinform {
+    width: 45%;
+    margin: 0 auto;
+}
+
+.form-control:focus {
+    box-shadow: inset 0 -2px 0 #4caf50;
+}
+
+@media ( max-width: 585px ) {
+
+    .board {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tabs {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .tab-content .head {
+        font-size: 20px;
+    }
+
+    .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+
+    .btn-outline-rounded {
+        padding: 12px 20px;
+    }
 }

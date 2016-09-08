@@ -13,6 +13,7 @@
   "devDependencies": {
     "concurrently": "latest",
     "lite-server": "latest",
-    "bootstrap": "latest"
+    "bootstrap": "latest",
+    "jquery": "1.11.3"
   }
 }
