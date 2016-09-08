@@ -39,6 +39,10 @@ export class Deserializer {
                     odds.push(currOdd);
                 });
 
+                // Veljko jooooooooooj bre
+                Deserializer.swap(odds, 1, 2);
+                Deserializer.swap(odds, 4, 5);
+
                 matchesDTO.push(
                     new Offer.Match(
                         match.id,
@@ -48,12 +52,18 @@ export class Deserializer {
                             new Offer.Sport(competition.sport.id, competition.sport.name)),
                         new Offer.Team(teamHome.id, teamHome.name),
                         new Offer.Team(teamVisitor.id, teamVisitor.name),
-                        null,
                         match.matchStatus,
+                        null,
                         odds
                     ));
             });
         }
         return matchesDTO;
+    }
+
+    private static swap(odds: Array<Offer.Odd>, one: number, two: number):void {
+        let temp = odds[one];
+        odds[one] = odds[two];
+        odds[two] = temp;
     }
 }
