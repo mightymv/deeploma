@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter, OnDestroy, ElementRef} from "@angular/core";
-import {PayTicketService} from "../../services/pay-ticket.service";
-import {TicketRow} from "../../dto/payTicket";
+import {TicketService} from "../../services/ticket.service";
+import {PayInTicketRow} from "../../dto/payTicket";
 
 @Component({
     selector: 'ticket-viewer',
@@ -14,12 +14,12 @@ export class TicketViewerComponent implements OnDestroy {
     @Output()
     sendMessage: EventEmitter<Object> = new EventEmitter<Object>();
 
-    ticketRows: Array<TicketRow> = [];
+    ticketRows: Array<PayInTicketRow> = [];
     totalOdd: number = 1;
 
     closeButtonActive:boolean = true;
 
-    constructor(private payTicketService: PayTicketService) {
+    constructor(private payTicketService: TicketService) {
 
         // // TODO read from localStorage
         // if(localStorage.getItem("ticketRows")) {

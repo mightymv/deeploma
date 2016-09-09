@@ -8,9 +8,9 @@ export class Match {
                 public competition: Competition,
                 public teamHome: Team,
                 public teamVisitor: Team,
-                public results: Array<Result>,
                 public matchStatus: string,
-                public odds: Array<Odd>
+                public results?: Array<Result>,
+                public odds?: Array<Odd>
     ) {}
 }
 

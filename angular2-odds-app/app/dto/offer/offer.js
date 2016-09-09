@@ -1,14 +1,14 @@
 // Offer DTO classes
 "use strict";
 var Match = (function () {
-    function Match(id, startTime, competition, teamHome, teamVisitor, results, matchStatus, odds) {
+    function Match(id, startTime, competition, teamHome, teamVisitor, matchStatus, results, odds) {
         this.id = id;
         this.startTime = startTime;
         this.competition = competition;
         this.teamHome = teamHome;
         this.teamVisitor = teamVisitor;
-        this.results = results;
         this.matchStatus = matchStatus;
+        this.results = results;
         this.odds = odds;
     }
     return Match;

@@ -1,26 +1,34 @@
 import {Injectable, EventEmitter, OnDestroy} from '@angular/core';
 import {Http, Headers} from "@angular/http";
-import {TicketRow, PayTicketRequest} from "../dto/payTicket";
+import {PayInTicketRow, PayTicketRequest} from "../dto/payTicket";
 import {UserService} from "./user.service";
 import {LocalStorageUser} from "../dto/login";
 
 @Injectable()
-export class PayTicketService {
+export class TicketService {
 
-    public ticketChangeEvent$: EventEmitter<TicketRow>;
+    public ticketChangeEvent$: EventEmitter<PayInTicketRow>;
     public ticketCleanEvent$: EventEmitter<Boolean>;
-    public ticketRows: Array<TicketRow> = [];
+    public ticketRows: Array<PayInTicketRow> = [];
 
     constructor(private http: Http, private userService: UserService) {
-        this.ticketChangeEvent$ = new EventEmitter<TicketRow>();
+        this.ticketChangeEvent$ = new EventEmitter<PayInTicketRow>();
         this.ticketCleanEvent$ = new EventEmitter<Boolean>();
     }
 
-    public getTicketRows(): Array<TicketRow> {
+    /**
+     * Dohvata sve tikete.
+     * @returns {Array<PayInTicketRow>}
+     */
+    public getTicketRows(): Array<PayInTicketRow> {
         return this.ticketRows;
     }
 
-    public addTicketRow(ticketRow: TicketRow): void {
+    /**
+     * Dodaje zadati red u tiket.
+     * @param ticketRow
+     */
+    public addTicketRow(ticketRow: PayInTicketRow): void {
 
         if(ticketRow !== null || ticketRow !== undefined) {
 
@@ -29,7 +37,11 @@ export class PayTicketService {
         }
     }
 
-    public removeTicketRow(ticketRow: TicketRow): void {
+    /**
+     * Uklanja zadati red iz liste tiketa.
+     * @param ticketRow
+     */
+    public removeTicketRow(ticketRow: PayInTicketRow): void {
 
         if(ticketRow !== null || ticketRow !== undefined) {
 
@@ -38,11 +50,17 @@ export class PayTicketService {
         }
     }
 
+    /**
+     * Uklanja sve redove tiketa.
+     */
     public removeAllTicketRows() {
         this.ticketRows = [];
         this.ticketCleanEvent$.emit(true);
     }
 
+    /**
+     * Uplata tiketa.
+     */
     public payTicket() {
 
         let user:LocalStorageUser = this.userService.getUserFromLocalStorage();
@@ -63,5 +81,22 @@ export class PayTicketService {
                 err => console.log("Payin ticket failed !!! " + err),
                 () => console.log("Payin ticket completed.")
             );
+    }
+
+    public getTickets() {
+
+        let userId = this.userService.getUserFromLocalStorage().id;
+        let tickets = [];
+
+        // this.http.get(`http://192.168.182.198:8082/${userId}/tickets`)
+        //     .map(res => res.json())
+        //     .toPromise(
+        //         res => {
+        //             console.log("Fetching tickets success :)");
+        //             tickets = res;
+        //         },
+        //         err => console.log("Fetching tickets failed !!! " + err),
+        //         () => console.log("Fetching tickets completed.")
+        //     );
     }
 }

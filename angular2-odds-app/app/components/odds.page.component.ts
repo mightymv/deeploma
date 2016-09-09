@@ -10,6 +10,7 @@ import {Response, Http, Headers} from "@angular/http";
 import {CORE_DIRECTIVES, DatePipe} from "@angular/common";
 import {Deserializer} from "../utils/Deserializer";
 import {Match} from "../dto/offer/offer";
+import {Observable} from "rxjs/Rx";
 
 @Component({
     selector: 'odds-page-app',
@@ -33,6 +34,15 @@ export class OddsPageComponent implements OnInit {
     matchesBasket: Array<Match>;
 
     constructor(private http: Http) {
+
+        const mouseMove$ = Observable.fromEvent<MouseEvent>(document, 'mousemove')
+            .sampleTime(3000)
+            .subscribe( x => {
+                let matchId = x.srcElement.parentElement.dataset['matchId'];
+                if(matchId !== undefined) {
+                    console.log(Number.parseInt(matchId));
+                }
+            });
     }
 
     getHeader() {

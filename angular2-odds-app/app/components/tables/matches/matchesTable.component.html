@@ -14,9 +14,9 @@
     </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let match of matches">
+        <tr *ngFor="let match of matches" attr.data-match-id="{{match.id}}">
             <td>{{match.id}}</td>
-            <td class="text-left">{{match.startTime | date: 'HH:MM dd-MM-yy'}}</td>
+            <td class="text-left">{{match.startTime | date: 'HH:MM'}}</td>
             <td class="text-center">{{match.teamHome.name}}</td>
             <td class="text-center">{{match.teamVisitor.name}}</td>
             <td class="text-center">{{match.results}}</td>

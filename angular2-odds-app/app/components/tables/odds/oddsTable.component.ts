@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy} from "@angular/core";
 import {Match} from "../../../dto/offer/offer";
 import {GameFilterPipe} from "../../../pipes/game-filter.pipe";
-import {TicketRow} from "../../../dto/payTicket";
-import {PayTicketService} from "../../../services/pay-ticket.service";
+import {PayInTicketRow} from "../../../dto/payTicket";
+import {TicketService} from "../../../services/ticket.service";
 
 @Component({
     selector: 'results-table',
@@ -18,11 +18,11 @@ export class OddsTableComponent implements OnDestroy {
     @Input()
     oddFilter: string;
 
-    payTicketService: PayTicketService;
+    payTicketService: TicketService;
 
     activeOddElements: Array<HTMLTableCellElement>;
 
-    constructor(payTicketService: PayTicketService) {
+    constructor(payTicketService: TicketService) {
 
         this.payTicketService = payTicketService;
         this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onCleanTicket());
@@ -35,7 +35,7 @@ export class OddsTableComponent implements OnDestroy {
 
     onClick(element: HTMLTableCellElement) {
 
-        let ticketRow = new TicketRow(
+        let ticketRow = new PayInTicketRow(
             Number.parseInt(element.dataset['betOddId']),
             Number.parseInt(element.dataset['matchId']),
             element.dataset['subGameShortName'],

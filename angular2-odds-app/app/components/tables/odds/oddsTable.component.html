@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let match of matches">
+        <tr *ngFor="let match of matches" attr.data-match-id="{{match.id}}">
             <td *ngFor="let odd of (match.odds | gameFilter: oddFilter)" class="text-center"
                 attr.data-bet-odd-id="{{odd.id}}"
                 attr.data-match-id="{{match.id}}"
