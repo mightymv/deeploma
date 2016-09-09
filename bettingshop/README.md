@@ -38,8 +38,10 @@ API za betingshop service
 ```bash
 /login             - logovanje     POST
 /user              - registrovanje korisnika    PUT
-/offer/2016-8-10   - ponuda po danima   GET
+/offer/{date}      - ponuda po danima. {date} u formatu yyyy-mm-dd   GET
 /ticket/add/       - uplata tiketa    PUT
+
+/standings/{date}  - table za odradjeni dan . {date} u formatu yyyy-mm-dd  GET
 ```   
 
 Registrovanje korisnika treba da bude u obliku (password je md5 hash) - json u body-u:
