@@ -36,7 +36,18 @@ API
 
 Za sada postoji dovlacenje tiketa za odredjenog user-a
 ```bash
-x.x.x.x:8082/{id}/tickets   GET   (gde je id , naravno, id user-a)
+x.x.x.x:8082/{userId}/tickets   GET  
 ```
 
-konkretno http://192.168.182.198:8082/5001/tickets  (trenutno imas za 5001 korisnika u bazi nekoliko tiketa , kao i za 5003 mislim)
+Pojedinacni tiket za nekog igraca :
+
+```bash
+x.x.x.x:8082/{ticketId}/{userId}/tickets   GET   
+```
+
+
+Preporuke za odredjenog igraca : 
+
+```bash
+x.x.x.x:8082/{userId}/recommendation   GET   
+```
