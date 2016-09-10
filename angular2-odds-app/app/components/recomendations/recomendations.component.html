@@ -2,22 +2,10 @@
     <header class="panel-heading">Recomendations</header>
     <div class="panel-body">
         <div class="container-fluid">
-            <article class="row">
+            <article class="row" *ngFor="let recommend of userRecommendations">
                 <div class="col-md-12">
-                    <span class="match">Mancester - Juventus</span>
+                    <span class="match">{{recommend}}</span>
                     <span class="game">FR X</span>
-                </div>
-            </article>
-            <article class="row">
-                <div class="col-md-12">
-                    <span class="match">Mancester - Juventus</span>
-                    <span class="game">FR 2</span>
-                </div>
-            </article>
-            <article class="row">
-                <div class="col-md-12">
-                    <span class="match">Mancester - Juventus</span>
-                    <span class="game">HR X</span>
                 </div>
             </article>
         </div>

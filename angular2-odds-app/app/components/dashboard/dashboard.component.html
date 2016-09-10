@@ -1,5 +1,27 @@
 <div class="page-content container-fluid">
     <section class="centar-content col-md-offset-2 col-md-8">
         <h2> HELLO DASHBOARD</h2>
+        <table class="table table-striped table-hover table-bordered table-condensed">
+            <thead class="table-first-thead">
+            <tr>
+                <th class="" colspan="5">{{title}}</th>
+            </tr>
+            </thead>
+            <thead class="table-second-thead">
+            <tr>
+                <th class="col-md-1">Id</th>
+                <th class="col-md-3 text-left">Time</th>
+                <th class="col-md-1 text-center">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of userTickets">
+                <td>{{ticket.id}}</td>
+                <td class="text-left">{{ticket.time | date: 'dd/MM/yyyy HH:MM'}}</td>
+                <td class="text-center">{{ticket.status}}</td>
+
+            </tr>
+            </tbody>
+        </table>
     </section>
 </div>

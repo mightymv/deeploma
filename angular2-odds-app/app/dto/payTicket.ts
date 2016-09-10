@@ -1,3 +1,5 @@
+import {Match} from "./offer/offer";
+
 export class PayTicketRequest {
 
     public cumulativeOdd: number = 1;
@@ -27,23 +29,21 @@ export class PayInTicketRow {
     }
 }
 
-export class UserTickets {
-
-    constructor(public username: string,
-                public userId: number,
-                public tickets: Array<Ticket>) {}
-}
 
 export class Ticket {
 
     constructor(public id: number,
-                rows: Array<TicketRow>,
-                time: number,
-                status: string) {}
+                public rows: Array<TicketRow>,
+                public time: number,
+                public status: string) {}
 }
 
 export class TicketRow {
 
-    constructor() {}
+    constructor(public id: number,
+                public match: Match,
+                public betOddId: number,
+                public subGameShortName: string,
+                public status: string) {}
 }
 

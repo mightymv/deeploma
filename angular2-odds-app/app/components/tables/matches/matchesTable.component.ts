@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from "@angular/core";
 import {Match} from "../../../dto/offer/offer";
 
 @Component({
@@ -7,7 +7,7 @@ import {Match} from "../../../dto/offer/offer";
     templateUrl: 'matchesTable.component.html',
     styleUrls: ['matchesTable.component.css']
 })
-export class MatchesTableComponent implements OnInit {
+export class MatchesTableComponent {
 
     @Input()
     sportName: string;
@@ -16,7 +16,4 @@ export class MatchesTableComponent implements OnInit {
     matches: Array<Match>;
 
     constructor() { }
-
-    ngOnInit() { }
-
 }
