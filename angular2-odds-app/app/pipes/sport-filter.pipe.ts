@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform, Injectable} from '@angular/core';
-import {Match} from "../dto/offer/offer";
+import {Match} from "../dto/offer";
 
 @Pipe({
     name: 'sportFilter',

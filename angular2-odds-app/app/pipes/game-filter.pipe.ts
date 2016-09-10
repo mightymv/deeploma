@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform, Injectable} from "@angular/core";
-import {Odd} from "../dto/offer/offer";
+import {Odd} from "../dto/offer";
 
 @Pipe({
     name: 'gameFilter',

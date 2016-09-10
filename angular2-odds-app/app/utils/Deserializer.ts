@@ -1,5 +1,5 @@
 
-import * as Offer from "../dto/offer/offer";
+import * as Offer from "../dto/offer";
 
 export class Deserializer {
     constructor() {}

@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
+import {PayInInfo} from "../../dto/payTicket";
 
 @Component({
     moduleId: module.id,
@@ -8,14 +9,12 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class MessageModalComponent implements OnInit {
 
-    message = {'title': "Obavestenje", 'content': "TODO"};
+    @Input()
+    private modalInfo: PayInInfo;
 
-    constructor() { }
+    constructor() {
+    }
 
-    ngOnInit() { }
-
-    onMessageReceived(messageInfo) {
-        console.log("YYY");
-        this.message = messageInfo;
+    ngOnInit() {
     }
 }

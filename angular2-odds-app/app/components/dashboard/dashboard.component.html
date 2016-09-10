@@ -9,17 +9,26 @@
             </thead>
             <thead class="table-second-thead">
             <tr>
-                <th class="col-md-1">Id</th>
-                <th class="col-md-3 text-left">Time</th>
+                <th class="col-md-1">Time</th>
+                <th class="col-md-3 text-left">Id</th>
                 <th class="col-md-1 text-center">Status</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let ticket of userTickets">
-                <td>{{ticket.id}}</td>
+            <tr *ngFor="let ticket of userTickets" attr.data-ticket-id="{{ticket.id}}">
                 <td class="text-left">{{ticket.time | date: 'dd/MM/yyyy HH:MM'}}</td>
+                <td>
+                    {{ticket.id}}
+                    <table>
+                        <tr *ngFor="let row of ticket.rows">
+                            <td>{{row.id}}</td>
+                            <td>{{row.match.teamHome.name}} - {{row.match.teamVisitor.name}}</td>
+                            <td>{{row.subGameShortName}}</td>
+                            <td>{{row.status}}</td>
+                        </tr>
+                    </table>
+                </td>
                 <td class="text-center">{{ticket.status}}</td>
-
             </tr>
             </tbody>
         </table>

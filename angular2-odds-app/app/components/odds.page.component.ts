@@ -10,7 +10,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router'
     styleUrls: ["odds.page.component.css"],
     directives: [
         NavigationComponent,
-        MessageModalComponent,
         ...ROUTER_DIRECTIVES
     ]
 })

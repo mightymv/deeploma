@@ -4,7 +4,7 @@ import {RecomendationsComponent} from "../recomendations/recomendations.componen
 import {DatePipe, CORE_DIRECTIVES} from "@angular/common";
 import {MatchesTableComponent} from "../tables/matches/matchesTable.component";
 import {OddsTableComponent} from "../tables/odds/oddsTable.component";
-import {Match} from "../../dto/offer/offer";
+import {Match} from "../../dto/offer";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {Deserializer} from "../../utils/Deserializer";

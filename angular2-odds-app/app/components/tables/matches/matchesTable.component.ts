@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Match} from "../../../dto/offer/offer";
+import {Match} from "../../../dto/offer";
 
 @Component({
     moduleId: module.id,

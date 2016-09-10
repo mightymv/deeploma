@@ -1,17 +1,20 @@
-import {Injectable, EventEmitter, OnDestroy} from '@angular/core';
+import {Injectable, EventEmitter} from "@angular/core";
 import {Http, Headers} from "@angular/http";
-import {PayInTicketRow, PayTicketRequest} from "../dto/payTicket";
+import {PayInTicketRow, PayTicketRequest, PayInInfo} from "../dto/payTicket";
 import {UserService} from "./user.service";
 import {LocalStorageUser} from "../dto/login";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class TicketService {
 
+    public payinInfo$: EventEmitter<PayInInfo>;
     public ticketChangeEvent$: EventEmitter<PayInTicketRow>;
     public ticketCleanEvent$: EventEmitter<Boolean>;
     public ticketRows: Array<PayInTicketRow> = [];
 
     constructor(private http: Http, private userService: UserService) {
+        this.payinInfo$ = new EventEmitter<PayInInfo>();
         this.ticketChangeEvent$ = new EventEmitter<PayInTicketRow>();
         this.ticketCleanEvent$ = new EventEmitter<Boolean>();
     }
@@ -61,7 +64,7 @@ export class TicketService {
     /**
      * Uplata tiketa.
      */
-    public payTicket() {
+    public payTicket(): Observable<any> {
 
         let user:LocalStorageUser = this.userService.getUserFromLocalStorage();
 
@@ -71,32 +74,14 @@ export class TicketService {
         headers.append("Content-Type", "application/json");
         headers.append("X-Auth-Token", user.token);
 
-        this.http.put("http://local.angular2odds.com:8080/ticket/add",
+        return this.http.put("http://local.angular2odds.com:8080/ticket/add",
             JSON.stringify(payRequest), {headers: headers, withCredentials: false})
-            .map(res => res.text())
-            .subscribe(
-                res => {
-                    console.log("Payin ticket successful :) " + res);
-                },
-                err => console.log("Payin ticket failed !!! " + err),
-                () => console.log("Payin ticket completed.")
-            );
+            .map(res => res.text());
     }
 
-    public getTickets() {
+    public getTickets(): Observable<any> {
 
         let userId = this.userService.getUserFromLocalStorage().id;
-        let tickets = [];
-
-        // this.http.get(`http://192.168.182.198:8082/${userId}/tickets`)
-        //     .map(res => res.json())
-        //     .toPromise(
-        //         res => {
-        //             console.log("Fetching tickets success :)");
-        //             tickets = res;
-        //         },
-        //         err => console.log("Fetching tickets failed !!! " + err),
-        //         () => console.log("Fetching tickets completed.")
-        //     );
+        return this.http.get(`http://192.168.182.198:8082/${userId}/tickets`);
     }
 }

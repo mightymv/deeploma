@@ -11,25 +11,22 @@ import {UserService} from "../../services/user.service";
 })
 export class LoginComponent {
 
-    name: string ;
+    name: string;
     surname: string;
     username: string;
     password: string;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) {
+    }
 
     onLogin() {
-
         let loginRequest: LoginRequest = new LoginRequest(this.username, this.password);
-
         this.userService.onLogin(loginRequest);
     }
 
     onRegister() {
-
         let registrationRequst: RegistrationRequest = new RegistrationRequest(this.name,
             this.surname, this.username, this.password);
-
         this.userService.onRegister(registrationRequst);
     }
 }

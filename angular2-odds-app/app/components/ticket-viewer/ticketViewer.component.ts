@@ -1,19 +1,19 @@
-import {Component, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
+import {Component, Output, OnInit, OnDestroy} from "@angular/core";
 import {TicketService} from "../../services/ticket.service";
-import {PayInTicketRow} from "../../dto/payTicket";
+import {PayInTicketRow, PayInInfo} from "../../dto/payTicket";
+import {MessageModalComponent} from "../messagesModal/messageModal.component";
 
 @Component({
     moduleId: module.id,
     selector: 'ticket-viewer',
     templateUrl: 'ticketViewer.component.html',
-    styleUrls: ['ticketViewer.component.css']
+    styleUrls: ['ticketViewer.component.css'],
+    directives: [MessageModalComponent]
 })
 export class TicketViewerComponent implements OnInit, OnDestroy {
 
-    private static modalInfo = {'title': "Obavestenje", 'content': "Uspesno ste uplatili tiket"};
-
     @Output()
-    sendMessage: EventEmitter<Object> = new EventEmitter<Object>();
+    private modalInfo: PayInInfo = new PayInInfo("Uplata tiketa", "message");
 
     ticketRows: Array<PayInTicketRow> = [];
     totalOdd: number = 1;
@@ -42,11 +42,6 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
         this.ticketCleanEvent$.unsubscribe();
     }
 
-    onModalMessageSend() {
-        console.log(TicketViewerComponent.modalInfo);
-        this.sendMessage.emit(TicketViewerComponent.modalInfo);
-    }
-
     onTicketChange(): void {
 
         this.ticketRows = this.payTicketService.getTicketRows();
@@ -68,6 +63,19 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
     }
 
     onPayTicket() {
-        this.payTicketService.payTicket();
+        this.payTicketService.payTicket()
+            .subscribe(
+                res => {
+                    console.log("Payin ticket successful :) " + res);
+                    this.modalInfo.content = "Uspesno ste uplatili tiket.";
+                    this.modalInfo.style = "primary";
+                },
+                err => {
+                    console.log("Payin ticket failed !!! " + err);
+                    this.modalInfo.content = "Uplata tiketa neuspesna !!!";
+                    this.modalInfo.style = "danger";
+                },
+                () => console.log("Payin ticket completed.")
+            );
     }
 }

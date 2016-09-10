@@ -1,4 +1,4 @@
-import {Match} from "./offer/offer";
+import {Match} from "./offer";
 
 export class PayTicketRequest {
 
@@ -47,3 +47,7 @@ export class TicketRow {
                 public status: string) {}
 }
 
+export class PayInInfo {
+
+    constructor(public title: string, public content: string, public style?: string) {}
+}
