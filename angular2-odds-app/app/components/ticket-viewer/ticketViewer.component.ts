@@ -3,9 +3,10 @@ import {TicketService} from "../../services/ticket.service";
 import {PayInTicketRow} from "../../dto/payTicket";
 
 @Component({
+    moduleId: module.id,
     selector: 'ticket-viewer',
-    templateUrl: 'app/components/ticket-viewer/ticketViewer.component.html',
-    styleUrls: ['app/components/ticket-viewer/ticketViewer.component.css']
+    templateUrl: 'ticketViewer.component.html',
+    styleUrls: ['ticketViewer.component.css']
 })
 export class TicketViewerComponent implements OnDestroy {
 

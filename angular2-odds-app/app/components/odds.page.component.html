@@ -2,39 +2,7 @@
     <navigation></navigation>
 </header>
 
-<div class="page-content container-fluid">
-
-    <aside class="left-content col-md-2">
-        <recomendations></recomendations>
-    </aside>
-    <section class="centar-content col-md-8">
-        <div class="row">
-            <div class="col-md-6 table-responsive table-basic">
-                <matches-table [sportName]="'Football'" [matches]="matches"></matches-table>
-            </div>
-            <div class="col-md-3 table-responsive table-odds">
-                <results-table [matches]="matches" [oddFilter]="'FULL_TIME_SCORE'"></results-table>
-            </div>
-            <div class="col-md-3 table-responsive table-odds">
-                <results-table [matches]="matches" [oddFilter]="'HALF_TIME_SCORE'"></results-table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 table-responsive table-basic">
-                <matches-table [sportName]="'Basketball'" [matches]="matchesBasket"></matches-table>
-            </div>
-            <div class="col-md-3 table-responsive table-odds">
-                <results-table [matches]="matchesBasket" [oddFilter]="'FULL_TIME_SCORE'"></results-table>
-            </div>
-            <div class="col-md-3 table-responsive table-odds">
-                <results-table [matches]="matchesBasket" [oddFilter]="'HALF_TIME_SCORE'"></results-table>
-            </div>
-        </div>
-    </section>
-    <aside class="right-content col-md-2">
-        <ticket-viewer (sendMessage)="onMessageReceived($event)"></ticket-viewer>
-    </aside>
-</div>
+<router-outlet></router-outlet>
 
 <footer class="page-footer">Diplomski rad @2016</footer>
 

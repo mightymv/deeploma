@@ -3,8 +3,9 @@ import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 
 @Component({
+    moduleId: module.id,
     selector: 'navigation',
-    styleUrls: ['app/components/navigation/nav.component.css'],
+    styleUrls: ['nav.component.css'],
     template: `
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">

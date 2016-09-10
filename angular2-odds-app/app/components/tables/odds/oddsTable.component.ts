@@ -5,9 +5,10 @@ import {PayInTicketRow} from "../../../dto/payTicket";
 import {TicketService} from "../../../services/ticket.service";
 
 @Component({
+    moduleId: module.id,
     selector: 'results-table',
-    templateUrl: 'app/components/tables/odds/oddsTable.component.html',
-    styleUrls: ['app/components/tables/odds/oddsTable.component.css'],
+    templateUrl: 'oddsTable.component.html',
+    styleUrls: ['oddsTable.component.css'],
     pipes: [GameFilterPipe]
 })
 export class OddsTableComponent implements OnDestroy {

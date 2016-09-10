@@ -1,9 +1,10 @@
 import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
+    moduleId: module.id,
     selector: 'message-modal',
-    templateUrl: 'app/components/messagesModal/messageModal.component.html',
-    styleUrls: ['app/components/messagesModal/messageModal.component.css']
+    templateUrl: 'messageModal.component.html',
+    styleUrls: ['messageModal.component.css']
 })
 export class MessageModalComponent implements OnInit {
 

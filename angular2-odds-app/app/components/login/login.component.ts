@@ -4,9 +4,10 @@ import {UserService} from "../../services/user.service";
 
 
 @Component({
+    moduleId: module.id,
     selector: 'login',
-    templateUrl: 'app/components/login/login.component.html',
-    styleUrls: ['app/components/login/login.component.css']
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.css']
 })
 export class LoginComponent {
 

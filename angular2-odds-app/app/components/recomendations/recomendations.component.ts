@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+    moduleId: module.id,
     selector: 'recomendations',
-    templateUrl: 'app/components/recomendations/recomendations.component.html',
-    styleUrls: ['app/components/recomendations/recomendations.component.css']
+    templateUrl: 'recomendations.component.html',
+    styleUrls: ['recomendations.component.css']
 })
 export class RecomendationsComponent implements OnInit {
     constructor() { }

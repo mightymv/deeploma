@@ -4,6 +4,8 @@ import {OddsPageComponent} from "./odds.page.component";
 import {LoginComponent} from "./login/login.component";
 import {TicketService} from "../services/ticket.service";
 import {UserService} from "../services/user.service";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {OddsComponent} from "./odds/odds.component";
 
 @Component({
     selector: 'app',
@@ -12,7 +14,7 @@ import {UserService} from "../services/user.service";
     `,
     directives: [ROUTER_DIRECTIVES],
     providers: [TicketService, UserService],
-    precompile: [OddsPageComponent, LoginComponent]
+    precompile: [OddsPageComponent, OddsComponent, LoginComponent, DashboardComponent]
 })
 export class AppComponent {
 

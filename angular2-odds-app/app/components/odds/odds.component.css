@@ -1,0 +1,5 @@
+/* line 20, ../scss/main-page.scss */
+.page-content .centar-content .table-basic, .page-content .centar-content .table-odds {
+    display: inline-block;
+    padding: 0;
+}
