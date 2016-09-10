@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
     moduleId: module.id,
     selector: 'navigation',
+    directives: [ROUTER_DIRECTIVES],
     styleUrls: ['nav.component.css'],
     template: `
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Polyglot</a>
+                <a class="navbar-brand" [routerLink]="['', 'odds']">Polyglot</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
@@ -22,10 +23,10 @@ import {Router} from "@angular/router";
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/dashboard">Dashboard</a>
+                            <a [routerLink]="['', 'dashboard']">Dashboard</a>
                         </li>
                         <li>
-                            <a href="/login" (click)="onLogout()">Logout</a>
+                            <a [routerLink]="['', 'login']" (click)="onLogout()">Logout</a>
                         </li>
                     </ul>
                 </li>

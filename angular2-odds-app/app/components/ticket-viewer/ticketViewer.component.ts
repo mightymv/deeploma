@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnDestroy, ElementRef} from "@angular/core";
+import {Component, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
 import {TicketService} from "../../services/ticket.service";
 import {PayInTicketRow} from "../../dto/payTicket";
 
@@ -8,7 +8,7 @@ import {PayInTicketRow} from "../../dto/payTicket";
     templateUrl: 'ticketViewer.component.html',
     styleUrls: ['ticketViewer.component.css']
 })
-export class TicketViewerComponent implements OnDestroy {
+export class TicketViewerComponent implements OnInit, OnDestroy {
 
     private static modalInfo = {'title': "Obavestenje", 'content': "Uspesno ste uplatili tiket"};
 
@@ -18,7 +18,10 @@ export class TicketViewerComponent implements OnDestroy {
     ticketRows: Array<PayInTicketRow> = [];
     totalOdd: number = 1;
 
-    closeButtonActive:boolean = true;
+    closeButtonActive: boolean = true;
+
+    private ticketChangeEvent$;
+    private ticketCleanEvent$;
 
     constructor(private payTicketService: TicketService) {
 
@@ -27,14 +30,16 @@ export class TicketViewerComponent implements OnDestroy {
         //     this.ticketRows = JSON.parse(localStorage.getItem("ticketRows"));
         //     this.recalculateTicket();
         // }
-
-        this.payTicketService.ticketChangeEvent$.subscribe(ticketRow => this.onTicketChange());
-        this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onTicketChange());
     }
 
-    ngOnDestroy(): any {
-        this.payTicketService.ticketChangeEvent$.unsubscribe();
-        this.payTicketService.ticketCleanEvent$.unsubscribe();
+    ngOnInit() {
+        this.ticketChangeEvent$ = this.payTicketService.ticketChangeEvent$.subscribe(ticketRow => this.onTicketChange());
+        this.ticketCleanEvent$ = this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onTicketChange());
+    }
+
+    ngOnDestroy() {
+        this.ticketChangeEvent$.unsubscribe();
+        this.ticketCleanEvent$.unsubscribe();
     }
 
     onModalMessageSend() {
@@ -51,7 +56,7 @@ export class TicketViewerComponent implements OnDestroy {
 
     recalculateTicket(): void {
         this.totalOdd = 1;
-        this.ticketRows.forEach(ticketRow => this.totalOdd*=ticketRow.odd);
+        this.ticketRows.forEach(ticketRow => this.totalOdd *= ticketRow.odd);
     }
 
     cleanTicket() {

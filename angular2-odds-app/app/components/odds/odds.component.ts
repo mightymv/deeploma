@@ -31,6 +31,37 @@ export class OddsComponent implements OnInit, OnDestroy {
     private clickEvents$;
 
     constructor(private http: Http) {
+    }
+
+    ngOnInit() {
+        this.loadOffer();
+        this.subscribeUserMonitoring();
+    }
+
+    loadOffer() {
+
+        let headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+
+        this.http.get('http://192.168.182.198:8080/offer/2016-08-10', {headers: headers})
+            .map((res: Response) => res.json())
+            .map((matches: Array<any>) => {
+                return Deserializer.deserialize(matches);
+            })
+            .toPromise()
+            .then(loadedMatches => {
+                    this.matches = loadedMatches.filter(match => match.competition.sport.name === 'Football');
+                    this.matchesBasket = loadedMatches.filter(match => match.competition.sport.name === 'Basketball');
+                    console.log(this.matches);
+                    console.log(this.matchesBasket);
+                    console.log('Offer loaded');
+                }
+            )
+            .catch(err => console.log("Offer NOT LOADED!!! " + err));
+    }
+
+    subscribeUserMonitoring() {
 
         this.mouseMoveEvents$ = Observable.fromEvent<MouseEvent>(document, 'mousemove')
             .sampleTime(3000)
@@ -51,31 +82,12 @@ export class OddsComponent implements OnInit, OnDestroy {
             });
     }
 
-    ngOnInit() {
-
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-
-        this.http.get('http://192.168.182.198:8080/offer/2016-08-10', {headers: headers})
-            .map((res: Response) => res.json())
-            .map((matches: Array<any>) => {
-                return Deserializer.deserialize(matches);
-            })
-            .subscribe(
-                loadedMatches => {
-                    this.matches = loadedMatches.filter(match => match.competition.sport.name === 'Football');
-                    this.matchesBasket = loadedMatches.filter(match => match.competition.sport.name === 'Basketball');
-                    console.log(this.matches);
-                    console.log(this.matchesBasket);
-                },
-                err => console.log("Offer NOT LOADED!!! " + err),
-                () => console.log('Result loaded')
-            );
+    unsubscribeUserMonitoring() {
+        this.mouseMoveEvents$.unsubscribe();
+        this.clickEvents$.unsubscribe();
     }
 
     ngOnDestroy() {
-        this.mouseMoveEvents$.unsubscribe();
-        this.clickEvents$.unsubscribe();
+        this.unsubscribeUserMonitoring();
     }
 }

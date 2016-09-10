@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy} from "@angular/core";
+import {Component, Input, OnInit, OnDestroy} from "@angular/core";
 import {Match} from "../../../dto/offer/offer";
 import {GameFilterPipe} from "../../../pipes/game-filter.pipe";
 import {PayInTicketRow} from "../../../dto/payTicket";
@@ -11,7 +11,7 @@ import {TicketService} from "../../../services/ticket.service";
     styleUrls: ['oddsTable.component.css'],
     pipes: [GameFilterPipe]
 })
-export class OddsTableComponent implements OnDestroy {
+export class OddsTableComponent implements OnInit, OnDestroy {
 
     @Input()
     matches: Array<Match>;
@@ -19,19 +19,20 @@ export class OddsTableComponent implements OnDestroy {
     @Input()
     oddFilter: string;
 
-    payTicketService: TicketService;
+    private activeOddElements: Array<HTMLTableCellElement>;
 
-    activeOddElements: Array<HTMLTableCellElement>;
+    private ticketCleanEvent$;
 
-    constructor(payTicketService: TicketService) {
-
-        this.payTicketService = payTicketService;
-        this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onCleanTicket());
+    constructor(private payTicketService: TicketService) {
         this.activeOddElements = [];
     }
 
-    ngOnDestroy(): any {
-        this.payTicketService.ticketCleanEvent$.unsubscribe();
+    ngOnInit() {
+        this.ticketCleanEvent$ = this.payTicketService.ticketCleanEvent$.subscribe(toClean => this.onCleanTicket());
+    }
+
+    ngOnDestroy() {
+        this.ticketCleanEvent$.unsubscribe();
     }
 
     onClick(element: HTMLTableCellElement) {
@@ -44,7 +45,7 @@ export class OddsTableComponent implements OnDestroy {
             element.dataset['competitors']
         );
 
-        if(element.classList.contains('success')) {
+        if (element.classList.contains('success')) {
 
             element.classList.remove('success');
             this.activeOddElements = this.activeOddElements.filter(activeElement => activeElement !== element);
