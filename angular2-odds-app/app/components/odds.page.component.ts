@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {NavigationComponent} from "./navigation/nav.component";
 import {TicketViewerComponent} from "./ticket-viewer/ticketViewer.component";
 import {RecomendationsComponent} from "./recomendations/recomendations.component";
@@ -28,34 +28,45 @@ import {Observable} from "rxjs/Rx";
     ]
 })
 
-export class OddsPageComponent implements OnInit {
+export class OddsPageComponent implements OnInit, OnDestroy {
 
     matches: Array<Match>;
     matchesBasket: Array<Match>;
+    private mouseMoveEvents$;
+    private clickEvents$;
 
     constructor(private http: Http) {
 
-        const mouseMove$ = Observable.fromEvent<MouseEvent>(document, 'mousemove')
+        this.mouseMoveEvents$ = Observable.fromEvent<MouseEvent>(document, 'mousemove')
             .sampleTime(3000)
-            .subscribe( x => {
+            .distinctUntilChanged()
+            .subscribe(x => {
                 let matchId = x.srcElement.parentElement.dataset['matchId'];
-                if(matchId !== undefined) {
+                if (matchId !== undefined) {
                     console.log(Number.parseInt(matchId));
+                }
+            });
+
+        this.clickEvents$ = Observable.fromEvent<MouseEvent>(document, 'click')
+            .subscribe(x => {
+                let matchId = x.srcElement.parentElement.dataset['matchId'];
+                if (matchId !== undefined) {
+                    console.log("Click " + Number.parseInt(matchId));
                 }
             });
     }
 
-    getHeader() {
+    ngOnInit() {
+
         let headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Access-Control-Allow-Origin', '*');
-        return headers;
-    }
 
-    ngOnInit() {
-        this.http.get('http://192.168.182.198:8080/offer/2016-08-10', {headers: this.getHeader()})
+        this.http.get('http://192.168.182.198:8080/offer/2016-08-10', {headers: headers})
             .map((res: Response) => res.json())
-            .map((matches: Array<any>) => {  return Deserializer.deserialize(matches); })
+            .map((matches: Array<any>) => {
+                return Deserializer.deserialize(matches);
+            })
             .subscribe(
                 loadedMatches => {
                     this.matches = loadedMatches.filter(match => match.competition.sport.name === 'Football');
@@ -66,5 +77,10 @@ export class OddsPageComponent implements OnInit {
                 err => console.log("Offer NOT LOADED!!! " + err),
                 () => console.log('Result loaded')
             );
+    }
+
+    ngOnDestroy() {
+        this.mouseMoveEvents$.unsubscribe();
+        this.clickEvents$.unsubscribe();
     }
 }
