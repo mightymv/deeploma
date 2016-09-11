@@ -10,7 +10,7 @@ import {TicketService} from "../../services/ticket.service";
 export class DashboardComponent implements OnInit {
 
     private title: string = "User tickets";
-    private userTickets: Array<Ticket>;
+    private userTickets: Array<Ticket> = [];
 
     constructor(private ticketService: TicketService) {
     }
@@ -23,9 +23,7 @@ export class DashboardComponent implements OnInit {
 
         this.ticketService.getTickets()
             .toPromise()
-            .then(res => {
-                this.userTickets = res.json();
-            })
-            .catch(err => console.log("User tickes loading FAILED !!! " + err));
+            .then(res => this.userTickets = res.json())
+            .catch(err => console.log("User tickets loading FAILED !!! " + err));
     }
 }

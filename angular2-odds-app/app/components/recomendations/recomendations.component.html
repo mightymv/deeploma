@@ -1,13 +1,16 @@
 <section class="panel recomendations panel-success">
     <header class="panel-heading">Recomendations</header>
     <div class="panel-body">
-        <div class="container-fluid">
+        <div class="container-fluid" [hidden]="userRecommendations === 0">
             <article class="row" *ngFor="let recommend of userRecommendations">
                 <div class="col-md-12">
                     <span class="match">{{recommend}}</span>
                     <span class="game">FR X</span>
                 </div>
             </article>
+        </div>
+        <div class="container-fluid" [hidden]="userRecommendations.length !== 0">
+            <span>Trenutno nema preporucenih meceva.</span>
         </div>
     </div>
     <div class="panel-footer"></div>

@@ -3,7 +3,7 @@
     <aside class="left-content col-md-2">
         <recomendations></recomendations>
     </aside>
-    <section class="centar-content col-md-8">
+    <section class="centar-content col-md-8" [hidden]="matches.length === 0 && matchesBasket.length === 0">
         <div class="row">
             <div class="col-md-6 table-responsive table-basic">
                 <matches-table [sportName]="'Football'" [matches]="matches"></matches-table>
@@ -26,6 +26,9 @@
                 <results-table [matches]="matchesBasket" [oddFilter]="'HALF_TIME_SCORE'"></results-table>
             </div>
         </div>
+    </section>
+    <section class="centar-content text-center col-md-8" [hidden]="matches.length !== 0 && matchesBasket.length !== 0">
+        <h3> Trenutno nema ponude. </h3>
     </section>
     <aside class="right-content col-md-2">
         <ticket-viewer></ticket-viewer>

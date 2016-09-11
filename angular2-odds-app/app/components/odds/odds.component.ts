@@ -25,8 +25,8 @@ import {Deserializer} from "../../utils/Deserializer";
 })
 export class OddsComponent implements OnInit, OnDestroy {
 
-    matches: Array<Match>;
-    matchesBasket: Array<Match>;
+    matches: Array<Match> = [];
+    matchesBasket: Array<Match> = [];
     private mouseMoveEvents$;
     private clickEvents$;
 
