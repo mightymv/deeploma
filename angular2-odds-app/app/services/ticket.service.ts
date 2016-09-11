@@ -48,7 +48,7 @@ export class TicketService {
 
         if(ticketRow !== null || ticketRow !== undefined) {
 
-            this.ticketRows = this.ticketRows.filter((removedRow) => removedRow.matchId !== ticketRow.matchId);
+            this.ticketRows = this.ticketRows.filter(removedRow => removedRow.betOddId !== ticketRow.betOddId);
             this.ticketChangeEvent$.emit(ticketRow);
         }
     }
