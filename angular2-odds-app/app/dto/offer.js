@@ -74,4 +74,12 @@ var SubGame = (function () {
     return SubGame;
 }());
 exports.SubGame = SubGame;
+var RecommendMatch = (function () {
+    function RecommendMatch(matchid, participants) {
+        this.matchid = matchid;
+        this.participants = participants;
+    }
+    return RecommendMatch;
+}());
+exports.RecommendMatch = RecommendMatch;
 //# sourceMappingURL=offer.js.map

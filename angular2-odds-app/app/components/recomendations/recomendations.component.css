@@ -16,3 +16,7 @@
 .recomendations .panel-body hr {
     margin: 10px 0;
 }
+
+.recomendations .panel-body .participants {
+    float: right;
+}

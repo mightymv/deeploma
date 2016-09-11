@@ -4,8 +4,8 @@
         <div class="container-fluid" [hidden]="userRecommendations === 0">
             <article class="row" *ngFor="let recommend of userRecommendations">
                 <div class="col-md-12">
-                    <span class="match">{{recommend}}</span>
-                    <span class="game">FR X</span>
+                    <span class="match text-right">{{recommend.matchid}}</span>
+                    <span class="participants text-left">{{recommend.participants}}</span>
                 </div>
             </article>
         </div>

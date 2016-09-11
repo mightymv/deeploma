@@ -60,3 +60,8 @@ export class SubGame {
                 public shortName: string,
                 public game: Game) {}
 }
+
+export class RecommendMatch {
+
+    constructor(public matchid: number, public participants: string) {}
+}
