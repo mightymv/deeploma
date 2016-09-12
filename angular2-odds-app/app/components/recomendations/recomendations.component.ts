@@ -34,7 +34,8 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
 
     loadRecommendations() {
 
-        this.recommendationPoller = Observable.interval(5000)
+        this.recommendationPoller = Observable.timer(1000, 5000)
+            .timeInterval()
             .switchMap(() => this.http.get(`http://192.168.182.198:8082/${this.userId}/recommendation`))
             .map((res: Response) => res.json())
             .subscribe(
@@ -51,11 +52,14 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
         let currentRecommend;
 
         response.forEach(matchId => {
-            let temp = jQuery(document.getElementsByTagName('matches-table')).find('[data-match-id=' + matchId + ']')[0];
-            let participants:string = temp.children[2].innerText + ' - ' + temp.children[3].innerText;
+            let matchRow = jQuery(document.getElementsByTagName('matches-table')).find('[data-match-id=' + matchId + ']')[0];
 
+            if(matchRow === undefined) {
+                return;
+            }
+
+            let participants:string = matchRow.children[2].innerText + ' - ' + matchRow.children[3].innerText;
             currentRecommend = new RecommendMatch(matchId, participants);
-
             recommendations.push(currentRecommend);
         });
 

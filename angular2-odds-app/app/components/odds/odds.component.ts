@@ -4,10 +4,12 @@ import {RecomendationsComponent} from "../recomendations/recomendations.componen
 import {DatePipe, CORE_DIRECTIVES} from "@angular/common";
 import {MatchesTableComponent} from "../tables/matches/matchesTable.component";
 import {OddsTableComponent} from "../tables/odds/oddsTable.component";
-import {Match} from "../../dto/offer";
+import {Match, Recommendations} from "../../dto/offer";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {Deserializer} from "../../utils/Deserializer";
+import {Stomp, Client} from "stompjs";
+import {UserService} from "../../services/user.service";
 
 @Component({
     moduleId: module.id,
@@ -29,8 +31,23 @@ export class OddsComponent implements OnInit, OnDestroy {
     matchesBasket: Array<Match> = [];
     private mouseMoveEvents$;
     private clickEvents$;
+    private sendRecommendationsEvent$;
 
-    constructor(private http: Http) {
+    private userId: number;
+    private recommendMatches: Set<number> = new Set<number>();
+    private stompClient: Client;
+    private isStompClientConnected: boolean = false;
+
+    constructor(private http: Http, private userService: UserService) {
+
+        this.userId = userService.getUserFromLocalStorage().id;
+
+        this.stompClient = Stomp.client('ws://192.168.182.198:61614/stomp/websocket');
+        this.stompClient.connect('admin', 'admin',
+            () => {
+                console.log('Stomp client connected');
+                this.isStompClientConnected = true;
+            });
     }
 
     ngOnInit() {
@@ -63,13 +80,17 @@ export class OddsComponent implements OnInit, OnDestroy {
 
     subscribeUserMonitoring() {
 
+        if (this.userId === undefined) {
+            return;
+        }
+
         this.mouseMoveEvents$ = Observable.fromEvent<MouseEvent>(document, 'mousemove')
             .sampleTime(3000)
             .distinctUntilChanged()
             .subscribe(x => {
                 let matchId = x.srcElement.parentElement.dataset['matchId'];
                 if (matchId !== undefined) {
-                    console.log(Number.parseInt(matchId));
+                    this.recommendMatches.add(Number.parseInt(matchId));
                 }
             });
 
@@ -77,14 +98,39 @@ export class OddsComponent implements OnInit, OnDestroy {
             .subscribe(x => {
                 let matchId = x.srcElement.parentElement.dataset['matchId'];
                 if (matchId !== undefined) {
-                    console.log("Click " + Number.parseInt(matchId));
+                    this.recommendMatches.add(Number.parseInt(matchId));
                 }
+            });
+
+        this.sendRecommendationsEvent$ = Observable.timer(1000, 8000)
+            .timeInterval()
+            .subscribe(x => {
+
+                if (this.recommendMatches.size === 0) {
+                    return;
+                }
+
+                if(!this.isStompClientConnected) {
+                    console.log("NOT CONNECTED");
+                    return;
+                }
+
+                this.stompClient.send(
+                    'aca.recommend.queue',
+                    {},
+                    JSON.stringify(new Recommendations(this.userId, this.recommendMatches))
+                );
+
+                this.recommendMatches.clear();
             });
     }
 
     unsubscribeUserMonitoring() {
         this.mouseMoveEvents$.unsubscribe();
         this.clickEvents$.unsubscribe();
+        this.sendRecommendationsEvent$.unsubscribe();
+        this.stompClient.disconnect(() => console.log('Stomp client disconnected'));
+        this.isStompClientConnected = false;
     }
 
     ngOnDestroy() {

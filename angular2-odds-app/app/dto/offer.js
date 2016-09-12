@@ -82,4 +82,12 @@ var RecommendMatch = (function () {
     return RecommendMatch;
 }());
 exports.RecommendMatch = RecommendMatch;
+var Recommendations = (function () {
+    function Recommendations(userId, prioMatches) {
+        this.userId = userId;
+        this.prioMatches = prioMatches;
+    }
+    return Recommendations;
+}());
+exports.Recommendations = Recommendations;
 //# sourceMappingURL=offer.js.map

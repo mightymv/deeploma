@@ -65,3 +65,8 @@ export class RecommendMatch {
 
     constructor(public matchid: number, public participants: string) {}
 }
+
+export class Recommendations {
+
+    constructor(public userId: number, public prioMatches: Set<number>) {}
+}

@@ -1,4 +1,14 @@
 {
-	"current-live-offer-url": "https://api.mozzartbet.com/MozzartWS/external.json/live-odds-current?languageId=1",
-	"future-live-offer-url": "https://api.mozzartbet.com/MozzartWS/external.json/live-odds-future"
+	"host": "192.168.182.198",
+	"port": 61614,
+	"https": false,
+
+	"user": "admin",
+	"pass": "admin",
+
+	"subscribe": ["aca.recommend.queue"],
+	"publish": ["aca.recommend.queue"],
+
+	"heartbeat_in": 0,
+	"heartbeat_out": 20000
 }
