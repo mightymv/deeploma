@@ -2,6 +2,7 @@ import {Component, Output, OnInit, OnDestroy} from "@angular/core";
 import {TicketService} from "../../services/ticket.service";
 import {PayInTicketRow, PayInInfo} from "../../dto/payTicket";
 import {MessageModalComponent} from "../messagesModal/messageModal.component";
+import {UserService} from "../../services/user.service";
 
 @Component({
     moduleId: module.id,
@@ -23,7 +24,7 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
     private ticketChangeEvent$;
     private ticketCleanEvent$;
 
-    constructor(private payTicketService: TicketService) {
+    constructor(private payTicketService: TicketService, private userService: UserService) {
 
         // // TODO read from localStorage
         // if(localStorage.getItem("ticketRows")) {
@@ -63,6 +64,14 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
     }
 
     onPayTicket() {
+
+        if(this.userService.getUserFromLocalStorage().id === null) {
+
+            this.modalInfo.content = "Tiket nije uplacen, niste ulogovani.";
+            this.modalInfo.style = "warning";
+            return;
+        }
+
         this.payTicketService.payTicket()
             .subscribe(
                 res => {

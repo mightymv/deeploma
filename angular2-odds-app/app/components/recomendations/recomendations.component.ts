@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Renderer} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs/Rx";
@@ -18,9 +18,7 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
     private userRecommendations: Array<RecommendMatch> = [];
     private recommendationPoller;
 
-    constructor(private http: Http,
-                private userService: UserService,
-                private renderer:Renderer) {
+    constructor(private http: Http, private userService: UserService) {
     }
 
     ngOnInit(): void {
@@ -33,6 +31,10 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
     }
 
     loadRecommendations() {
+
+        if(this.userId === null) {
+            return;
+        }
 
         this.recommendationPoller = Observable.timer(1000, 5000)
             .timeInterval()

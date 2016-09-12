@@ -42,6 +42,10 @@ export class OddsComponent implements OnInit, OnDestroy {
 
         this.userId = userService.getUserFromLocalStorage().id;
 
+        if(this.userId === null) {
+            return;
+        }
+
         this.stompClient = Stomp.client('ws://192.168.182.198:61614/stomp/websocket');
         this.stompClient.connect('admin', 'admin',
             () => {
@@ -80,7 +84,7 @@ export class OddsComponent implements OnInit, OnDestroy {
 
     subscribeUserMonitoring() {
 
-        if (this.userId === undefined) {
+        if (this.userId === null) {
             return;
         }
 
