@@ -130,6 +130,11 @@ export class OddsComponent implements OnInit, OnDestroy {
     }
 
     unsubscribeUserMonitoring() {
+
+        if (this.userId === null) {
+            return;
+        }
+
         this.mouseMoveEvents$.unsubscribe();
         this.clickEvents$.unsubscribe();
         this.sendRecommendationsEvent$.unsubscribe();

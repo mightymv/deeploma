@@ -1,10 +1,9 @@
 <div class="page-content container-fluid">
     <section class="centar-content col-md-offset-2 col-md-8" [hidden]="userTickets.length === 0">
-        <h2> HELLO DASHBOARD</h2>
         <table class="table table-striped table-hover table-bordered table-condensed">
             <thead class="table-first-thead">
             <tr>
-                <th class="" colspan="5">{{title}}</th>
+                <th class="text-center" colspan="5"><h4>{{title}}</h4></th>
             </tr>
             </thead>
             <thead class="table-second-thead">
@@ -15,16 +14,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let ticket of userTickets" attr.data-ticket-id="{{ticket.id}}">
-                <td class="text-left">{{ticket.time | date: 'dd/MM/yyyy HH:MM'}}</td>
-                <td>
+            <tr *ngFor="let ticket of userTickets" (click)="onToggleTicket($event)">
+                <td class="text-left">{{ticket.time | date: 'dd.MM.yyyy HH:mm:ss'}}</td>
+                <td class="text-left">
                     {{ticket.id}}
-                    <table>
+                    <table class="table table-striped table-condensed"
+                           attr.data-ticket-id="{{ticket.id}}"
+                           [hidden]="true"
+                    >
                         <tr *ngFor="let row of ticket.rows">
-                            <td>{{row.id}}</td>
-                            <td>{{row.match.teamHome.name}} - {{row.match.teamVisitor.name}}</td>
-                            <td>{{row.subGameShortName}}</td>
-                            <td>{{row.status}}</td>
+                            <td class="col-md-1">{{row.id}}</td>
+                            <td class="col-md-8">{{row.match.teamHome.name}} - {{row.match.teamVisitor.name}}</td>
+                            <td class="col-md-1 text-center">{{row.subGameShortName}}</td>
+                            <td class="col-md-1 text-left">{{row.status}}</td>
                         </tr>
                     </table>
                 </td>

@@ -26,4 +26,10 @@ export class DashboardComponent implements OnInit {
             .then(res => this.userTickets = res.json())
             .catch(err => console.log("User tickets loading FAILED !!! " + err));
     }
+
+    onToggleTicket(clickEvent$: any):void {
+
+        let matchTable = clickEvent$.target.parentElement.cells[1].children[0];
+        matchTable.hidden = !matchTable.hidden;
+    }
 }

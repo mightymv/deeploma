@@ -19,14 +19,19 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
     private recommendationPoller;
 
     constructor(private http: Http, private userService: UserService) {
+        this.userId = this.userService.getUserFromLocalStorage().id;
     }
 
     ngOnInit(): void {
-        this.userId = this.userService.getUserFromLocalStorage().id;
         this.loadRecommendations();
     }
 
     ngOnDestroy(): void {
+
+        if (this.userId === null) {
+            return;
+        }
+
         this.recommendationPoller.unsubscribe();
     }
 
