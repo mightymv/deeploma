@@ -21,7 +21,7 @@ export class UserService {
 
         Logger.logLoginRequest(loginRequest);
 
-        this.http.post("http://local.angular2odds.com:8080/login2", JSON.stringify(loginRequest), {headers: headers})
+        this.http.post("http://192.168.182.198:8080/login2", JSON.stringify(loginRequest), {headers: headers})
             .map(res => res.json())
             .subscribe(
                 response => {
@@ -68,7 +68,7 @@ export class UserService {
 
         Logger.logRegistrationRequest(registrationRequst);
 
-        this.http.put("http://local.angular2odds.com:8080/user", JSON.stringify(registrationRequst), {headers: headers})
+        this.http.put("http://192.168.182.198:8080/user", JSON.stringify(registrationRequst), {headers: headers})
             .map(res => res.text())
             .subscribe(
                 success => {

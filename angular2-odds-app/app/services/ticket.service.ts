@@ -74,7 +74,7 @@ export class TicketService {
         headers.append("Content-Type", "application/json");
         headers.append("X-Auth-Token", user.token);
 
-        return this.http.put("http://local.angular2odds.com:8080/ticket/add",
+        return this.http.put("http://192.168.182.198:8080/ticket/add",
             JSON.stringify(payRequest), {headers: headers, withCredentials: false})
             .map(res => res.text());
     }
