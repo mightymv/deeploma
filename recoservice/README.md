@@ -30,9 +30,10 @@ a startovanje mongo-a
 docker run --name mongo-instanca -p 27017:27017 -d mongo
 ```
 
-Preko MongoBooster-a se nakaciti i odraditi sledece kreiranje index-a
-
+Preko MongoBooster-a se nakaciti i odraditi sledece kreiranje index-a:
+```bash
 db.userBehavs.createIndex( { "time": 1 }, { expireAfterSeconds: 3600 } )
+```
 
 API 
 -----
