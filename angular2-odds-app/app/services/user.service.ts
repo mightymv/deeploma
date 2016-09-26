@@ -9,7 +9,7 @@ export class UserService {
 
     constructor(private http: Http, private router: Router) { }
 
-    onLogin(loginRequest: LoginRequest): void {
+    onLogin(loginRequest: LoginRequest): Promise<any> {
 
         if(loginRequest == null) {
             return;
@@ -21,23 +21,9 @@ export class UserService {
 
         Logger.logLoginRequest(loginRequest);
 
-        this.http.post("http://192.168.182.198:8080/login2", JSON.stringify(loginRequest), {headers: headers})
+       return this.http.post("http://192.168.182.198:8080/login2", JSON.stringify(loginRequest), {headers: headers})
             .map(res => res.json())
-            .subscribe(
-                response => {
-                    let userData: LoginResponse = response;
-
-                    Logger.logLoginResponse(userData);
-
-                    this.saveUserToLocalStorage(userData);
-
-                    this.router.navigate(['odds']);
-                },
-                err => {
-                    console.log("Login failed !!! " + err);
-                },
-                () => console.log('Login completed.')
-            );
+            .toPromise();
     }
 
     saveUserToLocalStorage(loginResponse: LoginResponse): void {
@@ -68,15 +54,8 @@ export class UserService {
 
         Logger.logRegistrationRequest(registrationRequst);
 
-        this.http.put("http://192.168.182.198:8080/user", JSON.stringify(registrationRequst), {headers: headers})
+        return this.http.put("http://192.168.182.198:8080/user", JSON.stringify(registrationRequst), {headers: headers})
             .map(res => res.text())
-            .subscribe(
-                success => {
-                    console.log("Registration SUCCESS :) " + success);
-                    this.router.navigate(['login']);
-                },
-                err => console.log("Registration failed !!! " + err),
-                () => console.log('Registration completed.')
-            );
+            .toPromise();
     }
 }

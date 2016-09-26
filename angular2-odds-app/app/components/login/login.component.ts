@@ -1,7 +1,9 @@
 import {Component} from "@angular/core";
-import {LoginRequest, RegistrationRequest} from "../../dto/login";
+import {LoginRequest, RegistrationRequest, LoginResponse} from "../../dto/login";
 import {UserService} from "../../services/user.service";
-
+import {Logger} from "../../utils/LoggerUtils";
+import {Router} from "@angular/router";
+import 'rxjs/add/operator/toPromise';
 
 @Component({
     moduleId: module.id,
@@ -16,17 +18,47 @@ export class LoginComponent {
     username: string;
     password: string;
 
-    constructor(private userService: UserService) {
+    loginMessage: boolean = false;
+    registerMessage: boolean = false;
+
+    constructor(private userService: UserService, private router: Router) {
     }
 
     onLogin() {
         let loginRequest: LoginRequest = new LoginRequest(this.username, this.password);
-        this.userService.onLogin(loginRequest);
+        this.userService.onLogin(loginRequest)
+            .then(
+                response => {
+                    let userData: LoginResponse = response;
+
+                    Logger.logLoginResponse(userData);
+
+                    this.userService.saveUserToLocalStorage(userData);
+
+                    this.router.navigate(['odds']);
+                })
+            .catch(err => {
+                console.log("Login failed !!! " + err);
+                this.loginMessage = true;
+            });
+    }
+
+    onLoginErrorClick() {
+        this.loginMessage = false;
     }
 
     onRegister() {
         let registrationRequst: RegistrationRequest = new RegistrationRequest(this.name,
             this.surname, this.username, this.password);
-        this.userService.onRegister(registrationRequst);
+        this.userService.onRegister(registrationRequst)
+            .then(success => {
+                console.log("Registration SUCCESS :) " + success);
+                this.router.navigate(['login']);
+            })
+            .catch(err => console.log("Registration failed !!! " + err));
+    }
+
+    onRegisterErrorClick() {
+        this.registerMessage = true;
     }
 }

@@ -30,7 +30,10 @@
                         </tr>
                     </table>
                 </td>
-                <td class="text-center">{{ticket.status}}</td>
+                <td class="text-center"
+                    [class.danger]="ticket.status === 'LOOSER'"
+                    [class.success]="ticket.status === 'WINNER'"
+                >{{ticket.status}}</td>
             </tr>
             </tbody>
         </table>

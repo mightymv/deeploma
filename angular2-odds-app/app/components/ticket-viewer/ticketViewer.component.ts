@@ -25,12 +25,6 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
     private ticketCleanEvent$;
 
     constructor(private payTicketService: TicketService, private userService: UserService) {
-
-        // // TODO read from localStorage
-        // if(localStorage.getItem("ticketRows")) {
-        //     this.ticketRows = JSON.parse(localStorage.getItem("ticketRows"));
-        //     this.recalculateTicket();
-        // }
     }
 
     ngOnInit() {
@@ -46,7 +40,6 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
     onTicketChange(): void {
 
         this.ticketRows = this.payTicketService.getTicketRows();
-        // localStorage.setItem("ticketRows", JSON.stringify(this.ticketRows));
         this.recalculateTicket();
     }
 
@@ -78,6 +71,8 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
                     console.log("Payin ticket successful :) " + res);
                     this.modalInfo.content = "Uspesno ste uplatili tiket.";
                     this.modalInfo.style = "primary";
+                    this.cleanTicket();
+                    this.toggleCloseButton();
                 },
                 err => {
                     console.log("Payin ticket failed !!! " + err);
