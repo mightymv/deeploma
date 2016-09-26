@@ -34,7 +34,17 @@ Preko MongoBooster-a se nakaciti i odraditi sledece kreiranje index-a:
 ```bash
 db.userBehavs.createIndex( { "time": 1 }, { expireAfterSeconds: 3600 } )
 ```
+Mongo replica set 
+```bash
 
+startovanje : mongod --port 27021 --dbpath "c:\mongodb\m2" --replSet rs0
+
+rs.initiate({ _id: "my-replica-set", members:[
+          { _id : 0, host : "192.168.42.100:27017"},
+          { _id : 1, host : "192.168.42.110:27017"},
+          { _id : 2, host : "192.168.42.120:27017"} ]
+         });
+```
 API 
 -----
 
