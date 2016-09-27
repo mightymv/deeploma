@@ -95,6 +95,7 @@ ako se desi greska, dolazi u sledecem obliku :
 {
  "errorCode":"MATCH_ALREADY_STARTED"
  "localized":"Ne mozete se kladiti na zapocet mec"
+ }
 ```
 Znaci, moze da se iskoristi ovaj lokalizovani deo poruke da se prikaze korisniku.
 
