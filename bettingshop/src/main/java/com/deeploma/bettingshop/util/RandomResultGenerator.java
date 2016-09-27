@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.deeploma.bettingshop.domain.basic.MatchStatus;
 import com.deeploma.bettingshop.domain.basic.Result;
 import com.deeploma.bettingshop.domain.basic.ResultStatus;
 import com.deeploma.bettingshop.domain.basic.ResultType;
@@ -17,6 +18,7 @@ import com.deeploma.bettingshop.domain.betting.BetOdd;
 import com.deeploma.bettingshop.domain.betting.MatchOffer;
 import com.deeploma.bettingshop.domain.betting.SubGame;
 import com.deeploma.bettingshop.dto.ResultsVerified;
+import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
 import com.deeploma.bettingshop.mapper.ResultMapper;
 
@@ -32,6 +34,9 @@ public class RandomResultGenerator {
 	
 	@Autowired
 	private OfferMapper offerMapper;
+	
+	@Autowired
+	private MatchTeamsMapper matchMapper;
 	
 	@Autowired
 	private ResultMapper resMapper;
@@ -75,13 +80,15 @@ public class RandomResultGenerator {
 		try {
 			resMapper.insertResult(halfTimeResult);
 			resMapper.insertResult(fullTimeResult);
+			matchMapper.updateMatchStatus(match.getId(), MatchStatus.FINISHED);
+			
 		} catch (Throwable ex){
 			logger.debug("Greska insert rezultata");
 		}
 	}
 
 	private Result generateFullTimeResult(BetOdd betOdd, Result halfTimeResult) {
-		// TODO Auto-generated method stub
+		
 		
 		Result res = new Result();
 		res.setResultType(ResultType.FULL_TIME_SCORE);

@@ -2,7 +2,10 @@ package com.deeploma.reco.dto;
 
 import org.jongo.marshall.jackson.oid.MongoId;
 
-public class Sport {
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class SportDto {
 	
 	@MongoId
     private Integer id;

@@ -1,6 +1,8 @@
 package com.deeploma.bettingshop.auth;
 
-import javax.servlet.http.HttpServletResponse;
+import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
+import static org.springframework.http.HttpMethod.OPTIONS;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -29,27 +30,30 @@ import com.deeploma.bettingshop.services.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web.ignoring().antMatchers("/user", "/offer/**", "/res/gen/**", "/standings/**").and();
+	    web.ignoring().antMatchers("/user", "/offer/**", "/res/gen/**", "/standings/**", "/login2", "/logs").and().ignoring().antMatchers(OPTIONS);
+	    
 	}
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 csrf().disable().
-                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+                sessionManagement().sessionCreationPolicy(STATELESS).
                 and().
                 authorizeRequests().
-                //antMatchers("/addUser").permitAll().
+                antMatchers(OPTIONS).permitAll().
                 anyRequest().authenticated().
                 and().
                 //anonymous().disable().
                 exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint());
 
         http.addFilterBefore(new AuthenticationFilter(authenticationManager()), BasicAuthenticationFilter.class);
+        //http.addFilterAfter(new RedirectFilter(), SwitchUserFilter.class);
     }
 
     @Override
@@ -80,6 +84,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationEntryPoint unauthorizedEntryPoint() {
-        return (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        return (request, response, authException) -> response.sendError(SC_UNAUTHORIZED);
     }
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.joda.time.DateTime;
 
 import com.deeploma.bettingshop.domain.basic.Match;
+import com.deeploma.bettingshop.domain.basic.MatchStatus;
 import com.deeploma.bettingshop.domain.basic.Result;
 import com.deeploma.bettingshop.domain.basic.ResultStatus;
 import com.deeploma.bettingshop.domain.basic.Team;
@@ -32,5 +33,7 @@ public interface MatchTeamsMapper {
 	public Match findMatchByBetOddId(@Param("boid")Long boid);
 	
 	public List<Match> findAllMatches();
+	
+	public void updateMatchStatus(@Param("mid")Long mid,@Param("status") MatchStatus status);
 
 }

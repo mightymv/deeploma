@@ -1,8 +1,7 @@
 package com.deeploma.bettingshop.domain.basic;
 
 public enum MatchStatus {
-	
-	
+
 	NOT_FINISHED(1),
 	FINISHED(10);
 	

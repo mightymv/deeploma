@@ -4,14 +4,16 @@ import java.util.Random;
 
 import org.springframework.security.authentication.BadCredentialsException;
 
-import com.deeploma.bettingshop.auth.util.JwtTokenValidator;
 import com.deeploma.bettingshop.domain.users.User;
 import com.deeploma.bettingshop.services.UserService;
 
 public class DbServiceAuthenticator implements ServiceAuthenticator {
 	
+	private static String SECRET = "SECRET1";
+	
 	private TokenService tokenService;
 	private UserService userService;
+
 	
 	public  DbServiceAuthenticator(TokenService tokenService, UserService userService) {
 		this.tokenService = tokenService;
@@ -32,7 +34,7 @@ public class DbServiceAuthenticator implements ServiceAuthenticator {
     	AuthenticationWithToken auth = new AuthenticationWithToken(username, password);
     	auth.setAuthenticated(true);
          
-        String newToken = tokenService.generateNewToken(username, Long.valueOf(r.nextInt(100)),JwtTokenValidator.secret); //TODO videti sta sa ovim
+        String newToken = tokenService.generateNewToken(username, user.getId(),SECRET ); //TODO videti sta sa ovim
         auth.setData(new TokenUser(user, newToken));
         tokenService.store(newToken, auth);
 

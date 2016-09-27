@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.mongodb.ReadPreference;
 
 @SpringBootApplication
 @EnableWebMvc
@@ -48,7 +49,7 @@ public class RecoserviceApplication {
 	public ObjectMapper customObjectMapper() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JodaModule());
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		return mapper;
 	}
@@ -84,6 +85,7 @@ public class RecoserviceApplication {
 				.addDeserializer(DateTime.class, deserializer)
 				.addSerializer(DateTime.class, serializer)
 				.build();
+		mongo.setReadPreference(ReadPreference.secondaryPreferred());
 		Jongo jongo = new Jongo(mongo.getDb(), maper);
 		return jongo;
 	}

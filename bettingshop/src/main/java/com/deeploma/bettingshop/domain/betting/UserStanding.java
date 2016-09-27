@@ -6,7 +6,6 @@ public class UserStanding {
 
 	private Long id;
 	
-
 	private DateTime dateOf;
 	
 	private Long ticketId;

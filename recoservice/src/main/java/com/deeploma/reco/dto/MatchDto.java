@@ -6,6 +6,7 @@ import org.jongo.marshall.jackson.oid.MongoId;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+
 public class MatchDto {
 
 	
@@ -14,7 +15,7 @@ public class MatchDto {
     
 	private DateTime startTime;
 
-	private Competition competition;
+	private CompetitionDto competition;
 
 	private TeamDto teamHome;
 
@@ -36,11 +37,11 @@ public class MatchDto {
 		this.startTime = startTime;
 	}
 
-	public Competition getCompetition() {
+	public CompetitionDto getCompetition() {
 		return competition;
 	}
 
-	public void setCompetition(Competition competition) {
+	public void setCompetition(CompetitionDto competition) {
 		this.competition = competition;
 	}
 
@@ -93,6 +94,11 @@ public class MatchDto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "MatchDto [id=" + id + ", teamHome=" + teamHome.getName() + ", teamVisitor=" + teamVisitor.getName() + "]";
 	}
 
 }

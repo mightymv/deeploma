@@ -6,6 +6,9 @@ import org.joda.time.DateTime;
 import org.jongo.marshall.jackson.oid.MongoId;
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TicketDto {
 	
 	@Id
@@ -13,6 +16,7 @@ public class TicketDto {
 	private Long id;
 	
 	private List<TicketRowDto> rows;
+	
 	
 	private DateTime time;
 	

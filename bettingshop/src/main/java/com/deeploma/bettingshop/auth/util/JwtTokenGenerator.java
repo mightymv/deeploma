@@ -1,5 +1,7 @@
 package com.deeploma.bettingshop.auth.util;
 
+import java.util.Calendar;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenGenerator {
 
     /**
-     * Generates a JWT token containing username as subject, and userId and role as additional claims. These properties are taken from the specified
+     * Generates a JWT token containing username as subject. These properties are taken from the specified
      * User object. Tokens validity is infinite.
      *
      * @param u the user for which the token will be generated
@@ -22,8 +24,9 @@ public class JwtTokenGenerator {
      */
     public static String generateToken(String username, Long userId, String secret) {
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("userId", userId + "");
-       // claims.put("role", u.getRole());
+        claims.put("userId", userId );
+        claims.put("rnd", Calendar.getInstance().getTimeInMillis());
+      
 
         return Jwts.builder()
                 .setClaims(claims)

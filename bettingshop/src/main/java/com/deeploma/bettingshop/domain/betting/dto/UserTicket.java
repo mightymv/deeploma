@@ -1,5 +1,8 @@
 package com.deeploma.bettingshop.domain.betting.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserTicket {
 	
 	private String username;

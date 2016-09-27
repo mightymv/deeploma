@@ -27,6 +27,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AuthenticationFilter extends GenericFilterBean {
 
@@ -49,7 +51,13 @@ public class AuthenticationFilter extends GenericFilterBean {
         Optional<String> token = Optional.fromNullable(httpRequest.getHeader("X-Auth-Token"));
 
         String resourcePath = new UrlPathHelper().getPathWithinApplication(httpRequest);
-
+        logger.info("Zahtev stize : {} ", resourcePath);
+        
+        
+        Pattern p = Pattern.compile("^((?!v2).)*$");
+        Matcher m = p.matcher(resourcePath);
+        logger.info("ttt " + m.matches());
+        //logger.info("count : " + m.groupCount());
         try {
             if (postToAuthenticate(httpRequest, resourcePath)) {
                 logger.info("Trying to authenticate user {} by X-Auth-Username method", username);
@@ -70,6 +78,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             logger.error("Internal authentication service exception", internalAuthenticationServiceException);
             httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } catch (AuthenticationException authenticationException) {
+        	logger.error("Authentication service exception - {}", authenticationException.getMessage());
             SecurityContextHolder.clearContext();
             httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, authenticationException.getMessage());
         } finally {
@@ -103,7 +112,9 @@ public class AuthenticationFilter extends GenericFilterBean {
     }
 
     private boolean postToAuthenticate(HttpServletRequest httpRequest, String resourcePath) {
-        return ApiController.AUTHENTICATE_URL.equalsIgnoreCase(resourcePath) && httpRequest.getMethod().equals("POST");
+    	logger.info(resourcePath + " " + httpRequest.getMethod());
+    	
+        return ApiController.AUTHENTICATE_URL.equalsIgnoreCase(resourcePath) ;
     }
 
     private void processUsernamePasswordAuthentication(HttpServletResponse httpResponse, Optional<String> username, Optional<String> password) throws IOException {
@@ -115,6 +126,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         TokenResponse tokenResponse = new TokenResponse(tokenUser.getToken(), tokenUser.getUser().getName(), tokenUser.getUser().getSurname(), tokenUser.getUser().getId());
         String tokenJsonResponse = new ObjectMapper().writeValueAsString(tokenResponse);
         httpResponse.addHeader("Content-Type", "application/json");
+        //httpResponse.addHeader("Access-Control-Allow-Origin", "true");
         httpResponse.getWriter().print(tokenJsonResponse);
     }
 
