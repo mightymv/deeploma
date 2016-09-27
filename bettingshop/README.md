@@ -86,6 +86,18 @@ Ovde ispod ocekuje minimalno u body-u tiket koji se uplacuje (sa ovim sam testir
 
 Treba ti id user-a za dodavanje tiketa i dobijas ga pri logovanju. Mislim da je tu ok da id igraca ide u samom api-u. (iako ga sustinski vec imam u token-u, ali pitanje je da li ti mozes tek tako to da ekstraktujes).
 
+ERROR HANDLING
+--- 
+
+ako se desi greska, dolazi u sledecem obliku :
+
+```bash
+{
+ "errorCode":"MATCH_ALREADY_STARTED"
+ "localized":"Ne mozete se kladiti na zapocet mec"
+```
+Znaci, moze da se iskoristi ovaj lokalizovani deo poruke da se prikaze korisniku.
+
 
 ACTIVEMQ
 ---
