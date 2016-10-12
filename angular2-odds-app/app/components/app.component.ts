@@ -6,6 +6,7 @@ import {TicketService} from "../services/ticket.service";
 import {UserService} from "../services/user.service";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {OddsComponent} from "./odds/odds.component";
+import {CookieService} from "angular2-cookie/services/cookies.service";
 
 @Component({
     selector: 'app',
@@ -13,7 +14,7 @@ import {OddsComponent} from "./odds/odds.component";
         <router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES],
-    providers: [TicketService, UserService],
+    providers: [TicketService, UserService, CookieService],
     precompile: [OddsPageComponent, OddsComponent, LoginComponent, DashboardComponent]
 })
 export class AppComponent {

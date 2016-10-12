@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Logger} from "../utils/LoggerUtils";
-import {LoginResponse, LoginRequest, RegistrationRequest, LocalStorageUser} from "../dto/login";
+import {LoginResponse, LoginRequest, RegistrationRequest, User} from "../dto/login";
 import {Router} from "@angular/router";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http, private router: Router) { }
+    constructor(private http: Http, private router: Router, private _cookieService:CookieService) { }
 
     onLogin(loginRequest: LoginRequest): Promise<any> {
 
@@ -26,6 +27,22 @@ export class UserService {
             .toPromise();
     }
 
+    saveUser(loginResponse: LoginResponse): void {
+        this._cookieService.putObject("user", new User(
+            loginResponse.id,
+            loginResponse.token,
+            loginResponse.name + ' ' + loginResponse.surname));
+    }
+
+    removeUser(): void {
+        this._cookieService.remove("user");
+    }
+
+    getUser(): User {
+        let user: User = <User>this._cookieService.getObject("user");
+        return user === undefined ? new User(0, "", "") : user;
+    }
+
     saveUserToLocalStorage(loginResponse: LoginResponse): void {
         localStorage.setItem('id', loginResponse.id.toString());
         localStorage.setItem('token', loginResponse.token);
@@ -38,10 +55,13 @@ export class UserService {
         localStorage.removeItem('user');
     }
 
-    getUserFromLocalStorage(): LocalStorageUser {
-        return new LocalStorageUser(localStorage.getItem('id'),
-            localStorage.getItem('token'), localStorage.getItem('user'));
+    getUserFromLocalStorage(): User {
+        return this.getUser();
     }
+    // getUserFromLocalStorage(): User {
+    //     return new User(localStorage.getItem('id'),
+    //         localStorage.getItem('token'), localStorage.getItem('user'));
+    // }
 
     onRegister(registrationRequst: RegistrationRequest) {
 

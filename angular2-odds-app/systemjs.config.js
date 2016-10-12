@@ -10,13 +10,15 @@
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
         'rxjs':                       'node_modules/rxjs',
         'stompjs':                    'node_modules/stompjs/lib/stomp.min.js',
-        'angular2-jwt':               'node_modules/angular2-jwt/angular2-jwt.js'
+        'angular2-jwt':               'node_modules/angular2-jwt/angular2-jwt.js',
+        'angular2-cookie':            'node_modules/angular2-cookie'
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app':                        { main: 'bootstrap.js',  defaultExtension: 'js' },
         'rxjs':                       { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+        'angular2-cookie':            { main: 'core.js', defaultExtension: 'js' }
     };
     var ngPackageNames = [
         'common',

@@ -33,7 +33,7 @@ export class LoginComponent {
 
                     Logger.logLoginResponse(userData);
 
-                    this.userService.saveUserToLocalStorage(userData);
+                    this.userService.saveUser(userData);
 
                     this.router.navigate(['odds']);
                 })

@@ -47,7 +47,7 @@ export class NavigationComponent implements OnInit {
     }
 
     onLogout() {
-        this.userService.removeUserFromLocalStorage();
+        this.userService.removeUser();
         this.router.navigate(['login']);
     }
 }

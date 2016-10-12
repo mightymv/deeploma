@@ -30,7 +30,8 @@
     "bootstrap": "^3.3.6",
     "jquery": "1.11.3",
     "stompjs": "2.3.3",
-    "angular2-jwt": "0.1.16"
+    "angular2-jwt": "0.1.16",
+    "angular2-cookie": "1.2.2"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
