@@ -2,6 +2,10 @@ package com.deeploma.reco.dto;
 
 import org.jongo.marshall.jackson.oid.MongoId;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TicketRowDto {
 	
 	@MongoId
@@ -11,7 +15,11 @@ public class TicketRowDto {
 	
 	private Long betOddId;
 	
+	private String subGameShortName;
+	
 	private String status;
+	
+	private String odd;
 
 	public MatchDto getMatch() {
 		return match;
@@ -43,6 +51,22 @@ public class TicketRowDto {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getSubGameShortName() {
+		return subGameShortName;
+	}
+
+	public void setSubGameShortName(String subGameShortName) {
+		this.subGameShortName = subGameShortName;
+	}
+
+	public String getOdd() {
+		return odd;
+	}
+
+	public void setOdd(String odd) {
+		this.odd = odd;
 	}
 
 }

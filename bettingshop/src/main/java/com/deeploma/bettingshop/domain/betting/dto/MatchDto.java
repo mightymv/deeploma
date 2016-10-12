@@ -3,6 +3,7 @@ package com.deeploma.bettingshop.domain.betting.dto;
 import org.joda.time.DateTime;
 
 import com.deeploma.bettingshop.domain.basic.Competition;
+import com.deeploma.bettingshop.domain.basic.Match;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -20,6 +21,18 @@ public class MatchDto {
 	private TeamDto teamHome;
 
 	private TeamDto teamVisitor;
+	
+	public MatchDto() {
+		
+	}
+	
+	public MatchDto(Match match){ 
+		this.setId(match.getId());
+		this.setStartTime(match.getStartTime());
+		this.setTeamHome(new TeamDto(match.getTeamHome()));
+		this.setTeamVisitor(new TeamDto(match.getTeamVisitor()));
+		this.setCompetition(match.getCompetition());
+	}
 
 	public DateTime getStartTime() {
 		return startTime;

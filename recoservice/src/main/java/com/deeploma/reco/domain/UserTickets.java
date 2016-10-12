@@ -1,4 +1,4 @@
-package com.deeploma.reco.domen;
+package com.deeploma.reco.domain;
 
 import java.util.Set;
 

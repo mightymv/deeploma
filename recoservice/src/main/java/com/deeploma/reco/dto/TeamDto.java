@@ -1,16 +1,16 @@
 package com.deeploma.reco.dto;
 
-import org.joda.time.DateTime;
 import org.jongo.marshall.jackson.oid.MongoId;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TeamDto {
 	
 	@MongoId
 	private Long id;
 	
 	private String name;
-	
-	private DateTime startTime;
 	
 	public TeamDto(){
 		
@@ -30,14 +30,6 @@ public class TeamDto {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public DateTime getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(DateTime startTime) {
-		this.startTime = startTime;
 	}
 
 

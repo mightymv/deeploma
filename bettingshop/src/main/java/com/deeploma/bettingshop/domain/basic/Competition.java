@@ -1,5 +1,8 @@
 package com.deeploma.bettingshop.domain.basic;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Competition {
 
 	private Long id;

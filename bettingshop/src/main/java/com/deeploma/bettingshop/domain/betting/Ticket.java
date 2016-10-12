@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import com.deeploma.bettingshop.util.MathUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -32,7 +33,8 @@ public class Ticket {
 	}
 
 	public void setCumulativeOdd(Double cumulativeOdd) {
-		this.cumulativeOdd = cumulativeOdd;
+		
+		this.cumulativeOdd = MathUtils.round(cumulativeOdd, 2);
 	}
 
 	public DateTime getTime() {

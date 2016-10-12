@@ -137,6 +137,12 @@
 	  select <include refid="matchSelect"/>   
     </select>
     
+    <update id="updateMatchStatus">
+      update  matches m set
+      matchstatus= #{status , typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+	  where m.id = ${mid}
+    </update>
+    
 
     
 </mapper>

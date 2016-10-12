@@ -9,7 +9,6 @@ public class UserMatches {
 
 	@MongoId
 	private Long id ;
-
 	
     private List<MatchCount> matches;
 

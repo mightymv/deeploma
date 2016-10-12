@@ -26,7 +26,7 @@ public class OfferControler {
 	private OfferService offerService;
 	
 	
-	@RequestMapping(path= "/{date}", method = RequestMethod.GET)
+	@RequestMapping(path= {"/{date}", "/v2/{date}"}, method = RequestMethod.GET)
 	public List<MatchOffer>  getOfferForDate(@PathVariable("date") String date) {
 		
 		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -35,5 +35,6 @@ public class OfferControler {
 		logger.info("Trazi se ponuda za : {} " , date);
 		return offerService.getOffer(new DateTime(date));
 	}
+
 
 }

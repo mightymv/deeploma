@@ -2,10 +2,13 @@ package com.deeploma.bettingshop;
 
 import static reactor.bus.selector.Selectors.$;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import com.deeploma.bettingshop.services.TicketCalculator;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -47,5 +50,17 @@ public class Conf {
     	bus.on($("results"), tc);
 	    return bus;
     }
+    
+    @Bean
+    public Filter logFilter() {
+        CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+        filter.setIncludeQueryString(true);
+        filter.setIncludePayload(true);
+        filter.setMaxPayloadLength(5120);
+        return filter;
+    }
+    
+ 
+
 
 }

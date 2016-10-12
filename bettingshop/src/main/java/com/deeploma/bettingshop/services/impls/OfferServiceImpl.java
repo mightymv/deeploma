@@ -3,10 +3,13 @@ package com.deeploma.bettingshop.services.impls;
 import java.io.IOException;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.deeploma.bettingshop.domain.betting.MatchOffer;
@@ -45,9 +48,19 @@ public class OfferServiceImpl implements OfferService {
 	@Autowired
 	private TicketService ticketService;
 	
+	@Autowired
+	private DataSource dource;
+	
 	@Override
 	public List<MatchOffer>  getOffer(DateTime date) {
+		logger.info(dource.getClass().getName());
 		return offerMapper.getOfferForDate(date);
+	}
+	
+	@Scheduled(initialDelay = 3000, fixedRate =90000)
+	public void get() {
+		logger.info("IDEMOOOO " + dource.getClass().getName());
+		offerMapper.getOfferForDate(new DateTime("2016-08-10"));
 	}
 
 	

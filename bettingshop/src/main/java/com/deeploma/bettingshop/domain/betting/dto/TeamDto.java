@@ -1,7 +1,9 @@
 package com.deeploma.bettingshop.domain.betting.dto;
 
 import com.deeploma.bettingshop.domain.basic.Team;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TeamDto {
 	
 	private Long id;

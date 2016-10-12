@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +37,7 @@ import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
 import com.deeploma.bettingshop.mapper.ResultMapper;
 import com.deeploma.bettingshop.mapper.TicketMapper;
-import com.deeploma.bettingshop.messaging.SendingBean;
+import com.deeploma.bettingshop.messaging.TicketSender;
 import com.deeploma.bettingshop.validator.BetValidator;
 import com.deeploma.bettingshop.validator.GameValidatorRegister;
 
@@ -62,7 +63,10 @@ public class TicketCalculator implements Consumer<Event<ResultsVerified>>{
 	private UserStandingsCalculator userCalculator;
 	
 	@Autowired
-	SendingBean sendingBean;
+	TicketSender sendingBean;
+	
+	@Autowired
+	private  ApplicationEventPublisher publisher;
 	
 	@Transactional
 	public void calculateBetOdds() {
@@ -125,7 +129,7 @@ public class TicketCalculator implements Consumer<Event<ResultsVerified>>{
 			resultMapper.updateResultStatus(result.getId(), CALCULATED);
 		});
 		
-		ticketsForCalculations.forEach(ticket -> sendingBean.sendTicket(ticket)); // ovo je u transakciji - principijelno nije ok
+		ticketsForCalculations.forEach(ticket -> publisher.publishEvent((ticket))); // ovo je u transakciji - principijelno nije ok
 	}
 
 	private void calculateTicket(Map<Long, List<Result>> matchResults, List<BetOdd> betOds, Ticket ticket) {

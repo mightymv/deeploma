@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +27,10 @@ public class StandingsControler {
 		private StandingsService sSrv;
 		
 		
-		@RequestMapping(path= "/{date}", method = RequestMethod.GET)
+		@RequestMapping(path= "/{date}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 		public List<UserStandingDto>  getStandingsForDate(@PathVariable("date") String date) {
-			
-			
-			logger.info("Trazi se tabela za datum : {} " , date);
+		
+			logger.info("Trazi se tabela poretka igraca za datum : {} " , date);
 			return sSrv.getStandingsForDate(new DateTime(date));
 		}
 

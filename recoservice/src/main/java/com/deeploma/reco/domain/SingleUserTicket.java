@@ -1,9 +1,12 @@
-package com.deeploma.reco.dto;
+package com.deeploma.reco.domain;
 
 import org.jongo.marshall.jackson.oid.MongoId;
-import org.springframework.data.annotation.Id;
 
-public class UserTicket {
+import com.deeploma.reco.dto.TicketDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class SingleUserTicket {
 	
 	private String username;
 	

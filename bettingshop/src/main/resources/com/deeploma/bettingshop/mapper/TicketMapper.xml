@@ -89,7 +89,7 @@
 		and m.id = ttr.MATCHID
 		and trunc(m.starttime) =  to_date ('${date}', 'yyyy-mm-dd')
 		group by tt.id, tt.CUMULATIVEODD
-		having round(EXP (SUM (LN (ttr.odd))), 2) = round (tt.cumulativeodd, 2))
+		having round(EXP (SUM (LN (ttr.odd))), 1) = round (tt.cumulativeodd, 1))
 	</select>
     
     

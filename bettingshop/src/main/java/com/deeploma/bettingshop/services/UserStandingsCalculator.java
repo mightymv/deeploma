@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.maxBy;
 import static java.util.stream.Collectors.toMap;
 
+import java.util.Arrays;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,13 @@ public class UserStandingsCalculator {
 		
 		 Map<Long, List<Ticket>> groupByUser = tickets.stream().collect(groupingBy(Ticket::getUserId));
 		
+		 
+		 groupByUser.entrySet().forEach(entry ->  {		 
+			 	logger.info("User {} . Tickets {} " , entry.getKey(), Arrays.toString(entry.getValue().toArray()));
+		 }
+			 	
+			 );
+		 
 		 Map<Long , Ticket> userTicket = groupByUser.entrySet().stream().map( entry -> 
 		 { 	Optional<Ticket> maxTicket = entry.getValue().stream()
 		 		.collect(maxBy(comparingDouble(t -> t.getCumulativeOdd())));

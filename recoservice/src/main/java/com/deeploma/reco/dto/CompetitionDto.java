@@ -2,14 +2,17 @@ package com.deeploma.reco.dto;
 
 import org.jongo.marshall.jackson.oid.MongoId;
 
-public class Competition {
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CompetitionDto {
 
 	@MongoId
 	private Long id;
 	
 	private String name;
 	
-	private Sport sport;
+	private SportDto sport;
 
 	public Long getId() {
 		return id;
@@ -27,11 +30,11 @@ public class Competition {
 		this.name = name;
 	}
 
-	public Sport getSport() {
+	public SportDto getSport() {
 		return sport;
 	}
 
-	public void setSport(Sport sport) {
+	public void setSport(SportDto sport) {
 		this.sport = sport;
 	}
 
