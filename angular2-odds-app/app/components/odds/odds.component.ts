@@ -40,7 +40,7 @@ export class OddsComponent implements OnInit, OnDestroy {
 
     constructor(private http: Http, private userService: UserService) {
 
-        this.userId = userService.getUserFromLocalStorage().id;
+        this.userId = userService.getUser().id;
 
         if(this.userId === null) {
             return;

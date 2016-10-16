@@ -58,7 +58,7 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
 
     onPayTicket() {
 
-        if(this.userService.getUserFromLocalStorage().id === null) {
+        if(this.userService.getUser().id === null) {
 
             this.modalInfo.content = "Tiket nije uplacen, niste ulogovani.";
             this.modalInfo.style = "warning";

@@ -66,7 +66,7 @@ export class TicketService {
      */
     public payTicket(): Observable<any> {
 
-        let user:User = this.userService.getUserFromLocalStorage();
+        let user:User = this.userService.getUser();
 
         let payRequest: PayTicketRequest = new PayTicketRequest(user.id, this.ticketRows);
 
@@ -81,7 +81,7 @@ export class TicketService {
 
     public getTickets(): Observable<any> {
 
-        let userId = this.userService.getUserFromLocalStorage().id;
+        let userId = this.userService.getUser().id;
         return this.http.get(`http://192.168.182.198:8082/${userId}/tickets`);
     }
 }

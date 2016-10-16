@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {UserService} from "../../services/user.service";
 import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 
@@ -39,11 +39,12 @@ export class NavigationComponent implements OnInit {
 
     user: string;
 
-    constructor(private userService: UserService, private router: Router) {
+    constructor(private userService: UserService,
+                private router: Router) {
     }
 
     ngOnInit() {
-        this.user = localStorage.getItem('user');
+        this.user = this.userService.getUser().user;
     }
 
     onLogout() {

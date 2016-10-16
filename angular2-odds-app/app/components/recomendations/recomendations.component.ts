@@ -19,7 +19,7 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
     private recommendationPoller;
 
     constructor(private http: Http, private userService: UserService) {
-        this.userId = this.userService.getUserFromLocalStorage().id;
+        this.userId = this.userService.getUser().id;
     }
 
     ngOnInit(): void {
