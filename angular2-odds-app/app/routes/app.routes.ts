@@ -14,7 +14,10 @@ export const routes: RouterConfig = [
             {path: 'dashboard', component: DashboardComponent}
         ]
     },
-    {path: 'login', component: LoginComponent}
+    {
+        path: 'login',
+        component: LoginComponent
+    }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

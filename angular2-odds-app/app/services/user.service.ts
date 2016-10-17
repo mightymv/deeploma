@@ -28,10 +28,14 @@ export class UserService {
     }
 
     saveUser(loginResponse: LoginResponse): void {
+
+        let expiresDate: Date = new Date();
+        expiresDate.setHours(expiresDate.getHours() + 1);
+
         this._cookieService.putObject("user", new User(
             loginResponse.id,
             loginResponse.token,
-            loginResponse.name + ' ' + loginResponse.surname));
+            loginResponse.name + ' ' + loginResponse.surname), {"expires": expiresDate});
     }
 
     removeUser(): void {
