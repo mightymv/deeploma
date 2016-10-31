@@ -1,9 +1,4 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {TicketViewerComponent} from "../ticket-viewer/ticketViewer.component";
-import {RecomendationsComponent} from "../recomendations/recomendations.component";
-import {DatePipe, CORE_DIRECTIVES} from "@angular/common";
-import {MatchesTableComponent} from "../tables/matches/matchesTable.component";
-import {OddsTableComponent} from "../tables/odds/oddsTable.component";
 import {Match, Recommendations} from "../../dto/offer";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
@@ -15,15 +10,7 @@ import {UserService} from "../../services/user.service";
     moduleId: module.id,
     selector: 'odds',
     templateUrl: 'odds.component.html',
-    styleUrls: ['odds.component.css'],
-    pipes: [DatePipe],
-    directives: [
-        TicketViewerComponent,
-        RecomendationsComponent,
-        MatchesTableComponent,
-        OddsTableComponent,
-        CORE_DIRECTIVES
-    ]
+    styleUrls: ['odds.component.css']
 })
 export class OddsComponent implements OnInit, OnDestroy {
 

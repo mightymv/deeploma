@@ -10,6 +10,17 @@ npm install
 npm run serve
 `
 
+
+### Hints
+
+- moduleId se koristi kada se koristi CommonJS
+- http://schwarty.com/2015/12/22/angular2-relative-paths-for-templateurl-and-styleurls/
+- https://angular.io/docs/ts/latest/cookbook/component-relative-paths.html
+
+@Component({
+    moduleId: module.id
+})
+
 ### Tutorijali
 
 1. http://courses.angularclass.com/courses/angular-2-fundamentals/lectures/1285822
@@ -27,3 +38,8 @@ npm run serve
 6. http://slides.com/robwormald/everything-is-a-stream#/75
 7. http://chariotsolutions.com/blog/post/angular2-observables-http-separating-services-components/
 8. http://reactivex.io/rxjs/manual/overview.html#introduction
+
+
+### JWT
+
+1. https://scotch.io/tutorials/the-anatomy-of-a-json-web-token

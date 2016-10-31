@@ -1,11 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {UserService} from "../../services/user.service";
-import {Router, ROUTER_DIRECTIVES} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
     selector: 'navigation',
-    directives: [ROUTER_DIRECTIVES],
     styleUrls: ['nav.component.css'],
     template: `
     <nav class="navbar navbar-inverse">
