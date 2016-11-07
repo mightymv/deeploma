@@ -1,7 +1,14 @@
 .username {
-    margin: 11px 5px;
+    margin: 20px 5px;
     color: whitesmoke;
     font-size: 14px;
+}
+
+.username > a {
+    padding: 0;
+}
+.username > a.login {
+    cursor: pointer;
 }
 
 .gravatar {

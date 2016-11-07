@@ -7,8 +7,8 @@ export class AuthService implements CanActivate {
 
     constructor(private router: Router, private userService: UserService) { }
 
-    isAuthorized(): Boolean {
-        return Boolean(this.userService.getUser().token);
+    isAuthorized(): boolean {
+        return Boolean(this.userService.getUser().token).valueOf();
     }
 
     canActivate(): boolean {

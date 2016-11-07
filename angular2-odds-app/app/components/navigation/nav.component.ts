@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     moduleId: module.id,
@@ -14,13 +15,15 @@ import {Router} from "@angular/router";
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-text username">{{user}}</li>
+                <li class="navbar-text username" (click)="onLogin()">
+                    <a [ngClass]="{'login': !isAuth }">{{user}}</a>
+                </li>
                 <li class="dropdown close">
                     <a aria-expanded="true" aria-haspopup="true" class="navbar-link dropdown-toggle" data-toggle="dropdown">
                         <img class="gravatar" src="app/components/navigation/gravatar.png" alt="{{user}}" />
                         <span class="sr-only">User Settings</span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" *ngIf="isAuth">
                         <li>
                             <a [routerLink]="['', 'dashboard']">Dashboard</a>
                         </li>
@@ -37,13 +40,23 @@ import {Router} from "@angular/router";
 export class NavigationComponent implements OnInit {
 
     user: string;
+    isAuth: boolean = false;
 
     constructor(private userService: UserService,
-                private router: Router) {
+                private router: Router,
+                private authService: AuthService) {
     }
 
     ngOnInit() {
         this.user = this.userService.getUser().user;
+        this.isAuth = this.authService.isAuthorized();
+    }
+
+    onLogin() {
+        if(this.isAuth) {
+            return;
+        }
+        this.router.navigate(['login']);
     }
 
     onLogout() {

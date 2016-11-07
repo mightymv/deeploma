@@ -8,7 +8,8 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http, private router: Router, private _cookieService:CookieService) { }
+    constructor(private http: Http,
+                private _cookieService:CookieService) { }
 
     onLogin(loginRequest: LoginRequest): Promise<any> {
 
@@ -44,7 +45,7 @@ export class UserService {
 
     getUser(): User {
         let user: User = <User>this._cookieService.getObject("user");
-        return user === undefined ? new User(0, "", "") : user;
+        return user === undefined ? new User(0, "", "Login") : user;
     }
 
     saveUserToLocalStorage(loginResponse: LoginResponse): void {

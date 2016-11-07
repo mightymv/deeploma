@@ -4,6 +4,7 @@ import {UserService} from "../../services/user.service";
 import {Logger} from "../../utils/LoggerUtils";
 import {Router} from "@angular/router";
 import 'rxjs/add/operator/toPromise';
+import {isNullOrUndefined} from "util";
 
 @Component({
     moduleId: module.id,
@@ -45,6 +46,12 @@ export class LoginComponent {
 
     onLoginErrorClick() {
         this.loginMessage = false;
+    }
+
+    enterEventHandler() {
+        if(this.username !== undefined && this.password !== undefined) {
+            this.onLogin();
+        }
     }
 
     onRegister() {

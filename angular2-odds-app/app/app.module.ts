@@ -23,12 +23,11 @@ import {AuthService} from "./services/auth.service";
 const routes: Routes = [
     {
         path: '',
-        canActivate: [AuthService],
         component: OddsPageComponent,
         children: [
             {path: '', component: OddsComponent},
             {path: 'odds', component: OddsComponent},
-            {path: 'dashboard', component: DashboardComponent}
+            {path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]}
         ]
     },
     {
