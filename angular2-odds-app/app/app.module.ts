@@ -19,6 +19,7 @@ import {MessageModalComponent} from "./components/messagesModal/messageModal.com
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AuthService} from "./services/auth.service";
+import {StandingsComponent} from "./components/standings/standings.component";
 
 const routes: Routes = [
     {
@@ -27,7 +28,8 @@ const routes: Routes = [
         children: [
             {path: '', component: OddsComponent},
             {path: 'odds', component: OddsComponent},
-            {path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]}
+            {path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]},
+            {path: 'standings', component: StandingsComponent, canActivate: [AuthService]},
         ]
     },
     {
@@ -57,7 +59,8 @@ const routes: Routes = [
         RecomendationsComponent,
         MatchesTableComponent,
         OddsTableComponent,
-        MessageModalComponent
+        MessageModalComponent,
+        StandingsComponent
     ],
     providers: [TicketService, UserService, CookieService, AuthService],
     bootstrap: [AppComponent]

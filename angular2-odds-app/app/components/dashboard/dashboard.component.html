@@ -1,4 +1,4 @@
-<div class="page-content container-fluid">
+<div class="page-content container-fluid dashboard">
     <section class="centar-content col-md-offset-2 col-md-8" [hidden]="userTickets.length === 0">
         <table class="table table-striped table-hover table-bordered table-condensed">
             <thead class="table-first-thead">
@@ -22,7 +22,7 @@
                            attr.data-ticket-id="{{ticket.id}}"
                            [hidden]="true"
                     >
-                        <tr *ngFor="let row of ticket.rows">
+                        <tr *ngFor="let row of ticket.rows" [class.danger]="row.status === 'LOSER'" [class.success]="row.status === 'WINNER'">
                             <td class="col-md-1">{{row.id}}</td>
                             <td class="col-md-8">{{row.match.teamHome.name}} - {{row.match.teamVisitor.name}}</td>
                             <td class="col-md-1 text-center">{{row.subGameShortName}}</td>
@@ -31,7 +31,7 @@
                     </table>
                 </td>
                 <td class="text-center"
-                    [class.danger]="ticket.status === 'LOOSER'"
+                    [class.danger]="ticket.status === 'LOSER'"
                     [class.success]="ticket.status === 'WINNER'"
                 >{{ticket.status}}</td>
             </tr>

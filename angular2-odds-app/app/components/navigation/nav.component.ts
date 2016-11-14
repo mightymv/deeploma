@@ -13,26 +13,30 @@ import {AuthService} from "../../services/auth.service";
             <div class="navbar-header">
                 <a class="navbar-brand" [routerLink]="['', 'odds']">Polyglot</a>
             </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-text username" (click)="onLogin()">
-                    <a [ngClass]="{'login': !isAuth }">{{user}}</a>
-                </li>
-                <li class="dropdown close">
-                    <a aria-expanded="true" aria-haspopup="true" class="navbar-link dropdown-toggle" data-toggle="dropdown">
-                        <img class="gravatar" src="app/components/navigation/gravatar.png" alt="{{user}}" />
-                        <span class="sr-only">User Settings</span>
-                    </a>
-                    <ul class="dropdown-menu" *ngIf="isAuth">
-                        <li>
-                            <a [routerLink]="['', 'dashboard']">Dashboard</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['', 'login']" (click)="onLogout()">Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <a *ngIf="isAuth" class="navbar" [routerLink]="['', 'standings']">Standings</a>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text username" (click)="onLogin()">
+                        <a [ngClass]="{'login': !isAuth }">{{user}}</a>
+                    </li>
+                    <li class="dropdown close">
+                        <a aria-expanded="true" aria-haspopup="true" class="navbar-link dropdown-toggle" data-toggle="dropdown">
+                            <img class="gravatar" src="app/components/navigation/gravatar.png" alt="{{user}}" />
+                            <span class="sr-only">User Settings</span>
+                        </a>
+                        <ul class="dropdown-menu" *ngIf="isAuth">
+                            <li>
+                                <a [routerLink]="['', 'dashboard']">Dashboard</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['', 'login']" (click)="onLogout()">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 `

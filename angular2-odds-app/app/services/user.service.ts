@@ -83,4 +83,13 @@ export class UserService {
             .map(res => res.text())
             .toPromise();
     }
+
+    standings() {
+
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        return this.http.get("http://192.168.182.198:8080/standings/2016-08-10", {headers: headers})
+            .toPromise();
+    }
 }
