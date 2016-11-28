@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Logger} from "../utils/LoggerUtils";
 import {LoginResponse, LoginRequest, RegistrationRequest, User} from "../dto/login";
-import {Router} from "@angular/router";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import {TopUser} from "../dto/standings";
 
 @Injectable()
 export class UserService {
@@ -48,26 +48,6 @@ export class UserService {
         return user === undefined ? new User(0, "", "Login") : user;
     }
 
-    saveUserToLocalStorage(loginResponse: LoginResponse): void {
-        localStorage.setItem('id', loginResponse.id.toString());
-        localStorage.setItem('token', loginResponse.token);
-        localStorage.setItem('user', loginResponse.name + ' ' + loginResponse.surname);
-    }
-
-    removeUserFromLocalStorage(): void {
-        localStorage.removeItem('id');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-    }
-
-    getUserFromLocalStorage(): User {
-        return this.getUser();
-    }
-    // getUserFromLocalStorage(): User {
-    //     return new User(localStorage.getItem('id'),
-    //         localStorage.getItem('token'), localStorage.getItem('user'));
-    // }
-
     onRegister(registrationRequst: RegistrationRequest) {
 
         if(registrationRequst == null) {
@@ -90,6 +70,14 @@ export class UserService {
         headers.append("Content-Type", "application/json");
 
         return this.http.get("http://192.168.182.198:8080/standings/2016-08-10", {headers: headers})
+            .map(res => res.json())
+            .map(
+                (response: Array<any>) => {
+
+                    let convertedResponse = new Array<TopUser>();
+                    response.forEach(topUser => convertedResponse.push(new TopUser(topUser)));
+                    return convertedResponse;
+                })
             .toPromise();
     }
 }

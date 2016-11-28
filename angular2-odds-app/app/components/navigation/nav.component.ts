@@ -15,7 +15,7 @@ import {AuthService} from "../../services/auth.service";
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <a *ngIf="isAuth" class="navbar" [routerLink]="['', 'standings']">Standings</a>
+                    <li><a *ngIf="isAuth" class="link" [routerLink]="['', 'standings']">Standings</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text username" (click)="onLogin()">
