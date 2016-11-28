@@ -49,7 +49,7 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
                 res => {
                     this.userRecommendations = this.findRecommendations(res);
                 },
-                err => err => console.log("User recommendations loading FAILED !!! " + err)
+                err => console.log("User recommendations loading FAILED !!! " + err)
             );
     }
 
@@ -59,13 +59,13 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
         let currentRecommend;
 
         response.forEach(matchId => {
-            let matchRow = jQuery(document.getElementsByTagName('matches-table')).find('[data-match-id=' + matchId + ']')[0];
+            let matchRow = jQuery('matches-table').find('[data-match-id=' + matchId + ']').first();
 
             if(matchRow === undefined) {
                 return;
             }
 
-            let participants:string = matchRow.children[2].innerText + ' - ' + matchRow.children[3].innerText;
+            let participants:string = matchRow.children('.home').text() + ' - ' + matchRow.children('.visitor').text();
             currentRecommend = new RecommendMatch(matchId, participants);
             recommendations.push(currentRecommend);
         });

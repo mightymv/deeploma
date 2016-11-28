@@ -16,7 +16,7 @@
                             </a>
                         </li>
                         <li><a href="#profile" data-toggle="tab" title="profile">
-                             <span class="round-tabs two">
+                                 <span class="round-tabs two" (click)="onRegisterErrorClick()">
                                  <i class="glyphicon glyphicon-user"></i>
                              </span>
                         </a>
@@ -55,7 +55,7 @@
 
                                 <div style="margin-top:10px" class="form-group">
                                     <p class="text-center">
-                                        <a class="btn btn-success btn-outline-rounded green"
+                                        <a class="btn btn-success btn-outline-rounded green loginButton"
                                            (click)="onLogin()">
                                             uloguj se
                                             <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
@@ -80,13 +80,16 @@
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <input type="text" class="form-control" id="signName" placeholder="Name"
-                                                       [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                                                       [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
+                                                       (keyup.enter)="registrationEnterEventHandler()">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <input type="text" class="form-control" id="signinSurname"
-                                                       placeholder="Surname" [(ngModel)]="surname" [ngModelOptions]="{standalone: true}">
+                                                       placeholder="Surname" [(ngModel)]="surname"
+                                                       [ngModelOptions]="{standalone: true}"
+                                                       (keyup.enter)="registrationEnterEventHandler()">
                                             </div>
                                         </div>
                                     </div>
@@ -94,13 +97,18 @@
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <input type="text" class="form-control" id="signinEmail"
-                                                       placeholder="Email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                                                       placeholder="Email" [(ngModel)]="username"
+                                                       [ngModelOptions]="{standalone: true}"
+                                                       (keyup.enter)="registrationEnterEventHandler()">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-12">
                                                 <input type="password" class="form-control" id="signinPassword"
-                                                       placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                                                       placeholder="Password"
+                                                       [(ngModel)]="password"
+                                                       [ngModelOptions]="{standalone: true}"
+                                                       (keyup.enter)="registrationEnterEventHandler()">
                                             </div>
                                         </div>
                                     </div>
