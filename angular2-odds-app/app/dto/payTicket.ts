@@ -35,6 +35,7 @@ export class Ticket {
     constructor(public id: number,
                 public rows: Array<TicketRow>,
                 public time: number,
+                public cumulativeOdd: number,
                 public status: string) {}
 }
 
@@ -44,7 +45,8 @@ export class TicketRow {
                 public match: Match,
                 public betOddId: number,
                 public subGameShortName: string,
-                public status: string) {}
+                public status: string,
+                public odd: number) {}
 }
 
 export class PayInInfo {

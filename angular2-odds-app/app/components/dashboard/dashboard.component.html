@@ -20,13 +20,17 @@
                     {{ticket.id}}
                     <table class="table table-striped table-condensed"
                            attr.data-ticket-id="{{ticket.id}}"
-                           [hidden]="true"
-                    >
+                           [hidden]="true">
                         <tr *ngFor="let row of ticket.rows" [class.danger]="row.status === 'LOSER'" [class.success]="row.status === 'WINNER'">
                             <td class="col-md-1">{{row.id}}</td>
                             <td class="col-md-8">{{row.match.teamHome.name}} - {{row.match.teamVisitor.name}}</td>
                             <td class="col-md-1 text-center">{{row.subGameShortName}}</td>
                             <td class="col-md-1 text-left">{{row.status}}</td>
+                            <td class="col-md-1 text-right">{{row.odd}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-left">Total odd:</td>
+                            <td colspan="8" class="text-right">{{ticket.cumulativeOdd}}</td>
                         </tr>
                     </table>
                 </td>
