@@ -8,8 +8,7 @@ import {UserService} from "../../services/user.service";
     moduleId: module.id,
     selector: 'ticket-viewer',
     templateUrl: 'ticketViewer.component.html',
-    styleUrls: ['ticketViewer.component.css'],
-    directives: [MessageModalComponent]
+    styleUrls: ['ticketViewer.component.css']
 })
 export class TicketViewerComponent implements OnInit, OnDestroy {
 
@@ -58,7 +57,7 @@ export class TicketViewerComponent implements OnInit, OnDestroy {
 
     onPayTicket() {
 
-        if(this.userService.getUserFromLocalStorage().id === null) {
+        if(this.userService.getUser().id === null) {
 
             this.modalInfo.content = "Tiket nije uplacen, niste ulogovani.";
             this.modalInfo.style = "warning";

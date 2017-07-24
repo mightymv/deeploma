@@ -1,29 +1,17 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {TicketViewerComponent} from "../ticket-viewer/ticketViewer.component";
-import {RecomendationsComponent} from "../recomendations/recomendations.component";
-import {DatePipe, CORE_DIRECTIVES} from "@angular/common";
-import {MatchesTableComponent} from "../tables/matches/matchesTable.component";
-import {OddsTableComponent} from "../tables/odds/oddsTable.component";
 import {Match, Recommendations} from "../../dto/offer";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {Deserializer} from "../../utils/Deserializer";
 import {Stomp, Client} from "stompjs";
 import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     moduleId: module.id,
     selector: 'odds',
     templateUrl: 'odds.component.html',
-    styleUrls: ['odds.component.css'],
-    pipes: [DatePipe],
-    directives: [
-        TicketViewerComponent,
-        RecomendationsComponent,
-        MatchesTableComponent,
-        OddsTableComponent,
-        CORE_DIRECTIVES
-    ]
+    styleUrls: ['odds.component.css']
 })
 export class OddsComponent implements OnInit, OnDestroy {
 
@@ -33,16 +21,13 @@ export class OddsComponent implements OnInit, OnDestroy {
     private clickEvents$;
     private sendRecommendationsEvent$;
 
-    private userId: number;
     private recommendMatches: Set<number> = new Set<number>();
     private stompClient: Client;
     private isStompClientConnected: boolean = false;
 
-    constructor(private http: Http, private userService: UserService) {
+    constructor(private http: Http, private authService: AuthService, private userService: UserService) {
 
-        this.userId = userService.getUserFromLocalStorage().id;
-
-        if(this.userId === null) {
+        if(!authService.isAuthorized()) {
             return;
         }
 
@@ -84,7 +69,7 @@ export class OddsComponent implements OnInit, OnDestroy {
 
     subscribeUserMonitoring() {
 
-        if (this.userId === null) {
+        if (!this.authService.isAuthorized()) {
             return;
         }
 
@@ -122,7 +107,7 @@ export class OddsComponent implements OnInit, OnDestroy {
                 this.stompClient.send(
                     'aca.recommend.queue',
                     {},
-                    JSON.stringify(new Recommendations(this.userId, this.recommendMatches))
+                    JSON.stringify(new Recommendations(this.userService.getUser().id, this.recommendMatches))
                 );
 
                 this.recommendMatches.clear();
@@ -131,7 +116,7 @@ export class OddsComponent implements OnInit, OnDestroy {
 
     unsubscribeUserMonitoring() {
 
-        if (this.userId === null) {
+        if (!this.authService.isAuthorized()) {
             return;
         }
 

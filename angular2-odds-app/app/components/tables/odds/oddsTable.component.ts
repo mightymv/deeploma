@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, OnDestroy} from "@angular/core";
 import {Match} from "../../../dto/offer";
-import {GameFilterPipe} from "../../../pipes/game-filter.pipe";
 import {PayInTicketRow} from "../../../dto/payTicket";
 import {TicketService} from "../../../services/ticket.service";
 
@@ -9,7 +8,6 @@ import {TicketService} from "../../../services/ticket.service";
     selector: 'results-table',
     templateUrl: 'oddsTable.component.html',
     styleUrls: ['oddsTable.component.css'],
-    pipes: [GameFilterPipe]
 })
 export class OddsTableComponent implements OnInit, OnDestroy {
 

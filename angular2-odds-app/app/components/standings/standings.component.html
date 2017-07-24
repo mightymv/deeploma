@@ -1,0 +1,24 @@
+<div class="page-content container-fluid standings">
+
+    <section class="center-content col-md-offset-2 col-md-8">
+        <h3 class="text-center title">Top igraci</h3>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Best result</th>
+                    <th>Date</th>
+                    <th>Player</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let topPlayer of topPlayers; let current = index">
+                    <td class="col-md-1 table-responsive">{{current + 1}}</td>
+                    <td class="col-md-2 table-responsive">{{topPlayer.bestResult}}</td>
+                    <td class="col-md-4 table-responsive">{{topPlayer.dateOf | date: 'EEE, dd.MM.yy'}}</td>
+                    <td class="col-md-4 table-responsive">{{topPlayer.username}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>

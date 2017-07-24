@@ -2,7 +2,7 @@ import {Injectable, EventEmitter} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {PayInTicketRow, PayTicketRequest, PayInInfo} from "../dto/payTicket";
 import {UserService} from "./user.service";
-import {LocalStorageUser} from "../dto/login";
+import {User} from "../dto/login";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -66,7 +66,7 @@ export class TicketService {
      */
     public payTicket(): Observable<any> {
 
-        let user:LocalStorageUser = this.userService.getUserFromLocalStorage();
+        let user:User = this.userService.getUser();
 
         let payRequest: PayTicketRequest = new PayTicketRequest(user.id, this.ticketRows);
 
@@ -81,7 +81,7 @@ export class TicketService {
 
     public getTickets(): Observable<any> {
 
-        let userId = this.userService.getUserFromLocalStorage().id;
+        let userId = this.userService.getUser().id;
         return this.http.get(`http://192.168.182.198:8082/${userId}/tickets`);
     }
 }

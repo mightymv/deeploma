@@ -1,13 +1,15 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Logger} from "../utils/LoggerUtils";
-import {LoginResponse, LoginRequest, RegistrationRequest, LocalStorageUser} from "../dto/login";
-import {Router} from "@angular/router";
+import {LoginResponse, LoginRequest, RegistrationRequest, User} from "../dto/login";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import {TopUser} from "../dto/standings";
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http, private router: Router) { }
+    constructor(private http: Http,
+                private _cookieService:CookieService) { }
 
     onLogin(loginRequest: LoginRequest): Promise<any> {
 
@@ -26,21 +28,24 @@ export class UserService {
             .toPromise();
     }
 
-    saveUserToLocalStorage(loginResponse: LoginResponse): void {
-        localStorage.setItem('id', loginResponse.id.toString());
-        localStorage.setItem('token', loginResponse.token);
-        localStorage.setItem('user', loginResponse.name + ' ' + loginResponse.surname);
+    saveUser(loginResponse: LoginResponse): void {
+
+        let expiresDate: Date = new Date();
+        expiresDate.setHours(expiresDate.getHours() + 1);
+
+        this._cookieService.putObject("user", new User(
+            loginResponse.id,
+            loginResponse.token,
+            loginResponse.name + ' ' + loginResponse.surname), {"expires": expiresDate});
     }
 
-    removeUserFromLocalStorage(): void {
-        localStorage.removeItem('id');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+    removeUser(): void {
+        this._cookieService.remove("user");
     }
 
-    getUserFromLocalStorage(): LocalStorageUser {
-        return new LocalStorageUser(localStorage.getItem('id'),
-            localStorage.getItem('token'), localStorage.getItem('user'));
+    getUser(): User {
+        let user: User = <User>this._cookieService.getObject("user");
+        return user === undefined ? new User(0, "", "Login") : user;
     }
 
     onRegister(registrationRequst: RegistrationRequest) {
@@ -56,6 +61,23 @@ export class UserService {
 
         return this.http.put("http://192.168.182.198:8080/user", JSON.stringify(registrationRequst), {headers: headers})
             .map(res => res.text())
+            .toPromise();
+    }
+
+    standings() {
+
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        return this.http.get("http://192.168.182.198:8080/standings/2016-08-10", {headers: headers})
+            .map(res => res.json())
+            .map(
+                (response: Array<any>) => {
+
+                    let convertedResponse = new Array<TopUser>();
+                    response.forEach(topUser => convertedResponse.push(new TopUser(topUser)));
+                    return convertedResponse;
+                })
             .toPromise();
     }
 }
