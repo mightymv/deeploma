@@ -47,14 +47,15 @@ public class SimpleRecommendationStrategy implements RecommendationStrategy{
 	}
 
 	@Override
-	public List<MatchDto> lastNMatches(Long id) {
+	public List<MatchDto> lastNMatches(Long userId) {
 		//logger.info("Recomendations za igraca : " + id);
-		UserTickets ut = ma.findTicketsForUser(id);
-		if (ut == null || ut.getTickets().isEmpty())
+		Set<TicketDto> ut = ma.findTicketsForUser(userId);
+		if (ut == null || ut.isEmpty())
 			return Collections.emptyList();
 		
-		List<TicketDto> ts = ut.getTickets().stream()
-				.sorted((t1, t2) -> Long.compare(t2.getTime().getMillis(), t1.getTime().getMillis())).collect(toList());
+		List<TicketDto> ts = ut.stream()
+				.sorted((time1, time2) -> Long.compare(time2.getTime().getMillis(), time1.getTime().getMillis()))
+				.collect(toList());
 		
 		List<MatchDto> allUserMatches = ts.stream().map( t -> t.getRows()
 				.stream().map(r -> r.getMatch()).collect(toList())).flatMap( m -> m.stream()).distinct().collect(toList());

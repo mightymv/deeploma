@@ -15,8 +15,13 @@ public class TicketDto {
 	@MongoId
 	private Long id;
 	
+	private String username;
+	
+	private Long userId;
+	
 	private List<TicketRowDto> rows;
 	
+	private Double cumulativeOdd;
 	
 	private DateTime time;
 	
@@ -78,6 +83,30 @@ public class TicketDto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Double getCumulativeOdd() {
+		return cumulativeOdd;
+	}
+
+	public void setCumulativeOdd(Double cumulativeOdd) {
+		this.cumulativeOdd = cumulativeOdd;
 	}
 
 }
