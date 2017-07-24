@@ -2,11 +2,11 @@ package com.deeploma.bettingshop.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.deeploma.bettingshop.domain.basic.Competition;
 
-@Mapper
+@MapperScan
 public interface CompetitionMapper {
 	
 	public List<Competition> findAll();

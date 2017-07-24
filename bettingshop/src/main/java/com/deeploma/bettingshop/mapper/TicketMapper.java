@@ -3,16 +3,16 @@ package com.deeploma.bettingshop.mapper;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.joda.time.DateTime;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.deeploma.bettingshop.domain.betting.Ticket;
 import com.deeploma.bettingshop.domain.betting.TicketRow;
 import com.deeploma.bettingshop.domain.betting.TicketRowStatus;
 import com.deeploma.bettingshop.domain.betting.TicketStatus;
 
-@Mapper
+@MapperScan
 public interface TicketMapper {
 	
 	public List<Ticket> findByUserId(Integer userId);

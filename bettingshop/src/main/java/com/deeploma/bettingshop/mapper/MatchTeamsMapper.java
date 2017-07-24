@@ -1,23 +1,16 @@
 package com.deeploma.bettingshop.mapper;
 
 import java.util.List;
-import java.util.Set;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.joda.time.DateTime;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.deeploma.bettingshop.domain.basic.Match;
 import com.deeploma.bettingshop.domain.basic.MatchStatus;
 import com.deeploma.bettingshop.domain.basic.Result;
-import com.deeploma.bettingshop.domain.basic.ResultStatus;
 import com.deeploma.bettingshop.domain.basic.Team;
-import com.deeploma.bettingshop.domain.betting.BetOdd;
-import com.deeploma.bettingshop.domain.betting.Ticket;
-import com.deeploma.bettingshop.domain.betting.TicketRowStatus;
-import com.deeploma.bettingshop.domain.betting.TicketStatus;
 
-@Mapper
+@MapperScan
 public interface MatchTeamsMapper {
 	
 	public List<Team> findAllTeams();

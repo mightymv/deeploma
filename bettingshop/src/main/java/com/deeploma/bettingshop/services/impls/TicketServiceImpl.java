@@ -2,8 +2,12 @@ package com.deeploma.bettingshop.services.impls;
 
 import static com.deeploma.bettingshop.domain.betting.TicketStatus.ACTIVE;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.RecursiveToStringStyle;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.eclipse.jdt.internal.compiler.apt.model.ErrorTypeElement;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +50,7 @@ public class TicketServiceImpl implements TicketService{
 	@Transactional
 	public Ticket addTicket(Ticket ticket) {
 	
-		checkTicketRules(ticket);
+		//checkTicketRules(ticket);
 		
 		ticket.setTime(DateTime.now());
 		
@@ -65,8 +69,17 @@ public class TicketServiceImpl implements TicketService{
 	private void checkTicketRules(Ticket ticket) {
 		
 		checkBasicRules(ticket);
-		//TODO jos nesto
+		checkMatchesRules(ticket);
 		
+	}
+
+	private void checkMatchesRules(Ticket ticket) {
+		Set<Long> playedMatches = new HashSet<Long>();
+		ticket.getTicketRows().forEach(row -> {
+			if (playedMatches.contains(row.getMatchId()))
+				throw new ApplicationException(ErrorType.TICKET_CANNOT_CONTAIN_MORE_THAN_ONE_ROW_WITH_SAME_MATCH);
+			playedMatches.add(row.getMatchId());
+		});
 	}
 
 	private void checkBasicRules(Ticket ticket) {

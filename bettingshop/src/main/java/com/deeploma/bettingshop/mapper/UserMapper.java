@@ -1,11 +1,11 @@
 package com.deeploma.bettingshop.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.deeploma.bettingshop.domain.users.User;
 
-@Mapper
+@MapperScan
 public interface UserMapper {
 	
 	public User findByUsernameAndPassword(@Param("username")String username,@Param("password") String password);

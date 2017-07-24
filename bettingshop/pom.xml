@@ -23,9 +23,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<tomcat.version>8.0.37</tomcat.version>
+		<mybatis-version>3.3.0</mybatis-version>
+		<mybatis-spring-version>1.2.0</mybatis-spring-version>
 	</properties>
 
 	<dependencies>
+	
+	<dependency>
+  <groupId>org.apache.tomcat</groupId>
+  <artifactId>tomcat-util</artifactId>
+  <version>${tomcat.version}</version>
+  <scope>runtime</scope>
+</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,21 +79,36 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
 
-		<dependency>
-    		<groupId>org.mybatis.spring.boot</groupId>
-    		<artifactId>mybatis-spring-boot-starter</artifactId>
-    		<version>1.1.1</version>
+
+		 <dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring-version}</version>
+		</dependency>  
+		<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    
+</dependency>
+		
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<!-- <dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>1.1.1</version>
+</dependency> -->
 
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -101,12 +125,6 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -157,6 +175,11 @@
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.5.1</version>
 		</dependency>
 	</dependencies>
 

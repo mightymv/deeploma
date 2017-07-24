@@ -1,48 +1,51 @@
 package com.deeploma.bettingshop;
 
-import java.io.File;
+import javax.sql.DataSource;
 
-import org.apache.coyote.http11.Http11NioProtocol;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
-//@Configuration
+@Configuration
 public class ContainerConfiguration {
+	
+	@Autowired
+	Environment env;
+	
+	@Autowired
+	DataSource ds;
+	
+	/*@Bean
+	public DataSource dataSource() {
+		BasicDataSource ds = new BasicDataSource();
+		ds.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+		ds.setUrl(env.getProperty("spring.datasource.url"));
+		ds.setUsername(env.getProperty("spring.datasource.username"));
+		ds.setPassword(env.getProperty("spring.datasource.password"));
 
-    //@Bean
-    EmbeddedServletContainerCustomizer containerCustomizer(
-            @Value("${keystore.file}") String keystoreFile,
-            @Value("${server.port}") final String serverPort,
-            @Value("${keystore.pass}") final String keystorePass)
-            throws Exception {
+		ds.setInitialSize(10);
+		ds.setMaxActive(5);
+		ds.setMaxWait(5);
+		ds.setValidationQuery("select 1 from dual");
 
-        // This is boiler plate code to setup https on embedded Tomcat
-        // with Spring Boot:
+		
 
-        final String absoluteKeystoreFile = new File(keystoreFile)
-                .getAbsolutePath();
+		return ds;
+	}*/
 
-        return new EmbeddedServletContainerCustomizer() {
-            @Override
-            public void customize(ConfigurableEmbeddedServletContainer container) {
-                TomcatEmbeddedServletContainerFactory tomcat = (TomcatEmbeddedServletContainerFactory) container;
-                tomcat.addConnectorCustomizers(connector -> {
-                    connector.setPort(Integer.parseInt(serverPort));
-                    connector.setSecure(true);
-                    connector.setScheme("https");
+	
 
-                    Http11NioProtocol proto = (Http11NioProtocol) connector
-                            .getProtocolHandler();
-                    proto.setSSLEnabled(true);
-
-                    proto.setKeystoreFile(absoluteKeystoreFile);
-                    proto.setKeystorePass(keystorePass);
-                    proto.setKeystoreType("JKS");
-                    proto.setKeyAlias("tomcat");
-                });
-            }
-        };
-    }
+	@Bean
+	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
+		SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+		factory.setDataSource(ds);
+		//factory.setConfigLocation(new ClassPathResource("my-batis/wallet-config.xml"));
+		/*factory.setPlugins(new Interceptor[] {
+				queryCommentPlugin(),
+				queryTimeoutPlugin()
+		});*/
+		return factory;
+	}
 }

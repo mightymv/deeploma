@@ -7,8 +7,10 @@ import static org.springframework.messaging.support.MessageBuilder.withPayload;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import org.springframework.transaction.event.TransactionalEventListener;
 import com.deeploma.bettingshop.domain.betting.Ticket;
 import com.deeploma.bettingshop.domain.betting.dto.TicketDto;
 import com.deeploma.bettingshop.domain.betting.dto.TicketRowDto;
-import com.deeploma.bettingshop.domain.betting.dto.UserTicket;
 import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -70,7 +71,7 @@ public class TicketSender {
 			@Override
 			public void run() {
 				try {
-					UserTicket userTicket = prepareForSend(ticket, username);
+					TicketDto userTicket = prepareForSend(ticket, username);
 					String ticketMessage = objectMapper.writeValueAsString(userTicket);
 					logger.info("Salje se event sledece sadrzine : {}", ticketMessage);
 					template.send(TICKETS_QUEUE, withPayload(ticketMessage).build());
@@ -87,19 +88,34 @@ public class TicketSender {
     	
     }
 
-	private UserTicket prepareForSend(Ticket ticket, String username) {
-		UserTicket ticketDto = new UserTicket();		
-		ticketDto.setUserId(ticket.getUserId());		
-		ticketDto.setUsername(username);		
+	private TicketDto prepareForSend(Ticket ticket, String username) {		
 		TicketDto tick = new TicketDto();
+		tick.setUserId(ticket.getUserId());
+		tick.setUsername(username);
 		tick.setId(ticket.getId());		
 		tick.setTime(ticket.getTime());		
-		List<TicketRowDto> rows = ticket.getTicketRows().stream().map(trow -> new TicketRowDto(trow, matchMapper.findMatchById(trow.getMatchId()))).collect(toList());		
-	    tick.setRows(rows);	    
+		List<TicketRowDto> rows = ticket.getTicketRows().stream()
+				.map(trow -> new TicketRowDto(trow, matchMapper.findMatchById(trow.getMatchId())))   // da, da , znam... 
+				.collect(toList());		
+	    tick.setRows(rows);
+	    tick.setCumulativeOdd(ticket.getCumulativeOdd());
 	    tick.setStatus(ticket.getTicketStatus().name());	
-	    ticketDto.setTicketDto(tick);	    
-		return ticketDto;
+	    return tick;
 	}
 
+	
+
+public static void main (String [] args) {
+	String pattern = "dd-MMM-yy hh.mm.ss aa";
+	DateTime joda1 = DateTime.parse("30-OCT-16 03.01.01 AM", DateTimeFormat.forPattern(pattern));
+	DateTime joda2 = DateTime.parse("30-OCT-16 03.03.00 AM", DateTimeFormat.forPattern(pattern));
+	
+	
+	
+	
+	Duration dur = new Duration(joda1, joda2);
+	
+	System.out.println(dur.getStandardMinutes());
+};
 	
 }
