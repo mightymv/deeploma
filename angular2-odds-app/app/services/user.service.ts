@@ -23,7 +23,7 @@ export class UserService {
 
         Logger.logLoginRequest(loginRequest);
 
-       return this.http.post("http://192.168.182.198:8080/login2", JSON.stringify(loginRequest), {headers: headers})
+       return this.http.post("http://192.168.182.198:8081/login2", JSON.stringify(loginRequest), {headers: headers})
             .map(res => res.json())
             .toPromise();
     }
@@ -59,7 +59,7 @@ export class UserService {
 
         Logger.logRegistrationRequest(registrationRequst);
 
-        return this.http.put("http://192.168.182.198:8080/user", JSON.stringify(registrationRequst), {headers: headers})
+        return this.http.put("http://192.168.182.198:8081/user", JSON.stringify(registrationRequst), {headers: headers})
             .map(res => res.text())
             .toPromise();
     }
@@ -69,7 +69,7 @@ export class UserService {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
 
-        return this.http.get("http://192.168.182.198:8080/standings/2016-08-10", {headers: headers})
+        return this.http.get("http://192.168.182.198:8081/standings/2016-08-10", {headers: headers})
             .map(res => res.json())
             .map(
                 (response: Array<any>) => {

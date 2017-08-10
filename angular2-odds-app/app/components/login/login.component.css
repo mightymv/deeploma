@@ -1,6 +1,6 @@
 /* line 1, ../scss/login.scss */
 .login-page {
-    position: fixed;
+    /*position: fixed;*/
     top: 0;
     bottom: 0;
     left: 0;
@@ -80,7 +80,7 @@
 
 /* ------------------ */
 .board {
-    width: 75%;
+    width: 65%;
     margin: 60px auto;
     height: 500px;
     background: #fff;

@@ -10,7 +10,7 @@ import {TicketService} from "../../services/ticket.service";
 })
 export class DashboardComponent implements OnInit {
 
-    private title: string = "User tickets";
+    private title: string = "Odigrani tiketi";
     private userTickets: Array<Ticket> = [];
 
     constructor(private ticketService: TicketService) {
