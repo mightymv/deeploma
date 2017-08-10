@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 public class EventsListeners {
 
+	private static final String BROWSER_CLICKS = "aca.recommend.queue";
+
 	private final static Logger logger = LoggerFactory.getLogger(EventsListeners.class);
 	
 	public static final String TICKETS_QUEUE = "tickets.queue";
@@ -48,7 +50,7 @@ public class EventsListeners {
 	       
 	 }
 	
-	@JmsListener(destination = "aca.recommend.queue")
+	@JmsListener(destination = BROWSER_CLICKS)
 	public void receiveBehaviours(ActiveMQBytesMessage userBehaviour) {
 		String event = new String(userBehaviour.getContent().getData());
 		logger.info("Stigao je behaviour json : {}" , event);

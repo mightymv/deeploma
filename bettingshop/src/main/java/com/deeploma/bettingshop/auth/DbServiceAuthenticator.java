@@ -1,7 +1,5 @@
 package com.deeploma.bettingshop.auth;
 
-import java.util.Random;
-
 import org.springframework.security.authentication.BadCredentialsException;
 
 import com.deeploma.bettingshop.domain.users.User;
@@ -24,8 +22,6 @@ public class DbServiceAuthenticator implements ServiceAuthenticator {
     @Override
     public AuthenticationWithToken  authenticate(String username, String password) {
     
-        //TODO ovde treba da ide do baze i da proveri da li ih ima tamo
-    	Random r = new Random();
     	User user = userService.validateUser(username, password);
     	if (user == null) {
     		throw new BadCredentialsException ("Pogresni username i/ili sifra");

@@ -17,21 +17,21 @@ import com.deeploma.reco.mongodao.MongoRepository;
 public class AlgorithmControler {
 	
 	@Autowired 
-	private UserMatchesMatrix matrix;
+	private RecommendationStorage matrix;
 	
 	@Autowired
 	MongoRepository repo;
 	
 	@Scheduled(initialDelay = 3000, fixedRate = 10000)
 	public void reloadMatrix() {
-		matrix.setUsers(repo.findUsersMatches(), userBehaviours()); // TODO mozda paralelizovati
+		matrix.recalculate(repo.findUsersMatches(), userBehaviours()); // TODO mozda paralelizovati
 	}
 
 	private Map<Long, UserMatchCountBehaviour> userBehaviours() {
 		List<UserBehaviour>  userBehaviours = repo.findUserBehaviors();
-		Map<Long , UserMatchCountBehaviour> res = new HashMap<Long, UserMatchCountBehaviour>();
+		Map<Long , UserMatchCountBehaviour> result = new HashMap<Long, UserMatchCountBehaviour>();
 		userBehaviours.stream().forEach(ub -> {
-			UserMatchCountBehaviour temp = res.get(ub.getUserId());
+			UserMatchCountBehaviour temp = result.get(ub.getUserId());
 			if (temp == null) {
 				temp = new UserMatchCountBehaviour();
 				temp.setUserId(ub.getUserId());
@@ -41,9 +41,9 @@ public class AlgorithmControler {
 				temp.getMatchCount().put(ub.getMatchId(), new AtomicInteger(0));
 			}
 			temp.getMatchCount().get(ub.getMatchId()).incrementAndGet();
-			res.put(ub.getUserId(), temp);
+			result.put(ub.getUserId(), temp);
 		});
-		return res;
+		return result;
 	}
 
 }

@@ -34,15 +34,16 @@ public class SimpleRecommendationStrategy implements RecommendationStrategy{
 	private MongoRepository ma;
 	
 	@Autowired
-	private UserMatchesMatrix matrix;
+	private RecommendationStorage matrix;
 	
 	@Override
 	public List<Long>  recommendForUser(Long id) {
 		
 		List<MatchDto> lastNmatches = lastNMatches(id);				
 		Set<Long> userMatchesSet = lastNmatches.stream().map(match -> match.getId()).collect(toSet());				
-		List<Long>  matches = matrix.findBestMatchesFor(lastNmatches);
+		List<Long>  matches = matrix.findBestRecommandationForMatches(lastNmatches);
 
+		// izbaci one koje je igrao do tada
  		return matches.stream().filter(matchId -> !userMatchesSet.contains(matchId)).collect(toList());
 	}
 
