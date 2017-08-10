@@ -20,9 +20,9 @@ import com.deeploma.bettingshop.exception.ErrorType;
  * 
  */
 @ControllerAdvice
-public class ApplicationExceptionMapper {
+public class ApplicationExceptionHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(ApplicationExceptionMapper.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApplicationExceptionHandler.class);
 	
 	@ExceptionHandler(ApplicationException.class)
 	@ResponseBody	

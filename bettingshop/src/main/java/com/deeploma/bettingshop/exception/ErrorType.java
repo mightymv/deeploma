@@ -7,7 +7,8 @@ public enum ErrorType {
 	UNKNOWN_INTERNAL_ERROR(666, "Nepoznata greska na serveru"),
 	
 	MATCH_ALREADY_STARTED(601, "Ne mozete se kladiti na zapocet mec"),	
-	MATCH_BAD_STATUS(602, "Mec nije u dozvoljenom statusu za kladjenje");
+	MATCH_BAD_STATUS(602, "Mec nije u dozvoljenom statusu za kladjenje"),
+	TICKET_CANNOT_CONTAIN_MORE_THAN_ONE_ROW_WITH_SAME_MATCH(603, "Tiket ne moze imati vise od jedne opklade na isti mec");
 	
 	
 	private ErrorType(int code) {

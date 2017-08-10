@@ -24,7 +24,7 @@ public class AlgorithmControler {
 	
 	@Scheduled(initialDelay = 3000, fixedRate = 10000)
 	public void reloadMatrix() {
-		matrix.setUsers(repo.findUserMatches(), userBehaviours()); // TODO mozda paralelizovati
+		matrix.setUsers(repo.findUsersMatches(), userBehaviours()); // TODO mozda paralelizovati
 	}
 
 	private Map<Long, UserMatchCountBehaviour> userBehaviours() {

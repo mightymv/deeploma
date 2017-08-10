@@ -2,13 +2,13 @@ package com.deeploma.bettingshop.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.deeploma.bettingshop.domain.basic.Sport;
 
-@Mapper
+@MapperScan
 public interface SportMapper {
 	
 	@Select("SELECT * FROM SPORTS")

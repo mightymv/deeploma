@@ -4,7 +4,6 @@ import  java.util.Comparator;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,10 +29,13 @@ public class Tickets {
 	private MongoRepository ma;
 	
 	@RequestMapping(path= "/{uid}/tickets", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<TicketDto>  ticketsForUser(@PathVariable ("uid") Long id) {	
-		UserTickets ut = ma.findTicketsForUser(id);
-		if (ut == null ) 
+	public List<TicketDto>  ticketsForUser(@PathVariable ("uid") Long id) {
+		Set<TicketDto> tickets = ma.findTicketsForUser(id);
+		if (tickets  == null || tickets.isEmpty() ) 
 			return Collections.emptyList();
+		UserTickets ut = new UserTickets();
+		ut.setTickets(tickets);
+		
 		return ut.getTickets().stream().sorted(Comparator.comparingLong(t -> ((TicketDto) t).getTime().getMillis()).reversed()).collect(Collectors.toList());
 	}
 	

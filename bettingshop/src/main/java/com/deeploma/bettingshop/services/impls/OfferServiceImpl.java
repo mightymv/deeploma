@@ -1,6 +1,10 @@
 package com.deeploma.bettingshop.services.impls;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -11,14 +15,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.deeploma.bettingshop.domain.betting.MatchOffer;
 import com.deeploma.bettingshop.domain.betting.Ticket;
 import com.deeploma.bettingshop.domain.betting.TicketRow;
-import com.deeploma.bettingshop.mapper.CompetitionMapper;
-import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
-import com.deeploma.bettingshop.mapper.SportMapper;
 import com.deeploma.bettingshop.services.OfferService;
 import com.deeploma.bettingshop.services.TicketService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,21 +36,8 @@ public class OfferServiceImpl implements OfferService {
 	private final static Logger logger = LoggerFactory.getLogger(OfferServiceImpl.class);
 
 	@Autowired
-	private CompetitionMapper  cMapper;
-	
-	
-	@Autowired
-	private SportMapper sMapper;
-	
-	
-	@Autowired 
-	private MatchTeamsMapper mtMapper;
-	
-	@Autowired
 	private OfferMapper offerMapper;
-	
-	@Autowired
-	private TicketService ticketService;
+
 	
 	@Autowired
 	private DataSource dource;
@@ -61,6 +52,32 @@ public class OfferServiceImpl implements OfferService {
 	public void get() {
 		logger.info("IDEMOOOO " + dource.getClass().getName());
 		offerMapper.getOfferForDate(new DateTime("2016-08-10"));
+	}
+	
+	
+	//@Autowired
+	//TicketService ticketSrv;
+
+	//@Scheduled(initialDelay = 3000, fixedRate =2000)
+	public void add() {
+		Ticket ticket = new Ticket();
+		
+		ticket.setTime(new DateTime());
+		ticket.setUserId(Long.valueOf(-45));
+		
+		TicketRow tr1= new TicketRow();
+		tr1.setBetOddId(Long.valueOf(100));
+		TicketRow tr2= new TicketRow();
+		tr2.setBetOddId(Long.valueOf(102));
+		TicketRow tr3= new TicketRow();
+		tr3.setBetOddId(Long.valueOf(103));
+		
+		
+		ticket.setCumulativeOdd(5d);
+		ticket.setTicketRows(new ArrayList<>());
+		//ticketSrv.addTicket(ticket);
+		logger.info("IDEMOOOO tiket");
+
 	}
 
 	

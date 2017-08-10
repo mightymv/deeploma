@@ -3,7 +3,6 @@ package com.deeploma.reco.algorithm;
 import static java.util.Comparator.comparingDouble;
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,8 +22,6 @@ import org.springframework.stereotype.Component;
 import com.deeploma.reco.domain.SingleUserTicket;
 import com.deeploma.reco.domain.UserMatchCountBehaviour;
 import com.deeploma.reco.dto.MatchDto;
-import com.deeploma.reco.dto.TicketDto;
-import com.deeploma.reco.dto.TicketRowDto;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
@@ -65,7 +62,7 @@ public class UserMatchesMatrix {
 				newTable.put(uMatches.getId(), matchData.getMatch(), calculateValue(matchData.getCount(), behValue(res, uMatches, matchData)));
 			    
 			});
-			//logger.info("User: " + uMatches.getId() + " _ " + newTable.row(uMatches.getId()).entrySet());
+			logger.info("User: " + uMatches.getId() + " _ " + newTable.row(uMatches.getId()).entrySet());
 		});
 				
 		
@@ -73,16 +70,16 @@ public class UserMatchesMatrix {
 			recalculateVector(newTable, vectors, match);			
 		});
 		
-		//vectors.entrySet().forEach(entry -> logger.info( "Vector- Match : {} , value {} "  +  entry.getKey().getId() + " vec : " + entry.getValue()));
+		vectors.entrySet().forEach(entry -> logger.info( "Vector- Match : {} , value {} "  +  entry.getKey().getId() + " vec : " + entry.getValue()));
 		
 		
 		newTable.columnKeySet().stream().forEach(match -> recalculateForMatch(newTable, newRelations, vectors, match, false));
 		
-		/*newRelations.rowKeySet().forEach(match1 -> {
+		newRelations.rowKeySet().forEach(match1 -> {
 			newRelations.columnKeySet().forEach(match2 -> {
-				//logger.info("Odnos : " + match1.getId() + " -> " + match2.getId() + " : " + newRelations.get(match1, match2));
+				logger.info("Odnos : " + match1.getId() + " -> " + match2.getId() + " : " + newRelations.get(match1, match2));
 			});
-		});*/
+		});
 		this.userTickets = newTable;
 		this.relations = newRelations;
 		this.vectors = vectors;

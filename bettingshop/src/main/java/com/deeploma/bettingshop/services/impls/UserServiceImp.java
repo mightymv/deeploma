@@ -3,6 +3,7 @@ package com.deeploma.bettingshop.services.impls;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.deeploma.bettingshop.domain.users.User;
 import com.deeploma.bettingshop.domain.users.UserStatus;
@@ -22,6 +23,7 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User addUser(User user) {
 		user.setUsername(user.getUsername().toLowerCase());
 		userMapper.insertUser(user);

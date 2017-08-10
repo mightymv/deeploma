@@ -1,11 +1,12 @@
 package com.deeploma.bettingshop.services;
 
-import java.util.HashMap;
-import java.util.List;
-
+import static com.deeploma.bettingshop.domain.basic.ResultStatus.CALCULATED;
+import static com.deeploma.bettingshop.domain.betting.TicketRowStatus.ACTIVE;
+import static com.deeploma.bettingshop.domain.betting.TicketRowStatus.LOSER;
+import static com.deeploma.bettingshop.domain.betting.TicketRowStatus.WINNER;
 import static java.util.stream.Collectors.groupingBy;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,22 +19,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.deeploma.bettingshop.domain.basic.Result;
-import com.deeploma.bettingshop.domain.basic.ResultStatus;
 import com.deeploma.bettingshop.domain.betting.BetOdd;
 import com.deeploma.bettingshop.domain.betting.BetOddStatus;
 import com.deeploma.bettingshop.domain.betting.Game;
-
 import com.deeploma.bettingshop.domain.betting.Ticket;
 import com.deeploma.bettingshop.domain.betting.TicketRow;
 import com.deeploma.bettingshop.domain.betting.TicketStatus;
 import com.deeploma.bettingshop.dto.ResultsVerified;
-
-import static com.deeploma.bettingshop.domain.basic.ResultStatus.CALCULATED;
-import static com.deeploma.bettingshop.domain.betting.BetOddStatus.ACTIVE;
-import static com.deeploma.bettingshop.domain.betting.TicketRowStatus.*;
-import static com.deeploma.bettingshop.domain.betting.TicketStatus.ACTIVE;
-
-import com.deeploma.bettingshop.mapper.MatchTeamsMapper;
 import com.deeploma.bettingshop.mapper.OfferMapper;
 import com.deeploma.bettingshop.mapper.ResultMapper;
 import com.deeploma.bettingshop.mapper.TicketMapper;

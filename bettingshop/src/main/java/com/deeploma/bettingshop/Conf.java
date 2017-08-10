@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
+import com.deeploma.bettingshop.dto.ResultsVerified;
 import com.deeploma.bettingshop.services.TicketCalculator;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -18,13 +19,15 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import reactor.Environment;
+import reactor.bus.Event;
 import reactor.bus.EventBus;
+import reactor.fn.Consumer;
 
 @Configuration
 public class Conf {
 	
 	@Autowired
-	private TicketCalculator tc;
+	private Consumer<Event<ResultsVerified>> tc;
 
 	@Bean
 	@Primary

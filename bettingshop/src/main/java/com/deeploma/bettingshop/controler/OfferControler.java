@@ -1,5 +1,6 @@
 package com.deeploma.bettingshop.controler;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -29,11 +30,16 @@ public class OfferControler {
 	@RequestMapping(path= {"/{date}", "/v2/{date}"}, method = RequestMethod.GET)
 	public List<MatchOffer>  getOfferForDate(@PathVariable("date") String date) {
 		
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//String username=   (String) auth.getPrincipal();
-		//logger.info("Korisnik {} trazi ponudu", username);
 		logger.info("Trazi se ponuda za : {} " , date);
-		return offerService.getOffer(new DateTime(date));
+		List<MatchOffer> result = offerService.getOffer(new DateTime(date));
+		result.sort(new Comparator<MatchOffer>() {
+
+			@Override
+			public int compare(MatchOffer o1, MatchOffer o2) {
+				return o1.getStartTime().compareTo(o2.getStartTime());
+			}
+		});
+		return result;
 	}
 
 
