@@ -112,6 +112,8 @@ docker pull rmohr/activemq
 docker run -p 61616:61616 -p 8161:8161 rmohr/activemq
 ```
 
+<transportConnector name="websocket" uri="ws://0.0.0.0:61614"/>
+
 Trenutno je u application.properties stavljeno da gadja localhost:61616
 
 #Pokretanje servisa :
