@@ -43,7 +43,10 @@ export class RecomendationsComponent implements OnInit, OnDestroy {
 
         this.recommendationPoller = Observable.timer(300, 5000)
             .timeInterval()
-            .switchMap(() => this.http.get(`http://192.168.182.198:8082/${this.userId}/recommendation`))
+            .switchMap(() => {
+                return this.http
+                    .get(`http://192.168.182.198:8082/${this.userId}/recommendation`)
+            })
             .map((res: Response) => res.json())
             .subscribe(
                 res => {

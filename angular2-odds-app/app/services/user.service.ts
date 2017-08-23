@@ -69,7 +69,7 @@ export class UserService {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
 
-        return this.http.get("http://192.168.182.198:8081/standings/2016-08-10", {headers: headers})
+        return this.http.get("http://192.168.182.198:8081/standings/2017-08-23", {headers: headers})
             .map(res => res.json())
             .map(
                 (response: Array<any>) => {
