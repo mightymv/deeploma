@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.deeploma.reco.algorithm.RecommendationStorage;
 import com.deeploma.reco.algorithm.RecommendationStrategy;
-import com.deeploma.reco.algorithm.UserMatchesMatrix;
 import com.deeploma.reco.algorithm.util.HTMLTableBuilder;
 import com.deeploma.reco.algorithm.util.MathUtils;
 import com.deeploma.reco.dto.MatchDto;
@@ -24,7 +23,7 @@ public class UtilControler {
     private RecommendationStrategy strategy;
 	
 	@Autowired
-	private UserMatchesMatrix matrix;
+	private RecommendationStorage matrix;
 	
 	@RequestMapping(path="/tabela/{id}")
 	public String tabela(@PathVariable("id") Long id) {
@@ -33,8 +32,8 @@ public class UtilControler {
 		 
 		List<String> matches = strategy.lastNMatches(id).stream().map(match -> match.getId().toString()).collect(Collectors.toList());
 		 
-		text = matches.toString() + "\n" + text;
-		 text = text + "<br> <br> <br>" + buildHtmlMapForUserMatches(matrix.getUserTickets());
+		text = "Poslednja tri meca na tiketima igraca: " +  matches.toString() + "<br /> <br> Preporuke za igraca " + strategy.recommendForUser(id).toString() + "<br /> <br> Tabela odnosa : <br />  " + text;
+		 text = text  + "<br> <br> Tiketi korisnika :<br>" + buildHtmlMapForUserMatches(matrix.getUserTickets());
 		 return text;
 	}
 

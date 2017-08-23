@@ -1,6 +1,8 @@
 package com.deeploma.bettingshop.controler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +20,28 @@ public class UtilResultControler {
 	@Autowired
 	private RandomResultGenerator generator;
 	
+	@Autowired
+	private  JdbcTemplate jdbcTemplate;
+
+	
+
+	
 	@RequestMapping(path= "/gen/{date}", method = RequestMethod.GET)
 	public void  getOfferForDate(@PathVariable("date") String date) {
 		
 		generator.generateResultsForDate(date);
+	}
+	@RequestMapping(path= "/resetAll", method = RequestMethod.GET)
+	@Transactional
+	public void resetAll() {
+		
+		jdbcTemplate.execute("delete from standings");
+		jdbcTemplate.execute("delete from ticketrows");
+		jdbcTemplate.execute("delete from tickets");
+		jdbcTemplate.execute("delete from results");
+		jdbcTemplate.execute("update matches set matchstatus = 'NOT_FINISHED'");
+		
+		
 	}
 
 }
