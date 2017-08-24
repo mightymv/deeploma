@@ -50,7 +50,7 @@ export class OddsComponent implements OnInit, OnDestroy {
         headers.append('Accept', 'application/json');
         headers.append('Access-Control-Allow-Origin', '*');
 
-        this.http.get('http://192.168.182.198:8081/offer/2016-08-10', {headers: headers})
+        this.http.get('http://192.168.182.198:8081/offer/2017-08-23', {headers: headers})
             .map((res: Response) => res.json())
             .map((matches: Array<any>) => {
                 return Deserializer.deserialize(matches);
