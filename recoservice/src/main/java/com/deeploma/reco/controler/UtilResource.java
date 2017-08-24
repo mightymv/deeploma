@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.jongo.Jongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +17,31 @@ import com.deeploma.reco.algorithm.util.MathUtils;
 import com.deeploma.reco.dto.MatchDto;
 import com.google.common.collect.Table;
 
+/**
+ * Resurs za potrebe testa
+ * @author veljkom
+ *
+ */
 @RestController
-public class UtilControler {
+public class UtilResource {
 	
 	@Autowired
     private RecommendationStrategy strategy;
 	
 	@Autowired
 	private RecommendationStorage matrix;
+	
+	@Autowired 
+	private Jongo jongo;
+	
+	@RequestMapping(path="/mongoreset")
+	public String reset() {
+		
+		jongo.getCollection("tickets").remove();
+		jongo.getCollection("userBehavs").remove();
+		
+		return "MONGO RESETOVAN";
+	}
 	
 	@RequestMapping(path="/tabela/{id}")
 	public String tabela(@PathVariable("id") Long id) {
@@ -41,9 +59,7 @@ public class UtilControler {
 		//matrix.getRelations().get
 		ArrayList<ArrayList<Object>> rows = new ArrayList<>();
 		List<MatchDto>  listHeader = dataTable.columnKeySet().stream().sorted((m1, m2) -> m1.getId().compareTo(m2.getId())).collect(Collectors.toList());
-		
-		
-		
+			
 		for (int i = 0 ; i < listHeader.size(); i++) {
 			ArrayList<Object> row = new ArrayList<>();
 			row.add(listHeader.get(i).getId().toString());

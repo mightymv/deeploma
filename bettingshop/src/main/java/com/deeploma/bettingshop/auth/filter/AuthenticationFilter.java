@@ -56,7 +56,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         
         Pattern p = Pattern.compile("^((?!v2).)*$");
         Matcher m = p.matcher(resourcePath);
-        logger.info("ttt " + m.matches());
+        //logger.info("ttt " + m.matches());
         //logger.info("count : " + m.groupCount());
         try {
             if (postToAuthenticate(httpRequest, resourcePath)) {

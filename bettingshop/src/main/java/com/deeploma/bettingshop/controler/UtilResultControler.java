@@ -27,21 +27,22 @@ public class UtilResultControler {
 
 	
 	@RequestMapping(path= "/gen/{date}", method = RequestMethod.GET)
-	public void  getOfferForDate(@PathVariable("date") String date) {
+	public String  getOfferForDate(@PathVariable("date") String date) {
 		
 		generator.generateResultsForDate(date);
+		return "GENERISANI REZULTATI. OBACUNATI TIKETI.";
 	}
 	@RequestMapping(path= "/resetAll", method = RequestMethod.GET)
 	@Transactional
-	public void resetAll() {
+	public String resetAll() {
 		
 		jdbcTemplate.execute("delete from standings");
 		jdbcTemplate.execute("delete from ticketrows");
 		jdbcTemplate.execute("delete from tickets");
 		jdbcTemplate.execute("delete from results");
 		jdbcTemplate.execute("update matches set matchstatus = 'NOT_FINISHED'");
-		
-		
+		jdbcTemplate.execute("update betodds set BETODDSTATUS = 'ACTIVE'");
+		return "RESETOVANO STANJE";
 	}
 
 }

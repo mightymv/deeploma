@@ -34,13 +34,12 @@ public class AlgorithmControler {
 			UserMatchCountBehaviour temp = result.get(ub.getUserId());
 			if (temp == null) {
 				temp = new UserMatchCountBehaviour();
-				temp.setUserId(ub.getUserId());
-				
+				temp.setUserId(ub.getUserId());				
 			}
-			if (temp.getMatchCount().get(ub.getMatchId()) == null) {
-				temp.getMatchCount().put(ub.getMatchId(), new AtomicInteger(0));
+			if (temp.getMatchesCount().get(ub.getMatchId()) == null) {
+				temp.getMatchesCount().put(ub.getMatchId(), new AtomicInteger(0));
 			}
-			temp.getMatchCount().get(ub.getMatchId()).incrementAndGet();
+			temp.getMatchesCount().get(ub.getMatchId()).incrementAndGet();
 			result.put(ub.getUserId(), temp);
 		});
 		return result;

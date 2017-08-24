@@ -1,9 +1,7 @@
 package com.deeploma.reco.controler;
 
-import  java.util.Comparator;
-import static java.util.stream.Collectors.toSet;
-
 import java.util.Collections;
+import  java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,14 +21,14 @@ import com.deeploma.reco.mongodao.MongoRepository;
 
 @RestController
 @CrossOrigin
-public class Tickets {
+public class TicketsResource {
 	
 	@Autowired
-	private MongoRepository ma;
+	private MongoRepository repository;
 	
 	@RequestMapping(path= "/{uid}/tickets", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<TicketDto>  ticketsForUser(@PathVariable ("uid") Long id) {
-		Set<TicketDto> tickets = ma.findTicketsForUser(id);
+		Set<TicketDto> tickets = repository.findTicketsForUser(id);
 		if (tickets  == null || tickets.isEmpty() ) 
 			return Collections.emptyList();
 		UserTickets ut = new UserTickets();

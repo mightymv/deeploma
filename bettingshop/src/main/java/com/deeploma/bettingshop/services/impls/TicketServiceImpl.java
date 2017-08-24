@@ -45,12 +45,17 @@ public class TicketServiceImpl implements TicketService{
 	
 	@Value("${ticket.check-time}")
 	private boolean checkTime;
+	
+	@Value("${ticket.check-rules}")
+	private boolean checkRules;
 
 	@Override
 	@Transactional
 	public Ticket addTicket(Ticket ticket) {
 	
-		//checkTicketRules(ticket);
+		if (checkRules) {
+		    checkTicketRules(ticket);
+		}
 		
 		ticket.setTime(DateTime.now());
 		

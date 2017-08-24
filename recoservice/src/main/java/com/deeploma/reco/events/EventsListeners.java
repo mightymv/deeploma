@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.jms.annotation.JmsListener;
 
 import com.deeploma.reco.domain.UserBehaviour;
@@ -23,10 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 public class EventsListeners {
 
-	private static final String BROWSER_CLICKS = "aca.recommend.queue";
-
 	private final static Logger logger = LoggerFactory.getLogger(EventsListeners.class);
 	
+	private static final String BROWSER_CLICKS = "aca.recommend.queue";
+
 	public static final String TICKETS_QUEUE = "tickets.queue";
 
 	@Autowired
@@ -63,7 +62,7 @@ public class EventsListeners {
 			
 			List<UserBehaviour> behdto = dto.getPrioMatches().stream().map(matchId -> new UserBehaviour(dto.getUserId(), matchId, new DateTime(dto.getTime()))).collect(Collectors.toList());	
 			behdto.stream().forEach(beh -> ma.saveUserBehaviours(beh));
-			//ma.saveUserBehaviours(behdto);
+			
 				
 		} catch (IOException e) {
 			logger.error("Doslo je do greske prilikom parsiranja event-a za ponasanje igraca", e);

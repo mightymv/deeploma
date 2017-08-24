@@ -19,7 +19,7 @@ public class UserMatchCountBehaviour {
 		this.userId = userId;
 	}
 
-	public Map<Long, AtomicInteger> getMatchCount() {
+	public Map<Long, AtomicInteger> getMatchesCount() {
 		return matchCount;
 	}
 

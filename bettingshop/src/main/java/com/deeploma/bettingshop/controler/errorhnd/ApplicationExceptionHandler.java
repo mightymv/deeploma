@@ -32,7 +32,7 @@ public class ApplicationExceptionHandler {
 		if (applicationException.getErrorType() != null) {
 			ErrorInfo errorInfo = new ErrorInfo();
 			errorInfo.setErrorCode(applicationException.getErrorType().name());
-			errorInfo.setLocalized(applicationException.getErrorType().toString());
+			errorInfo.setLocalized(applicationException.getErrorType().toString()); // ovde treba lokalizacija prava na osnovu kljuca
 			
 			return new ResponseEntity<ErrorInfo>(errorInfo, BAD_REQUEST);
 		}

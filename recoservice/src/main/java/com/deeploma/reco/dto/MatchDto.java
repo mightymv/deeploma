@@ -3,9 +3,6 @@ package com.deeploma.reco.dto;
 import org.joda.time.DateTime;
 import org.jongo.marshall.jackson.oid.MongoId;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 
 public class MatchDto {
 

@@ -72,6 +72,8 @@ public class RecommendationStorage {
 			recalculateVector(newUserTickets, newMatchesVectors, match);			
 		});
 		
+		logVectors(newMatchesVectors);	
+		
 		newUserTickets.columnKeySet().stream().forEach(match -> recalculateForMatchRelations(newUserTickets, newMatchToMatchRelations, newMatchesVectors, match, false));
 				
 		//set new values
@@ -85,7 +87,7 @@ public class RecommendationStorage {
 		UserMatchCountBehaviour beh = res.get(uMatches.getId());
 		if (beh == null) 
 			return 0;
-		Map<Long, AtomicInteger> matchCounts = beh.getMatchCount();
+		Map<Long, AtomicInteger> matchCounts = beh.getMatchesCount();
 		if (matchCounts == null) {
 			return 0;
 		}
@@ -104,12 +106,12 @@ public class RecommendationStorage {
 		Collection<Double> vals = newTable.column(match).values();
 		Double sum = vals.stream().mapToDouble( val -> val * val).sum();
 		vectors.put(match, Math.sqrt(sum));	
-		logVectors(vectors);				
 		
 	}
 
 	private void logVectors(HashMap<MatchDto, Double> vectors) {
-		vectors.entrySet().forEach(entry -> logger.info( "Vector- Match : {} , value {} "  +  entry.getKey().getId() + " vec : " + entry.getValue()));
+		logger.info("Broj elemenata u vektorima: " + vectors.size());
+		vectors.entrySet().forEach(entry -> logger.info( "Vector---   Match : {} , vector value {} " ,  entry.getKey().getId() , entry.getValue()));
 	}
 	
 	private void recalculateForMatchRelations(Table<Long, MatchDto, Double> newTable,

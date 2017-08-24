@@ -45,13 +45,11 @@ public class UsersControler {
 		logger.info("Logovanje za korisnika : {}, {}", username, password);
 		AuthenticationWithToken autToken =  authService.authenticate(username, password);
 		
-		 TokenUser tokenUser = (TokenUser) autToken.getDetails();
-	     logger.info("Uspesno logovanje za korisnika : {}", tokenUser.getUser());
-	     TokenResponse tokenResponse = new TokenResponse(tokenUser.getToken(), tokenUser.getUser().getName(), tokenUser.getUser().getSurname(), tokenUser.getUser().getId());
+		TokenUser tokenUser = (TokenUser) autToken.getDetails();
+	    logger.info("Uspesno logovanje za korisnika : {}", tokenUser.getUser());
+	    TokenResponse tokenResponse = new TokenResponse(tokenUser.getToken(), tokenUser.getUser().getName(), tokenUser.getUser().getSurname(), tokenUser.getUser().getId());
 	        
-	     return tokenResponse;
-		
+	    return tokenResponse;		
 	}
 	
-
 }
